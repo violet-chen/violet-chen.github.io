@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ComfyUI插件 | RuiChen</title><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="工作流参考https:&#x2F;&#x2F;comfyanonymous.github.io&#x2F;ComfyUI_examples&#x2F; 将工作流保存到png图像中方法一:  下载插件https:&#x2F;&#x2F;github.com&#x2F;pythongosssss&#x2F;ComfyUI-Custom-Scripts 生成图片后,界面中会显示生成的图片的队列,将队列中的图片保存即可方法二:代码:12345678910111213141516171">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ComfyUI插件">
+<meta property="og:url" content="http://example.com/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="工作流参考https:&#x2F;&#x2F;comfyanonymous.github.io&#x2F;ComfyUI_examples&#x2F; 将工作流保存到png图像中方法一:  下载插件https:&#x2F;&#x2F;github.com&#x2F;pythongosssss&#x2F;ComfyUI-Custom-Scripts 生成图片后,界面中会显示生成的图片的队列,将队列中的图片保存即可方法二:代码:12345678910111213141516171">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img/img%20(68).jpg?raw=true">
+<meta property="article:published_time" content="2023-11-28T01:31:00.000Z">
+<meta property="article:modified_time" content="2024-01-11T16:47:58.800Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="ComfyUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img/img%20(68).jpg?raw=true"><link rel="shortcut icon" href="/assets/P5.webp"><link rel="canonical" href="http://example.com/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ComfyUI插件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-12 00:47:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (true) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='null'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis"><i class="fa-fw fas fa-video"></i><span> 追番列表</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://github.com/violet-chen/image_lib/blob/main/img/img%20(68).jpg?raw=true')"><nav id="nav"><span id="blog-info"><a href="/" title="RuiChen"><span class="site-name">RuiChen</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis"><i class="fa-fw fas fa-video"></i><span> 追番列表</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ComfyUI插件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-28T01:31:00.000Z" title="Created 2023-11-28 09:31:00">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-01-11T16:47:58.800Z" title="Updated 2024-01-12 00:47:58">2024-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ComfyUI插件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="工作流参考"><a href="#工作流参考" class="headerlink" title="工作流参考"></a>工作流参考</h1><p><a target="_blank" rel="noopener" href="https://comfyanonymous.github.io/ComfyUI_examples/">https://comfyanonymous.github.io/ComfyUI_examples/</a></p>
+<h1 id="将工作流保存到png图像中"><a href="#将工作流保存到png图像中" class="headerlink" title="将工作流保存到png图像中"></a>将工作流保存到png图像中</h1><p>方法一:</p>
+<ol>
+<li>下载插件<a target="_blank" rel="noopener" href="https://github.com/pythongosssss/ComfyUI-Custom-Scripts">https://github.com/pythongosssss/ComfyUI-Custom-Scripts</a></li>
+<li>生成图片后,界面中会显示生成的图片的队列,将队列中的图片保存即可<br>方法二:<br>代码:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Add Workflow to PNG</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, PngImagePlugin</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_workflow_png</span>(<span class="params">image_path, workflow_path</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(image_path):</span><br><span class="line">        ValueError(<span class="string">f&quot;Invalid image path `<span class="subst">&#123;image_path&#125;</span>`&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(workflow_path):</span><br><span class="line">        ValueError(<span class="string">f&quot;Invalid workflow path `<span class="subst">&#123;workflow_path&#125;</span>`&quot;</span>)</span><br><span class="line">    path = os.path.dirname(image_path)</span><br><span class="line">    filename = os.path.basename(image_path).rsplit(<span class="string">&#x27;.&#x27;</span>, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(workflow_path, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">            data = file.read()</span><br><span class="line">    <span class="keyword">except</span> OSError <span class="keyword">as</span> e:</span><br><span class="line">        Exception(<span class="string">&quot;There was an error reading the workflow JSON:&quot;</span>, e)</span><br><span class="line">    image = Image.<span class="built_in">open</span>(image_path)</span><br><span class="line">    info = PngImagePlugin.PngInfo()</span><br><span class="line">    info.add_text(<span class="string">&quot;workflow&quot;</span>, data)</span><br><span class="line">    new_path = os.path.join(path, filename+<span class="string">&#x27;_workflow.png&#x27;</span>)</span><br><span class="line">    image.save(new_path, <span class="string">&quot;PNG&quot;</span>, pnginfo=info)</span><br><span class="line">    <span class="keyword">return</span> new_path</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the workflow PNG</span></span><br><span class="line"></span><br><span class="line">image = <span class="string">&#x27;/content/Comparison_Workflow.png&#x27;</span> <span class="comment"># 在这里填写工作流生成的图片的路径</span></span><br><span class="line">workflow = <span class="string">&#x27;/content/PPF_Workflow.json&#x27;</span> <span class="comment"># 在这里填写工作流的Json文件路径</span></span><br><span class="line"></span><br><span class="line">workflow_png_path = make_workflow_png(image, workflow)</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(image)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Workflow added to image:&quot;</span>, workflow_png_path)</span><br></pre></td></tr></table></figure>
+使用方法:</li>
+<li>准备ComfyUI的工作流文件:workflow.json (名字任意)</li>
+<li>工作流生成的图片:image.png  (名字任意)</li>
+<li>在提供的代码中填写图片和工作流的文件路径</li>
+<li>运行代码</li>
+<li>在图片的路径下得到后缀为_workflow.png的携带工作流的图片</li>
+<li>将携带工作流的图片拖入到ComfyUI中即可生成对应的工作流</li>
+</ol>
+<h1 id="ComfyUI-Manager"><a href="#ComfyUI-Manager" class="headerlink" title="ComfyUI Manager"></a>ComfyUI Manager</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/ltdrdata/ComfyUI-Manager">https://github.com/ltdrdata/ComfyUI-Manager</a><br>作用:方便插件的安装,识别工作流中有哪些未安装的模型和插件<br>推荐的设置:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-4.png" alt="Alt text"><br>设置好这些以后,comfyui上能够显示节点对应的插件名,如果是🦊图标就是原生的,如果是不带🦊图标并且没有插件名的就是识别不出来的.<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-5.png" alt="Alt text"></p>
+<h1 id="AnimateDiff-Evolved-生成动画的工作流相关"><a href="#AnimateDiff-Evolved-生成动画的工作流相关" class="headerlink" title="AnimateDiff Evolved(生成动画的工作流相关)"></a>AnimateDiff Evolved(生成动画的工作流相关)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved">https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved</a><br>额外需要的模型:参考github说明,有lora,有model.<br>作用:生成带动作的视频<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-2.png" alt="Alt text"></p>
+<h1 id="FizzNodes-生成动画的工作流相关"><a href="#FizzNodes-生成动画的工作流相关" class="headerlink" title="FizzNodes(生成动画的工作流相关)"></a>FizzNodes(生成动画的工作流相关)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/FizzleDorf/ComfyUI_FizzNodes">https://github.com/FizzleDorf/ComfyUI_FizzNodes</a><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-3.png" alt="Alt text"><br>作用:</p>
+<blockquote>
+<p>Scheduled prompts, scheduled float&#x2F;int values and wave function nodes for animations and utility. compatable with framesync and keyframe-string-generator for audio synced animations in Comfyui.<br>用于动画和实用程序的预定提示、预定浮点&#x2F;整数值和波函数节点。与 Comfyui 中的音频同步动画的帧同步和关键帧字符串生成器兼容。</p>
+</blockquote>
+<h1 id="ComfyUI-VideoHelperSuite-生成动画的工作流相关"><a href="#ComfyUI-VideoHelperSuite-生成动画的工作流相关" class="headerlink" title="ComfyUI-VideoHelperSuite(生成动画的工作流相关)"></a>ComfyUI-VideoHelperSuite(生成动画的工作流相关)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite">https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite</a><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image.png" alt="Alt text"><br>作用:视频工作流相关节点</p>
+<h1 id="ComfyUI-Custom-Nodes-AlekPet-实时绘画的工作流相关"><a href="#ComfyUI-Custom-Nodes-AlekPet-实时绘画的工作流相关" class="headerlink" title="ComfyUI_Custom_Nodes_AlekPet(实时绘画的工作流相关)"></a>ComfyUI_Custom_Nodes_AlekPet(实时绘画的工作流相关)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet">https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet</a></p>
+<h1 id="ComfyUI-IPAdapter-plus"><a href="#ComfyUI-IPAdapter-plus" class="headerlink" title="ComfyUI_IPAdapter_plus"></a>ComfyUI_IPAdapter_plus</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/cubiq/ComfyUI_IPAdapter_plus">https://github.com/cubiq/ComfyUI_IPAdapter_plus</a><br>注意:<font color="red">这个需要下载对应的需要模型,因此需要前往github查看需要的内容</font><br>作用:</p>
+<blockquote>
+<pre><code>The IPAdapter are very powerful models for image-to-image conditioning. Given a reference image you can do variations augmented by text prompt, controlnets and masks. Think of it as a 1-image lora.
+</code></pre>
+<p>IPAdapter 是非常强大的图像到图像调节模型。给定参考图像，您可以通过文本提示、控制网和遮罩进行增强的变化。将其视为单幅图像 lora。</p>
+</blockquote>
+<h1 id="ComfyUI-Custom-Scripts"><a href="#ComfyUI-Custom-Scripts" class="headerlink" title="ComfyUI-Custom-Scripts"></a>ComfyUI-Custom-Scripts</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/pythongosssss/ComfyUI-Custom-Scripts">https://github.com/pythongosssss/ComfyUI-Custom-Scripts</a><br>作用举例:可以扩展comfyUI的界面,令生成的图片都显示在界面上,然后可以拖拽复现工作流.<br>像这种带蟒蛇图标的都属于这个插件<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-1.png" alt="Alt text"></p>
+<h1 id="comfyui-controlnet-aux"><a href="#comfyui-controlnet-aux" class="headerlink" title="comfyui_controlnet_aux"></a>comfyui_controlnet_aux</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/Fannovel16/comfyui_controlnet_aux">https://github.com/Fannovel16/comfyui_controlnet_aux</a><br>注意:<font color="red">此自定义节点与comfyui_controlnet_preprocessors相冲突</font><br>作用:可以将图片进行预处理,生成ControlNet模型需要的图片.</p>
+<h1 id="Masquerade-Nodes"><a href="#Masquerade-Nodes" class="headerlink" title="Masquerade Nodes"></a>Masquerade Nodes</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/BadCafeCode/masquerade-nodes-comfyui">https://github.com/BadCafeCode/masquerade-nodes-comfyui</a><br>作用: 提供了很多与mask处理有关的节点</p>
+<h1 id="Allor"><a href="#Allor" class="headerlink" title="Allor"></a>Allor</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/Nourepide/ComfyUI-Allor?tab=readme-ov-file">https://github.com/Nourepide/ComfyUI-Allor?tab=readme-ov-file</a><br>作用: 提供了很多调节图像的节点<br>使用文档:<a target="_blank" rel="noopener" href="https://nourepide.github.io/ComfyUI-Allor-Doc/image-text.html">https://nourepide.github.io/ComfyUI-Allor-Doc/image-text.html</a></p>
+<h2 id="ImageTransformCropAbsolute"><a href="#ImageTransformCropAbsolute" class="headerlink" title="ImageTransformCropAbsolute"></a>ImageTransformCropAbsolute</h2><p>可以将图片进行裁切<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-7.png" alt="Alt text"></p>
+<h1 id="ComfyUI-Segment-Anything"><a href="#ComfyUI-Segment-Anything" class="headerlink" title="ComfyUI Segment Anything"></a>ComfyUI Segment Anything</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/storyicon/comfyui_segment_anything">https://github.com/storyicon/comfyui_segment_anything</a><br>作用: 通过算法进行生成遮罩与图像</p>
+<h1 id="efficiency-nodes-comfyui"><a href="#efficiency-nodes-comfyui" class="headerlink" title="efficiency-nodes-comfyui"></a>efficiency-nodes-comfyui</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/LucianoCirino/efficiency-nodes-comfyui?tab=readme-ov-file">https://github.com/LucianoCirino/efficiency-nodes-comfyui?tab=readme-ov-file</a><br>作用:提供了一些自定义节点,例如xyplot.然后提供了一些用于简化工作流程而减少节点总数的节点,将一些流程汇总到了一个节点上面.</p>
+<h1 id="ComfyUI-tinyterraNodes"><a href="#ComfyUI-tinyterraNodes" class="headerlink" title="ComfyUI_tinyterraNodes"></a>ComfyUI_tinyterraNodes</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/TinyTerra/ComfyUI_tinyterraNodes">https://github.com/TinyTerra/ComfyUI_tinyterraNodes</a><br>作用:这个也有xyplot,也提供了一些精简工作流的节点.<br>实测:通过自定义节点实现只需要一个节点就能够添加多个lora的效果.并实测跟原生工作流生成图片相同.<br>将此图片拖入comfyui复刻工作流<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/comfyui_ttn.png" alt="Alt text"></p>
+<h1 id="ComfyUI-ADV-CLIP-emb"><a href="#ComfyUI-ADV-CLIP-emb" class="headerlink" title="ComfyUI_ADV_CLIP_emb"></a>ComfyUI_ADV_CLIP_emb</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb">https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb</a><br>作用:让comfyui的提示词的跟webui的提示词对于权重分配的方式一样.</p>
+<h2 id="BNK-CLIPTextEncodeAdvanced"><a href="#BNK-CLIPTextEncodeAdvanced" class="headerlink" title="BNK_CLIPTextEncodeAdvanced"></a>BNK_CLIPTextEncodeAdvanced</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-6.png" alt="Alt text"></p>
+<h1 id="ComfyUI-Inspire-Pack"><a href="#ComfyUI-Inspire-Pack" class="headerlink" title="ComfyUI-Inspire-Pack"></a>ComfyUI-Inspire-Pack</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/ltdrdata/ComfyUI-Inspire-Pack">https://github.com/ltdrdata/ComfyUI-Inspire-Pack</a><br>作用:这也有A1111 兼容性支持有助于在 ComfyUI 中精确复制 A1111 的创建。</p>
+<h2 id="KSampler-Inspire"><a href="#KSampler-Inspire" class="headerlink" title="KSampler &#x2F;&#x2F;Inspire"></a>KSampler &#x2F;&#x2F;Inspire</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/image-8.png" alt="Alt text"></p>
+<h1 id="ComfyUI-Dave-CustomNode-manage中搜索Davemane42"><a href="#ComfyUI-Dave-CustomNode-manage中搜索Davemane42" class="headerlink" title="ComfyUI_Dave_CustomNode(manage中搜索Davemane42)"></a>ComfyUI_Dave_CustomNode(manage中搜索Davemane42)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/Davemane42/ComfyUI_Dave_CustomNode">https://github.com/Davemane42/ComfyUI_Dave_CustomNode</a><br>作用:线稿上色latent couple(sdwebui上面叫latent couple),注:这个不能够通过api进行调用</p>
+<h1 id="ComfyUI-Impact-Pack"><a href="#ComfyUI-Impact-Pack" class="headerlink" title="ComfyUI-Impact-Pack"></a>ComfyUI-Impact-Pack</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/ltdrdata/ComfyUI-Impact-Pack">https://github.com/ltdrdata/ComfyUI-Impact-Pack</a><br>作用:脸部修复</p>
+<h1 id="was-node-suite-comfyui-manage中搜索WAS-Node-Suite"><a href="#was-node-suite-comfyui-manage中搜索WAS-Node-Suite" class="headerlink" title="was-node-suite-comfyui(manage中搜索WAS_Node_Suite)"></a>was-node-suite-comfyui(manage中搜索WAS_Node_Suite)</h1><p>网站:<a target="_blank" rel="noopener" href="https://github.com/WASasquatch/was-node-suite-comfyui">https://github.com/WASasquatch/was-node-suite-comfyui</a><br>作用:提供了很多不同类型的节点,个人主要用到的:各种switch节点.方便一个工作流来实现不同需求.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">RuiChen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/">http://example.com/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ComfyUI/">ComfyUI</a></div><div class="post_share"><div class="social-share" data-image="https://github.com/violet-chen/image_lib/blob/main/img/img%20(68).jpg?raw=true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/30/Geek-Docker/" title="Docker"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img/img%20(1).png?raw=true" onerror="onerror=null;src='/assets/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Docker</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/21/UE%E5%BC%80%E5%8F%91-UE%E5%B7%A5%E5%85%B7%E8%93%9D%E5%9B%BE/" title="UE_工具蓝图"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img/img%20(53).jpg?raw=true" onerror="onerror=null;src='/assets/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">UE_工具蓝图</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="ComfyUI工作流"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img/img%20(17).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-08</div><div class="title">ComfyUI工作流</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="this.onerror=null;this.src='/null'" alt="avatar"/></div><div class="author-info__name">RuiChen</div><div class="author-info__description">RuiChen</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.yuque.com/quanmianxiaokangdelouwangzhiyu"><i class="https://mdn.alipayobjects.com/huamei_0prmtq/afts/img/A*9uyGR6gGcI4AAAAAAAAAAAAADvuFAQ/original"></i><span>前往语雀...</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/violet-chen" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%8F%82%E8%80%83"><span class="toc-text">工作流参考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%BF%9D%E5%AD%98%E5%88%B0png%E5%9B%BE%E5%83%8F%E4%B8%AD"><span class="toc-text">将工作流保存到png图像中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Manager"><span class="toc-text">ComfyUI Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AnimateDiff-Evolved-%E7%94%9F%E6%88%90%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9B%B8%E5%85%B3"><span class="toc-text">AnimateDiff Evolved(生成动画的工作流相关)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FizzNodes-%E7%94%9F%E6%88%90%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9B%B8%E5%85%B3"><span class="toc-text">FizzNodes(生成动画的工作流相关)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-VideoHelperSuite-%E7%94%9F%E6%88%90%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9B%B8%E5%85%B3"><span class="toc-text">ComfyUI-VideoHelperSuite(生成动画的工作流相关)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Custom-Nodes-AlekPet-%E5%AE%9E%E6%97%B6%E7%BB%98%E7%94%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9B%B8%E5%85%B3"><span class="toc-text">ComfyUI_Custom_Nodes_AlekPet(实时绘画的工作流相关)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-IPAdapter-plus"><span class="toc-text">ComfyUI_IPAdapter_plus</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Custom-Scripts"><span class="toc-text">ComfyUI-Custom-Scripts</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#comfyui-controlnet-aux"><span class="toc-text">comfyui_controlnet_aux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Masquerade-Nodes"><span class="toc-text">Masquerade Nodes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Allor"><span class="toc-text">Allor</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ImageTransformCropAbsolute"><span class="toc-text">ImageTransformCropAbsolute</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Segment-Anything"><span class="toc-text">ComfyUI Segment Anything</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#efficiency-nodes-comfyui"><span class="toc-text">efficiency-nodes-comfyui</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-tinyterraNodes"><span class="toc-text">ComfyUI_tinyterraNodes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-ADV-CLIP-emb"><span class="toc-text">ComfyUI_ADV_CLIP_emb</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BNK-CLIPTextEncodeAdvanced"><span class="toc-text">BNK_CLIPTextEncodeAdvanced</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Inspire-Pack"><span class="toc-text">ComfyUI-Inspire-Pack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KSampler-Inspire"><span class="toc-text">KSampler &#x2F;&#x2F;Inspire</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Dave-CustomNode-manage%E4%B8%AD%E6%90%9C%E7%B4%A2Davemane42"><span class="toc-text">ComfyUI_Dave_CustomNode(manage中搜索Davemane42)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComfyUI-Impact-Pack"><span class="toc-text">ComfyUI-Impact-Pack</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#was-node-suite-comfyui-manage%E4%B8%AD%E6%90%9C%E7%B4%A2WAS-Node-Suite"><span class="toc-text">was-node-suite-comfyui(manage中搜索WAS_Node_Suite)</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By RuiChen</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="5094342544" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:24%;}.categoryBar-list{max-height: 380px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 320px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/img1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img2.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">5</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/C/&quot;);" href="javascript:void(0);">C++</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(/assets/img7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>
