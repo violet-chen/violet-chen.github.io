@@ -1,0 +1,4293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ComfyUI工作流 | RuiChen</title><meta name="keywords" content="ComfyUI"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="工作流的参考方法方法一:将图片拖拽进ComfyUI中方法二:复制json内容粘贴至ComfyUI ipadapter配合controlnet 只需要通过一个节点就可以负责Lora一个或多个的添加工作流解析:通过设置节点参数来使用一个或多个Lora 局部重绘省流版:其中VAE Encode(for Inpainting) 和 Set Latent Noise Mask效果差不多,可以都测试测试看哪个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ComfyUI工作流">
+<meta property="og:url" content="http://example.com/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="工作流的参考方法方法一:将图片拖拽进ComfyUI中方法二:复制json内容粘贴至ComfyUI ipadapter配合controlnet 只需要通过一个节点就可以负责Lora一个或多个的添加工作流解析:通过设置节点参数来使用一个或多个Lora 局部重绘省流版:其中VAE Encode(for Inpainting) 和 Set Latent Noise Mask效果差不多,可以都测试测试看哪个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(83).jpg?raw=true">
+<meta property="article:published_time" content="2024-01-08T10:21:00.000Z">
+<meta property="article:modified_time" content="2024-07-27T18:58:06.872Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="ComfyUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(83).jpg?raw=true"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ComfyUI工作流',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 02:58:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">ComfyUI工作流</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-meta-icon" style="width:30px;height:30px;position:relative;top:10px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2024-01-08T10:21:00.000Z" title="发表于 2024-01-08 18:21:00">2024-01-08</time><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-gengxin1"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.872Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-biaoqian"></use></svg><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:8px"><use xlink:href="#icon-charuword"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">1.2w</span><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:20px;height:20px;position:relative;top:5px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>71分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ComfyUI工作流"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:5px"><use xlink:href="#icon-eye"></use></svg><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="工作流的参考方法"><a href="#工作流的参考方法" class="headerlink" title="工作流的参考方法"></a>工作流的参考方法</h1><p>方法一:将图片拖拽进ComfyUI中<br>方法二:复制json内容粘贴至ComfyUI</p>
+<h1 id="ipadapter配合controlnet"><a href="#ipadapter配合controlnet" class="headerlink" title="ipadapter配合controlnet"></a>ipadapter配合controlnet</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//ipadapter_and_controlnet.png" alt="Alt text"></p>
+<h1 id="只需要通过一个节点就可以负责Lora一个或多个的添加"><a href="#只需要通过一个节点就可以负责Lora一个或多个的添加" class="headerlink" title="只需要通过一个节点就可以负责Lora一个或多个的添加"></a>只需要通过一个节点就可以负责Lora一个或多个的添加</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image.png" alt="Alt text"><br>工作流解析:<br>通过设置节点参数来使用一个或多个Lora<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-1.png" alt="Alt text"></p>
+<h1 id="局部重绘"><a href="#局部重绘" class="headerlink" title="局部重绘"></a>局部重绘</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-2.png" alt="Alt text"><br>省流版:<br>其中VAE Encode(for Inpainting) 和 Set Latent Noise Mask效果差不多,可以都测试测试看哪个效果好.<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-4.png" alt="Alt text"></p>
+<h1 id="PS投屏实时绘画"><a href="#PS投屏实时绘画" class="headerlink" title="PS投屏实时绘画"></a>PS投屏实时绘画</h1><pre><code class="lang-json">&#123;
+  &quot;last_node_id&quot;: 169,
+  &quot;last_link_id&quot;: 326,
+  &quot;nodes&quot;: [
+    &#123;
+      &quot;id&quot;: 107,
+      &quot;type&quot;: &quot;Note&quot;,
+      &quot;pos&quot;: [
+        292.05923012390133,
+        649.03209475708
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 293.3884582519531,
+        &quot;1&quot;: 158.1380615234375
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 0,
+      &quot;mode&quot;: 0,
+      &quot;title&quot;: &quot;采样器数值说明&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;text&quot;: &quot;&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;1.seed:值为-1时每次出图都是随机的\n2.steps:意思是步数,值越高质量越高,相应的出图速度越慢,实时绘画建议4~8.\n3.cfg:cfg越大生成的图就越符合提示词内容,由于使用了LCM来加速了实时绘画出图的速度因此需要控制在1~2最好.\n4.sampler_name:采样器dpmpp对应SDWebUI的dmp++\n5.scheduler: 采样调度,一般选择karras或者normal即可                        \n6.denoise:重绘幅度,值越大重绘幅度越大\n7.preview_method:预览方法,不重要,跟出图效果无关\n8.vae_decode:控制如何使用vae,保持默认即可&quot;
+      ],
+      &quot;color&quot;: &quot;#432&quot;,
+      &quot;bgcolor&quot;: &quot;#653&quot;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 108,
+      &quot;type&quot;: &quot;Note&quot;,
+      &quot;pos&quot;: [
+        -949.0268085632321,
+        1128.7023533935537
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 322.2235107421875,
+        &quot;1&quot;: 107.0997085571289
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 1,
+      &quot;mode&quot;: 0,
+      &quot;title&quot;: &quot;如何设置PS与ComfyUI连接&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;text&quot;: &quot;&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;1.点击ShareScreen按钮,会弹出一个窗口,有三种模式,分别是Chrome标签页,窗口,整个屏幕.选择窗口模式,然后找到要与Comfyui连接的PS项目.点击选中并点击分享按钮.\n2.点击SetArea按钮,在弹出的窗口中框住画布区域,可以理解为框住的画布区域就是图生图流程中提供的参考图.\n3.点击LiveRun按钮&quot;
+      ],
+      &quot;color&quot;: &quot;#432&quot;,
+      &quot;bgcolor&quot;: &quot;#653&quot;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 109,
+      &quot;type&quot;: &quot;LoraLoader&quot;,
+      &quot;pos&quot;: [
+        -1307,
+        802
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 337.1312255859375,
+        &quot;1&quot;: 126
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 9,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 177,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 178,
+          &quot;label&quot;: &quot;clip&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            179
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MODEL&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            180
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CLIP&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;LoraLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;add_detail.safetensors&quot;,
+        1,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 10,
+      &quot;type&quot;: &quot;VAELoader&quot;,
+      &quot;pos&quot;: [
+        -488,
+        1192
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 348.7921447753906,
+        &quot;1&quot;: 58
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 2,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;VAE&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;links&quot;: [
+            30,
+            144
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;VAE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;加载VAE&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAELoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;Anything-V3.0.vae.pt&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 82,
+      &quot;type&quot;: &quot;ModelSamplingDiscrete&quot;,
+      &quot;pos&quot;: [
+        -476,
+        556
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 82
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 12,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 181,
+          &quot;label&quot;: &quot;model&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            140
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;MODEL&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ModelSamplingDiscrete&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;lcm&quot;,
+        false
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 5,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        -495,
+        954
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 380.93463134765625,
+        &quot;1&quot;: 185.83177185058594
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 14,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 183,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            142
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;反向提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 3,
+      &quot;type&quot;: &quot;CheckpointLoaderSimple&quot;,
+      &quot;pos&quot;: [
+        -2230,
+        810
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 321.88446044921875,
+        &quot;1&quot;: 98
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 3,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            14
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MODEL&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            16
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CLIP&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;VAE&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;VAE&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;加载模型&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CheckpointLoaderSimple&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;cardosAnimated_v30.safetensors&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 4,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        -494,
+        718
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 382.7315368652344,
+        &quot;1&quot;: 166.9505615234375
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 13,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 182,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            141
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;正向提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;natural light, incandescent light, fiber optic,\nmorning light,Moody Lighting, edge light, movie\nlighting, studio lighting, soft lighting, Distorted\nenergy flow,quantitative, Contra Jour, beautiful\nlighting,emphasizing lighting,global lighting,\nscreen space global lighting,ray tracing global\nlighting, optics，scattering,\nluminescence，shadows,\nroughness,flash, incremental detail and integration,\nultra maximum, element, ultra realistic,ultra\ndetailed&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 100,
+      &quot;type&quot;: &quot;ScreenShare&quot;,
+      &quot;pos&quot;: [
+        -947.0268085632321,
+        1284.7023533935537
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 372.8167724609375,
+        &quot;1&quot;: 276.5818786621094
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 4,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            175
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;MASK&quot;,
+          &quot;type&quot;: &quot;MASK&quot;,
+          &quot;links&quot;: [],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MASK&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;STRING&quot;,
+          &quot;type&quot;: &quot;STRING&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;STRING&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;INT&quot;,
+          &quot;type&quot;: &quot;INT&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;INT&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;设置如何共享屏幕&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ScreenShare&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 21,
+      &quot;type&quot;: &quot;VAEEncode&quot;,
+      &quot;pos&quot;: [
+        -71,
+        1293
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 210,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 10,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;pixels&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 263,
+          &quot;label&quot;: &quot;pixels&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 30,
+          &quot;label&quot;: &quot;vae&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            301
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;LATENT&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAEEncode&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 13,
+      &quot;type&quot;: &quot;LoraLoader&quot;,
+      &quot;pos&quot;: [
+        -1840,
+        810
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 337.1312255859375,
+        &quot;1&quot;: 126
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 7,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 14,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 16,
+          &quot;label&quot;: &quot;clip&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            177
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MODEL&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            178
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CLIP&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;LoraLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;LCM_LoRA_SD15.safetensors&quot;,
+        1,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 28,
+      &quot;type&quot;: &quot;ImageScale&quot;,
+      &quot;pos&quot;: [
+        -476,
+        1305
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 324.6936340332031,
+        &quot;1&quot;: 130
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 8,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 175,
+          &quot;label&quot;: &quot;image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            263
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;设置图片分辨率大小&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ImageScale&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;nearest-exact&quot;,
+        576,
+        603,
+        &quot;disabled&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 89,
+      &quot;type&quot;: &quot;KSampler (Efficient)&quot;,
+      &quot;pos&quot;: [
+        222,
+        871
+      ],
+      &quot;size&quot;: [
+        438.64739990234375,
+        579.5003051757812
+      ],
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 17,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 140,
+          &quot;label&quot;: &quot;model&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 141,
+          &quot;label&quot;: &quot;positive&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 142,
+          &quot;label&quot;: &quot;negative&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;latent_image&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 301,
+          &quot;label&quot;: &quot;latent_image&quot;,
+          &quot;slot_index&quot;: 3
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;optional_vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 144,
+          &quot;label&quot;: &quot;optional_vae&quot;,
+          &quot;slot_index&quot;: 4
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;script&quot;,
+          &quot;type&quot;: &quot;SCRIPT&quot;,
+          &quot;link&quot;: null,
+          &quot;label&quot;: &quot;script&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            241
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MODEL&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING+&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            324
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING+&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING-&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            313
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING-&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;LATENT&quot;,
+          &quot;slot_index&quot;: 3
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;VAE&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;links&quot;: [
+            245,
+            280
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;VAE&quot;,
+          &quot;slot_index&quot;: 4
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            176,
+            186
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 5
+        &#125;
+      ],
+      &quot;title&quot;: &quot;采样器&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;KSampler (Efficient)&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        863389622127326,
+        null,
+        7,
+        1.5,
+        &quot;dpmpp_sde_gpu&quot;,
+        &quot;karras&quot;,
+        0.33,
+        &quot;auto&quot;,
+        &quot;true&quot;
+      ],
+      &quot;color&quot;: &quot;#332222&quot;,
+      &quot;bgcolor&quot;: &quot;#553333&quot;,
+      &quot;shape&quot;: 1
+    &#125;,
+    &#123;
+      &quot;id&quot;: 110,
+      &quot;type&quot;: &quot;LoraLoader&quot;,
+      &quot;pos&quot;: [
+        -947,
+        802
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 126
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 11,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 179,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 180,
+          &quot;label&quot;: &quot;clip&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            181
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MODEL&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            182,
+            183,
+            325,
+            326
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CLIP&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;LoraLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;animeoutlineV4_16.safetensors&quot;,
+        1,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 106,
+      &quot;type&quot;: &quot;FloatingVideo&quot;,
+      &quot;pos&quot;: [
+        -27,
+        1601
+      ],
+      &quot;size&quot;: [
+        749.3804321289062,
+        58
+      ],
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 18,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;images&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 176,
+          &quot;label&quot;: &quot;images&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;FloatingVideo&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        null
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 166,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        786,
+        917
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 15,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 325,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            322
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;新增调节的正向提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 167,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        790,
+        1165
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 16,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 326,
+          &quot;label&quot;: &quot;clip&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            317
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;新增调节的反向提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 168,
+      &quot;type&quot;: &quot;ConditioningCombine&quot;,
+      &quot;pos&quot;: [
+        1258,
+        1172
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: true
+      &#125;,
+      &quot;order&quot;: 25,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_1&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 319,
+          &quot;label&quot;: &quot;conditioning_1&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_2&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 317,
+          &quot;label&quot;: &quot;conditioning_2&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            320
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningCombine&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 169,
+      &quot;type&quot;: &quot;ConditioningConcat&quot;,
+      &quot;pos&quot;: [
+        1255,
+        958
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 380.4000244140625,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: true
+      &#125;,
+      &quot;order&quot;: 24,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_to&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 321,
+          &quot;label&quot;: &quot;conditioning_to&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_from&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 322,
+          &quot;label&quot;: &quot;conditioning_from&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            323
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningConcat&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 137,
+      &quot;type&quot;: &quot;KSampler&quot;,
+      &quot;pos&quot;: [
+        1522,
+        1003
+      ],
+      &quot;size&quot;: [
+        294.13656779296934,
+        273.1279147644045
+      ],
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 26,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 241,
+          &quot;label&quot;: &quot;model&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 323,
+          &quot;label&quot;: &quot;positive&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 320,
+          &quot;label&quot;: &quot;negative&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;latent_image&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 246,
+          &quot;label&quot;: &quot;latent_image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            279
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;LATENT&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;KSampler&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        982036911888596,
+        &quot;randomize&quot;,
+        12,
+        1.6,
+        &quot;dpmpp_sde_gpu&quot;,
+        &quot;karras&quot;,
+        0.3
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 115,
+      &quot;type&quot;: &quot;UpscaleModelLoader&quot;,
+      &quot;pos&quot;: [
+        777,
+        487
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 58
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 5,
+      &quot;mode&quot;: 4,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;UPSCALE_MODEL&quot;,
+          &quot;type&quot;: &quot;UPSCALE_MODEL&quot;,
+          &quot;links&quot;: [
+            184
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;UPSCALE_MODEL&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;UpscaleModelLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;4x-UltraSharp.pth&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 133,
+      &quot;type&quot;: &quot;ImageScaleBy&quot;,
+      &quot;pos&quot;: [
+        779,
+        602
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 82
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 20,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 231,
+          &quot;label&quot;: &quot;image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            244,
+            303
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ImageScaleBy&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;nearest-exact&quot;,
+        0.5
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 163,
+      &quot;type&quot;: &quot;TilePreprocessor&quot;,
+      &quot;pos&quot;: [
+        1164,
+        585
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 82
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 22,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 303,
+          &quot;label&quot;: &quot;image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            304
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;TilePreprocessor&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        3,
+        512
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 138,
+      &quot;type&quot;: &quot;VAEEncode&quot;,
+      &quot;pos&quot;: [
+        814,
+        800
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 210,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: true
+      &#125;,
+      &quot;order&quot;: 21,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;pixels&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 244,
+          &quot;label&quot;: &quot;pixels&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 245,
+          &quot;label&quot;: &quot;vae&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            246
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;LATENT&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAEEncode&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 165,
+      &quot;type&quot;: &quot;ControlNetLoader&quot;,
+      &quot;pos&quot;: [
+        796,
+        759
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 58
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: true
+      &#125;,
+      &quot;order&quot;: 6,
+      &quot;mode&quot;: 4,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONTROL_NET&quot;,
+          &quot;type&quot;: &quot;CONTROL_NET&quot;,
+          &quot;links&quot;: [
+            307
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONTROL_NET&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ControlNetLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;ControlNet-v1-1/control_v11f1e_sd15_tile.pth&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 164,
+      &quot;type&quot;: &quot;ControlNetApplyAdvanced&quot;,
+      &quot;pos&quot;: [
+        1161,
+        710
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 166
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 23,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 324,
+          &quot;label&quot;: &quot;positive&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 313,
+          &quot;label&quot;: &quot;negative&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;control_net&quot;,
+          &quot;type&quot;: &quot;CONTROL_NET&quot;,
+          &quot;link&quot;: 307,
+          &quot;label&quot;: &quot;control_net&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 304,
+          &quot;label&quot;: &quot;image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            321
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;positive&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            319
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;negative&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ControlNetApplyAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        0.4,
+        0,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 157,
+      &quot;type&quot;: &quot;VAEDecode&quot;,
+      &quot;pos&quot;: [
+        1911,
+        938
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 210,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: true
+      &#125;,
+      &quot;order&quot;: 27,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;samples&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 279,
+          &quot;label&quot;: &quot;samples&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 280,
+          &quot;label&quot;: &quot;vae&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            282
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAEDecode&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 114,
+      &quot;type&quot;: &quot;ImageUpscaleWithModel&quot;,
+      &quot;pos&quot;: [
+        1145,
+        477
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 241.79998779296875,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 19,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;upscale_model&quot;,
+          &quot;type&quot;: &quot;UPSCALE_MODEL&quot;,
+          &quot;link&quot;: 184,
+          &quot;label&quot;: &quot;upscale_model&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 186,
+          &quot;label&quot;: &quot;image&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            231
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ImageUpscaleWithModel&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 158,
+      &quot;type&quot;: &quot;PreviewImage&quot;,
+      &quot;pos&quot;: [
+        785,
+        1624
+      ],
+      &quot;size&quot;: [
+        750.4013947012313,
+        832.9999910122001
+      ],
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 28,
+      &quot;mode&quot;: 4,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;images&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 282,
+          &quot;label&quot;: &quot;images&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;PreviewImage&quot;
+      &#125;
+    &#125;
+  ],
+  &quot;links&quot;: [
+    [
+      14,
+      3,
+      0,
+      13,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      16,
+      3,
+      1,
+      13,
+      1,
+      &quot;CLIP&quot;
+    ],
+    [
+      30,
+      10,
+      0,
+      21,
+      1,
+      &quot;VAE&quot;
+    ],
+    [
+      140,
+      82,
+      0,
+      89,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      141,
+      4,
+      0,
+      89,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      142,
+      5,
+      0,
+      89,
+      2,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      144,
+      10,
+      0,
+      89,
+      4,
+      &quot;VAE&quot;
+    ],
+    [
+      175,
+      100,
+      0,
+      28,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      176,
+      89,
+      5,
+      106,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      177,
+      13,
+      0,
+      109,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      178,
+      13,
+      1,
+      109,
+      1,
+      &quot;CLIP&quot;
+    ],
+    [
+      179,
+      109,
+      0,
+      110,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      180,
+      109,
+      1,
+      110,
+      1,
+      &quot;CLIP&quot;
+    ],
+    [
+      181,
+      110,
+      0,
+      82,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      182,
+      110,
+      1,
+      4,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      183,
+      110,
+      1,
+      5,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      184,
+      115,
+      0,
+      114,
+      0,
+      &quot;UPSCALE_MODEL&quot;
+    ],
+    [
+      186,
+      89,
+      5,
+      114,
+      1,
+      &quot;IMAGE&quot;
+    ],
+    [
+      231,
+      114,
+      0,
+      133,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      241,
+      89,
+      0,
+      137,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      244,
+      133,
+      0,
+      138,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      245,
+      89,
+      4,
+      138,
+      1,
+      &quot;VAE&quot;
+    ],
+    [
+      246,
+      138,
+      0,
+      137,
+      3,
+      &quot;LATENT&quot;
+    ],
+    [
+      263,
+      28,
+      0,
+      21,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      279,
+      137,
+      0,
+      157,
+      0,
+      &quot;LATENT&quot;
+    ],
+    [
+      280,
+      89,
+      4,
+      157,
+      1,
+      &quot;VAE&quot;
+    ],
+    [
+      282,
+      157,
+      0,
+      158,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      301,
+      21,
+      0,
+      89,
+      3,
+      &quot;LATENT&quot;
+    ],
+    [
+      303,
+      133,
+      0,
+      163,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      304,
+      163,
+      0,
+      164,
+      3,
+      &quot;IMAGE&quot;
+    ],
+    [
+      307,
+      165,
+      0,
+      164,
+      2,
+      &quot;CONTROL_NET&quot;
+    ],
+    [
+      313,
+      89,
+      2,
+      164,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      317,
+      167,
+      0,
+      168,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      319,
+      164,
+      1,
+      168,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      320,
+      168,
+      0,
+      137,
+      2,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      321,
+      164,
+      0,
+      169,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      322,
+      166,
+      0,
+      169,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      323,
+      169,
+      0,
+      137,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      324,
+      89,
+      1,
+      164,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      325,
+      110,
+      1,
+      166,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      326,
+      110,
+      1,
+      167,
+      0,
+      &quot;CLIP&quot;
+    ]
+  ],
+  &quot;groups&quot;: [
+    &#123;
+      &quot;title&quot;: &quot;第一步&quot;,
+      &quot;bounding&quot;: [
+        -1004,
+        1062,
+        493,
+        917
+      ],
+      &quot;color&quot;: &quot;#3f789e&quot;,
+      &quot;font_size&quot;: 24,
+      &quot;locked&quot;: false
+    &#125;,
+    &#123;
+      &quot;title&quot;: &quot;设置出图的效果&quot;,
+      &quot;bounding&quot;: [
+        135,
+        530,
+        600,
+        998
+      ],
+      &quot;color&quot;: &quot;#3f789e&quot;,
+      &quot;font_size&quot;: 24,
+      &quot;locked&quot;: false
+    &#125;,
+    &#123;
+      &quot;title&quot;: &quot;图片放大&quot;,
+      &quot;bounding&quot;: [
+        767,
+        304,
+        1357,
+        2185
+      ],
+      &quot;color&quot;: &quot;#3f789e&quot;,
+      &quot;font_size&quot;: 24,
+      &quot;locked&quot;: false
+    &#125;
+  ],
+  &quot;config&quot;: &#123;&#125;,
+  &quot;extra&quot;: &#123;&#125;,
+  &quot;version&quot;: 0.4
+&#125;
+</code></pre>
+<h1 id="SVD图生视频"><a href="#SVD图生视频" class="headerlink" title="SVD图生视频"></a>SVD图生视频</h1><pre><code class="lang-json">&#123;
+  &quot;last_node_id&quot;: 24,
+  &quot;last_link_id&quot;: 42,
+  &quot;nodes&quot;: [
+    &#123;
+      &quot;id&quot;: 17,
+      &quot;type&quot;: &quot;KSampler&quot;,
+      &quot;pos&quot;: [
+        802.4000122070315,
+        566.4000274658204
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 474
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 8,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 28,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 30,
+          &quot;label&quot;: &quot;positive&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 32,
+          &quot;label&quot;: &quot;negative&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;latent_image&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 37,
+          &quot;slot_index&quot;: 3,
+          &quot;label&quot;: &quot;latent_image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            33
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;LATENT&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;KSampler&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        870215885552051,
+        &quot;randomize&quot;,
+        15,
+        8,
+        &quot;uni_pc_bh2&quot;,
+        &quot;normal&quot;,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 22,
+      &quot;type&quot;: &quot;EmptyLatentImage&quot;,
+      &quot;pos&quot;: [
+        422.4000122070312,
+        866.4000274658204
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 310,
+        &quot;1&quot;: 110
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 0,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            37
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;LATENT&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;EmptyLatentImage&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        576,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 8,
+      &quot;type&quot;: &quot;VAEDecode&quot;,
+      &quot;pos&quot;: [
+        2635.0480407592772,
+        634
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 210,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 13,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;samples&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 7,
+          &quot;label&quot;: &quot;samples&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 26,
+          &quot;label&quot;: &quot;vae&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            10
+          ],
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;IMAGE&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAEDecode&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 14,
+      &quot;type&quot;: &quot;VideoLinearCFGGuidance&quot;,
+      &quot;pos&quot;: [
+        1896.0480407592775,
+        578
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 58
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 5,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 23,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            39
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;MODEL&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VideoLinearCFGGuidance&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 20,
+      &quot;type&quot;: &quot;VAEDecode&quot;,
+      &quot;pos&quot;: [
+        1179,
+        581
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 210,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 9,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;samples&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 33,
+          &quot;label&quot;: &quot;samples&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 34,
+          &quot;slot_index&quot;: 1,
+          &quot;label&quot;: &quot;vae&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [
+            36,
+            42
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;IMAGE&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;VAEDecode&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 18,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        342.4000122070312,
+        516.4000274658204
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 390,
+        &quot;1&quot;: 130
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 6,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 29,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            30
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;photograph beautiful scenery nature mountains alps river rapids snow sky cumulus clouds&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 3,
+      &quot;type&quot;: &quot;KSampler&quot;,
+      &quot;pos&quot;: [
+        2268.0480407592772,
+        629
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 294.6124267578125,
+        &quot;1&quot;: 474
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 12,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;model&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;link&quot;: 39,
+          &quot;label&quot;: &quot;model&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 40,
+          &quot;label&quot;: &quot;positive&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 17,
+          &quot;label&quot;: &quot;negative&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;latent_image&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;link&quot;: 18,
+          &quot;label&quot;: &quot;latent_image&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;LATENT&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            7
+          ],
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;LATENT&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;KSampler&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1064761774727342,
+        &quot;randomize&quot;,
+        20,
+        2.5,
+        &quot;euler&quot;,
+        &quot;karras&quot;,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 15,
+      &quot;type&quot;: &quot;ImageOnlyCheckpointLoader&quot;,
+      &quot;pos&quot;: [
+        1495,
+        397
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 369.6000061035156,
+        &quot;1&quot;: 98
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 1,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            23
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;MODEL&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP_VISION&quot;,
+          &quot;type&quot;: &quot;CLIP_VISION&quot;,
+          &quot;links&quot;: [
+            24
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 1,
+          &quot;label&quot;: &quot;CLIP_VISION&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;VAE&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;links&quot;: [
+            25,
+            26
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 2,
+          &quot;label&quot;: &quot;VAE&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ImageOnlyCheckpointLoader&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;svd_xt.safetensors&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 21,
+      &quot;type&quot;: &quot;PreviewImage&quot;,
+      &quot;pos&quot;: [
+        1155,
+        727
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 275.9453125,
+        &quot;1&quot;: 246
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 10,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;images&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 36,
+          &quot;label&quot;: &quot;images&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;PreviewImage&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 23,
+      &quot;type&quot;: &quot;LoadImage&quot;,
+      &quot;pos&quot;: [
+        1045,
+        1119
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 314
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 2,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;IMAGE&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;links&quot;: [],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;IMAGE&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;MASK&quot;,
+          &quot;type&quot;: &quot;MASK&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;MASK&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;LoadImage&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;ComfyUI_00140_.png&quot;,
+        &quot;image&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 16,
+      &quot;type&quot;: &quot;CheckpointLoaderSimple&quot;,
+      &quot;pos&quot;: [
+        -87,
+        510
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 98
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 3,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;MODEL&quot;,
+          &quot;type&quot;: &quot;MODEL&quot;,
+          &quot;links&quot;: [
+            28
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;MODEL&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            29,
+            31
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 1,
+          &quot;label&quot;: &quot;CLIP&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;VAE&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;links&quot;: [
+            34
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;VAE&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CheckpointLoaderSimple&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;dreamshaper_7.safetensors&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 12,
+      &quot;type&quot;: &quot;SVD_img2vid_Conditioning&quot;,
+      &quot;pos&quot;: [
+        1906.0480407592775,
+        689
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 218
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 11,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip_vision&quot;,
+          &quot;type&quot;: &quot;CLIP_VISION&quot;,
+          &quot;link&quot;: 24,
+          &quot;label&quot;: &quot;clip_vision&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;init_image&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 42,
+          &quot;slot_index&quot;: 1,
+          &quot;label&quot;: &quot;init_image&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;vae&quot;,
+          &quot;type&quot;: &quot;VAE&quot;,
+          &quot;link&quot;: 25,
+          &quot;label&quot;: &quot;vae&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;positive&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            40
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;positive&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;negative&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            17
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 1,
+          &quot;label&quot;: &quot;negative&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;latent&quot;,
+          &quot;type&quot;: &quot;LATENT&quot;,
+          &quot;links&quot;: [
+            18
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 2,
+          &quot;label&quot;: &quot;latent&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;SVD_img2vid_Conditioning&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        576,
+        25,
+        87,
+        6,
+        0.05
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 24,
+      &quot;type&quot;: &quot;Note&quot;,
+      &quot;pos&quot;: [
+        1896,
+        929
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 356.2646484375,
+        &quot;1&quot;: 103.78158569335938
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 4,
+      &quot;mode&quot;: 0,
+      &quot;properties&quot;: &#123;
+        &quot;text&quot;: &quot;&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;width:生成视频的宽度\nheight:生成视频的高度\nvideo_frames:生成的运动总帧数(建议最大25)\nMotion_bucket_id:数值越大运动幅度越大(建议100以内,不超过200)\nFPS:视频的每秒帧数(6或8)\nAugmentation_level:添加到图像的噪声量(0.1以内,不超过0.5)&quot;
+      ],
+      &quot;color&quot;: &quot;#432&quot;,
+      &quot;bgcolor&quot;: &quot;#653&quot;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 19,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        342,
+        691
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 390,
+        &quot;1&quot;: 130
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 7,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 31,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            32
+          ],
+          &quot;shape&quot;: 3,
+          &quot;slot_index&quot;: 0,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;text, watermark&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 10,
+      &quot;type&quot;: &quot;SaveAnimatedWEBP&quot;,
+      &quot;pos&quot;: [
+        2907,
+        405
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 708.6719970703125,
+        &quot;1&quot;: 843.7864379882812
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 14,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;images&quot;,
+          &quot;type&quot;: &quot;IMAGE&quot;,
+          &quot;link&quot;: 10,
+          &quot;label&quot;: &quot;images&quot;
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;SaveAnimatedWEBP&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;ComfyUI&quot;,
+        10,
+        false,
+        85,
+        &quot;default&quot;,
+        null
+      ]
+    &#125;
+  ],
+  &quot;links&quot;: [
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      &quot;LATENT&quot;
+    ],
+    [
+      10,
+      8,
+      0,
+      10,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      17,
+      12,
+      1,
+      3,
+      2,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      18,
+      12,
+      2,
+      3,
+      3,
+      &quot;LATENT&quot;
+    ],
+    [
+      23,
+      15,
+      0,
+      14,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      24,
+      15,
+      1,
+      12,
+      0,
+      &quot;CLIP_VISION&quot;
+    ],
+    [
+      25,
+      15,
+      2,
+      12,
+      2,
+      &quot;VAE&quot;
+    ],
+    [
+      26,
+      15,
+      2,
+      8,
+      1,
+      &quot;VAE&quot;
+    ],
+    [
+      28,
+      16,
+      0,
+      17,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      29,
+      16,
+      1,
+      18,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      30,
+      18,
+      0,
+      17,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      31,
+      16,
+      1,
+      19,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      32,
+      19,
+      0,
+      17,
+      2,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      33,
+      17,
+      0,
+      20,
+      0,
+      &quot;LATENT&quot;
+    ],
+    [
+      34,
+      16,
+      2,
+      20,
+      1,
+      &quot;VAE&quot;
+    ],
+    [
+      36,
+      20,
+      0,
+      21,
+      0,
+      &quot;IMAGE&quot;
+    ],
+    [
+      37,
+      22,
+      0,
+      17,
+      3,
+      &quot;LATENT&quot;
+    ],
+    [
+      39,
+      14,
+      0,
+      3,
+      0,
+      &quot;MODEL&quot;
+    ],
+    [
+      40,
+      12,
+      0,
+      3,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      42,
+      20,
+      0,
+      12,
+      1,
+      &quot;IMAGE&quot;
+    ]
+  ],
+  &quot;groups&quot;: [
+    &#123;
+      &quot;title&quot;: &quot;SVD&quot;,
+      &quot;bounding&quot;: [
+        1453,
+        297,
+        2203,
+        1015
+      ],
+      &quot;color&quot;: &quot;#8A8&quot;,
+      &quot;font_size&quot;: 24
+    &#125;,
+    &#123;
+      &quot;title&quot;: &quot;txt2img&quot;,
+      &quot;bounding&quot;: [
+        332,
+        442,
+        1106,
+        635
+      ],
+      &quot;color&quot;: &quot;#3f789e&quot;,
+      &quot;font_size&quot;: 24
+    &#125;
+  ],
+  &quot;config&quot;: &#123;&#125;,
+  &quot;extra&quot;: &#123;&#125;,
+  &quot;version&quot;: 0.4
+&#125;
+</code></pre>
+<h1 id="分区域写提示词"><a href="#分区域写提示词" class="headerlink" title="分区域写提示词"></a>分区域写提示词</h1><pre><code class="lang-json">&#123;
+  &quot;last_node_id&quot;: 190,
+  &quot;last_link_id&quot;: 178,
+  &quot;nodes&quot;: [
+    &#123;
+      &quot;id&quot;: 180,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        956,
+        3076
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 13,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 153,
+          &quot;label&quot;: &quot;conditioning&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            162
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;二张视图的整体区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        2048,
+        1536,
+        0,
+        0,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 124,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        955,
+        3285
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 12,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 36,
+          &quot;label&quot;: &quot;conditioning&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            165
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;三张视图的整体区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        3072,
+        1536,
+        0,
+        0,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 118,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        943,
+        2383
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 10,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 30,
+          &quot;label&quot;: &quot;conditioning&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            29
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;控制第二张视图的区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        1536,
+        1024,
+        0,
+        0.8
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 116,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        943,
+        2091
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 9,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 27,
+          &quot;label&quot;: &quot;conditioning&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            28,
+            171
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;控制第一张视图的区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        1536,
+        0,
+        0,
+        0.8
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 173,
+      &quot;type&quot;: &quot;Logic Boolean&quot;,
+      &quot;pos&quot;: [
+        -142,
+        2673
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 78
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 0,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;NUMBER&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;links&quot;: [
+            174,
+            176
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;NUMBER&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;INT&quot;,
+          &quot;type&quot;: &quot;INT&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;INT&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;是否是三张视图&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Logic Boolean&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 120,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        953,
+        2605
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 11,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 33,
+          &quot;label&quot;: &quot;conditioning&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            32
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;控制第三张视图的区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        1536,
+        2048,
+        0,
+        0.8
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 183,
+      &quot;type&quot;: &quot;ConditioningSetArea&quot;,
+      &quot;pos&quot;: [
+        960,
+        2873
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 317.4000244140625,
+        &quot;1&quot;: 154
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 14,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 160,
+          &quot;label&quot;: &quot;conditioning&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            161
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;一张视图的整体区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningSetArea&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        1024,
+        1536,
+        0,
+        0,
+        1
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 117,
+      &quot;type&quot;: &quot;ConditioningCombine&quot;,
+      &quot;pos&quot;: [
+        1358,
+        2096
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 15,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_1&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 28,
+          &quot;label&quot;: &quot;conditioning_1&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_2&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 29,
+          &quot;label&quot;: &quot;conditioning_2&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            172
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;结合第一张视图与第二张视图&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningCombine&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 187,
+      &quot;type&quot;: &quot;Conditioning Input Switch&quot;,
+      &quot;pos&quot;: [
+        1409,
+        2207
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 66
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 17,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_a&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 172,
+          &quot;label&quot;: &quot;conditioning_a&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_b&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 171,
+          &quot;label&quot;: &quot;conditioning_b&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;boolean_number&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;link&quot;: 173,
+          &quot;label&quot;: &quot;boolean_number&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            170,
+            175
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Conditioning Input Switch&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 119,
+      &quot;type&quot;: &quot;ConditioningCombine&quot;,
+      &quot;pos&quot;: [
+        1788,
+        2221
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 19,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_1&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 170,
+          &quot;label&quot;: &quot;conditioning_1&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_2&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 32,
+          &quot;label&quot;: &quot;conditioning_2&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            168
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;结合第二张视图与第三张视图&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningCombine&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 186,
+      &quot;type&quot;: &quot;Conditioning Input Switch&quot;,
+      &quot;pos&quot;: [
+        1988,
+        2316
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 66
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 20,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_a&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 168,
+          &quot;label&quot;: &quot;conditioning_a&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_b&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 175,
+          &quot;label&quot;: &quot;conditioning_b&quot;,
+          &quot;slot_index&quot;: 1
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;boolean_number&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;link&quot;: 174,
+          &quot;label&quot;: &quot;boolean_number&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            169
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Conditioning Input Switch&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 122,
+      &quot;type&quot;: &quot;ConditioningCombine&quot;,
+      &quot;pos&quot;: [
+        2367,
+        2318
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 21,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_1&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 169,
+          &quot;label&quot;: &quot;conditioning_1&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_2&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 166,
+          &quot;label&quot;: &quot;conditioning_2&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            156
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;结合控制整体区域&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningCombine&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 125,
+      &quot;type&quot;: &quot;ConditioningCombine&quot;,
+      &quot;pos&quot;: [
+        2734,
+        2402
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 46
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 22,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_1&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 156,
+          &quot;label&quot;: &quot;conditioning_1&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_2&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 38,
+          &quot;label&quot;: &quot;conditioning_2&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;结合控制整体&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;ConditioningCombine&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 142,
+      &quot;type&quot;: &quot;CLIPSetLastLayer&quot;,
+      &quot;pos&quot;: [
+        9,
+        2275
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 58
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 1,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: null,
+          &quot;label&quot;: &quot;clip&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CLIP&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;links&quot;: [
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CLIP&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPSetLastLayer&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        -2
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 133,
+      &quot;type&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;,
+      &quot;pos&quot;: [
+        488,
+        2093
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 4,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 67,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            27
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;第一张视图的提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;,
+        &quot;none&quot;,
+        &quot;A1111&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 134,
+      &quot;type&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;,
+      &quot;pos&quot;: [
+        488,
+        2383
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 5,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 68,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            30
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;第二张视图的提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;,
+        &quot;none&quot;,
+        &quot;A1111&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 135,
+      &quot;type&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;,
+      &quot;pos&quot;: [
+        479,
+        2640
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 6,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 69,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            33
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;第三张视图的提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;,
+        &quot;none&quot;,
+        &quot;A1111&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 136,
+      &quot;type&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;,
+      &quot;pos&quot;: [
+        474,
+        2916
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 7,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 70,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            36,
+            153,
+            160
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;控制整体区域的提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;,
+        &quot;none&quot;,
+        &quot;A1111&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 137,
+      &quot;type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;pos&quot;: [
+        471,
+        3233
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 8,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 71,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            38
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;使整张图统一,可以不填提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;CLIPTextEncode&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 184,
+      &quot;type&quot;: &quot;Conditioning Input Switch&quot;,
+      &quot;pos&quot;: [
+        1337,
+        2941
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 66
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 16,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_a&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 162,
+          &quot;label&quot;: &quot;conditioning_a&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_b&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 161,
+          &quot;label&quot;: &quot;conditioning_b&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;boolean_number&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;link&quot;: 163,
+          &quot;label&quot;: &quot;boolean_number&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            164
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Conditioning Input Switch&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 185,
+      &quot;type&quot;: &quot;Conditioning Input Switch&quot;,
+      &quot;pos&quot;: [
+        1756,
+        2957
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 342.5999755859375,
+        &quot;1&quot;: 66
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 18,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;conditioning_a&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 165,
+          &quot;label&quot;: &quot;conditioning_a&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;conditioning_b&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;link&quot;: 164,
+          &quot;label&quot;: &quot;conditioning_b&quot;
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;boolean_number&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;link&quot;: 176,
+          &quot;label&quot;: &quot;boolean_number&quot;,
+          &quot;slot_index&quot;: 2
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [
+            166
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Conditioning Input Switch&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;id&quot;: 176,
+      &quot;type&quot;: &quot;Logic Boolean&quot;,
+      &quot;pos&quot;: [
+        -148,
+        2509
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 315,
+        &quot;1&quot;: 78
+      &#125;,
+      &quot;flags&quot;: &#123;
+        &quot;collapsed&quot;: false
+      &#125;,
+      &quot;order&quot;: 2,
+      &quot;mode&quot;: 0,
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;NUMBER&quot;,
+          &quot;type&quot;: &quot;NUMBER&quot;,
+          &quot;links&quot;: [
+            163,
+            173
+          ],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;NUMBER&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;,
+        &#123;
+          &quot;name&quot;: &quot;INT&quot;,
+          &quot;type&quot;: &quot;INT&quot;,
+          &quot;links&quot;: null,
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;INT&quot;
+        &#125;
+      ],
+      &quot;title&quot;: &quot;是否是两张视图&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;Logic Boolean&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        0
+      ]
+    &#125;,
+    &#123;
+      &quot;id&quot;: 140,
+      &quot;type&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;,
+      &quot;pos&quot;: [
+        487,
+        1832
+      ],
+      &quot;size&quot;: &#123;
+        &quot;0&quot;: 400,
+        &quot;1&quot;: 200
+      &#125;,
+      &quot;flags&quot;: &#123;&#125;,
+      &quot;order&quot;: 3,
+      &quot;mode&quot;: 0,
+      &quot;inputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;clip&quot;,
+          &quot;type&quot;: &quot;CLIP&quot;,
+          &quot;link&quot;: 66,
+          &quot;label&quot;: &quot;clip&quot;
+        &#125;
+      ],
+      &quot;outputs&quot;: [
+        &#123;
+          &quot;name&quot;: &quot;CONDITIONING&quot;,
+          &quot;type&quot;: &quot;CONDITIONING&quot;,
+          &quot;links&quot;: [],
+          &quot;shape&quot;: 3,
+          &quot;label&quot;: &quot;CONDITIONING&quot;,
+          &quot;slot_index&quot;: 0
+        &#125;
+      ],
+      &quot;title&quot;: &quot;反向提示词&quot;,
+      &quot;properties&quot;: &#123;
+        &quot;Node name for S&amp;R&quot;: &quot;BNK_CLIPTextEncodeAdvanced&quot;
+      &#125;,
+      &quot;widgets_values&quot;: [
+        &quot;&quot;,
+        &quot;none&quot;,
+        &quot;comfy&quot;
+      ]
+    &#125;
+  ],
+  &quot;links&quot;: [
+    [
+      27,
+      133,
+      0,
+      116,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      28,
+      116,
+      0,
+      117,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      29,
+      118,
+      0,
+      117,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      30,
+      134,
+      0,
+      118,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      32,
+      120,
+      0,
+      119,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      33,
+      135,
+      0,
+      120,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      36,
+      136,
+      0,
+      124,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      38,
+      137,
+      0,
+      125,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      66,
+      142,
+      0,
+      140,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      67,
+      142,
+      0,
+      133,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      68,
+      142,
+      0,
+      134,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      69,
+      142,
+      0,
+      135,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      70,
+      142,
+      0,
+      136,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      71,
+      142,
+      0,
+      137,
+      0,
+      &quot;CLIP&quot;
+    ],
+    [
+      153,
+      136,
+      0,
+      180,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      156,
+      122,
+      0,
+      125,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      160,
+      136,
+      0,
+      183,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      161,
+      183,
+      0,
+      184,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      162,
+      180,
+      0,
+      184,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      163,
+      176,
+      0,
+      184,
+      2,
+      &quot;NUMBER&quot;
+    ],
+    [
+      164,
+      184,
+      0,
+      185,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      165,
+      124,
+      0,
+      185,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      166,
+      185,
+      0,
+      122,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      168,
+      119,
+      0,
+      186,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      169,
+      186,
+      0,
+      122,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      170,
+      187,
+      0,
+      119,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      171,
+      116,
+      0,
+      187,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      172,
+      117,
+      0,
+      187,
+      0,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      173,
+      176,
+      0,
+      187,
+      2,
+      &quot;NUMBER&quot;
+    ],
+    [
+      174,
+      173,
+      0,
+      186,
+      2,
+      &quot;NUMBER&quot;
+    ],
+    [
+      175,
+      187,
+      0,
+      186,
+      1,
+      &quot;CONDITIONING&quot;
+    ],
+    [
+      176,
+      173,
+      0,
+      185,
+      2,
+      &quot;NUMBER&quot;
+    ]
+  ],
+  &quot;groups&quot;: [],
+  &quot;config&quot;: &#123;&#125;,
+  &quot;extra&quot;: &#123;&#125;,
+  &quot;version&quot;: 0.4
+&#125;
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>ComfyUI工作流</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://example.com/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/">http://example.com/2024/01/08/AI-ComfyUI工作流/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>RuiChen</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-01-08</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-07-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ComfyUI/"><div class="tags-punctuation"><svg class="faa-tada icon" style="height:1.1em;width:1.1em;fill:currentColor;position:relative;top:2px;margin-right:3px" aria-hidden="true"><use xlink:href="#icon-sekuaibiaoqian"></use></svg></div>ComfyUI</a></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/03/Geek-python/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(40).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python</div></div></a></div><div class="next-post pull-right"><a href="/2024/01/06/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MaxScript/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MaxScript</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/" title="ComfyUI插件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(64).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">ComfyUI插件</div></div></a></div><div><a href="/2024/06/18/AI-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85ComfyUI/" title="从零开始安装ComfyUI"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(41).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">从零开始安装ComfyUI</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg class="meta_icon" style="width:22px;height:22px;position:relative;top:5px"><use xlink:href="#icon-mulu1"></use></svg><span style="font-weight:bold">目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9A%84%E5%8F%82%E8%80%83%E6%96%B9%E6%B3%95"><span class="toc-text">工作流的参考方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ipadapter%E9%85%8D%E5%90%88controlnet"><span class="toc-text">ipadapter配合controlnet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AA%E9%9C%80%E8%A6%81%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%B4%9F%E8%B4%A3Lora%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA%E7%9A%84%E6%B7%BB%E5%8A%A0"><span class="toc-text">只需要通过一个节点就可以负责Lora一个或多个的添加</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E9%87%8D%E7%BB%98"><span class="toc-text">局部重绘</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PS%E6%8A%95%E5%B1%8F%E5%AE%9E%E6%97%B6%E7%BB%98%E7%94%BB"><span class="toc-text">PS投屏实时绘画</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SVD%E5%9B%BE%E7%94%9F%E8%A7%86%E9%A2%91"><span class="toc-text">SVD图生视频</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E5%9F%9F%E5%86%99%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-text">分区域写提示词</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,3672 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>pyside2 for maya | RuiChen</title><meta name="keywords" content="PySide2"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="教程链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1dJ41157gV?p&#x3D;2&amp;vd_source&#x3D;b1de3fe38e887eb40fc55a5485724480购买链接：https:&#x2F;&#x2F;zurbrigg.com&#x2F;tutorials&#x2F;pyside2-for-maya 创建一个新的界面的初始模板# coding:utf-8 import maya.cmds a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyside2 for maya">
+<meta property="og:url" content="http://example.com/2023/08/29/PySide2-pyside2-for-maya/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="教程链接：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1dJ41157gV?p&#x3D;2&amp;vd_source&#x3D;b1de3fe38e887eb40fc55a5485724480购买链接：https:&#x2F;&#x2F;zurbrigg.com&#x2F;tutorials&#x2F;pyside2-for-maya 创建一个新的界面的初始模板# coding:utf-8 import maya.cmds a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(23).jpg?raw=true">
+<meta property="article:published_time" content="2023-08-28T19:57:00.000Z">
+<meta property="article:modified_time" content="2024-07-27T18:58:06.877Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="PySide2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(23).jpg?raw=true"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2023/08/29/PySide2-pyside2-for-maya/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'pyside2 for maya',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 02:58:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">pyside2 for maya</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-meta-icon" style="width:30px;height:30px;position:relative;top:10px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-gengxin1"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.877Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-biaoqian"></use></svg><a class="post-meta-categories" href="/categories/PySide2/">PySide2</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:8px"><use xlink:href="#icon-charuword"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">1.4w</span><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:20px;height:20px;position:relative;top:5px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>77分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="pyside2 for maya"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:5px"><use xlink:href="#icon-eye"></use></svg><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer">
+
+<p>教程链接：<a href="https://www.bilibili.com/video/BV1dJ41157gV?p=2&amp;vd_source=b1de3fe38e887eb40fc55a5485724480">https://www.bilibili.com/video/BV1dJ41157gV?p=2&amp;vd_source=b1de3fe38e887eb40fc55a5485724480</a><br>购买链接：<a href="https://zurbrigg.com/tutorials/pyside2-for-maya">https://zurbrigg.com/tutorials/pyside2-for-maya</a><br><a name="BKivW"></a></p>
+<h1 id="创建一个新的界面的初始模板"><a href="#创建一个新的界面的初始模板" class="headerlink" title="创建一个新的界面的初始模板"></a>创建一个新的界面的初始模板</h1><pre><code class="lang-python"># coding:utf-8
+import maya.cmds as cmds
+import maya.mel as mel
+
+try:
+    from PySide2.QtWidgets import *
+    from PySide2.QtCore import *
+except:
+    from PySide.QtGui import *
+    from PySide.QtCore import *
+
+try:
+    from shiboken2 import wrapInstance
+except ImportError:
+    from shiboken import wrapInstance
+from maya import OpenMayaUI as omui
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QWidget)
+
+
+class TestDialog(QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;MAYA-2018&#39;)
+        self.setMinimumSize(300, 80)
+        self.setWindowFlags(Qt.WindowType.Window)
+        window_name = &quot;WindowName&quot;
+        if cmds.window(window_name, exists=True):
+            cmds.deleteUI(window_name, window=True)
+        self.setObjectName(window_name)
+        self.setStyleSheet(&quot;font: 12pt &#39;Arial&#39;;&quot;)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        &quot;&quot;&quot; 控件 &quot;&quot;&quot;
+        pass
+
+    def create_layouts(self):
+        &quot;&quot;&quot; 布局 &quot;&quot;&quot;
+        pass
+
+    def create_connections(self):
+        &quot;&quot;&quot; 信号与槽的连接 &quot;&quot;&quot;
+        pass
+
+
+
+def main():
+    global aa
+    app = qApp if QApplication.instance() else QApplication([])
+    aa = TestDialog()
+    aa.show()
+    app.exec_()
+</code></pre>
+<p><a name="PlgPe"></a></p>
+<h1 id="创建对话框"><a href="#创建对话框" class="headerlink" title="创建对话框"></a>创建对话框</h1><pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    # 将maya主窗口的C++指针转换为python可以接受的对象。
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent = maya_main_window()):
+        super(TestDialog, self).__init__()
+
+        self.setWindowTitle(&#39;one dialog&#39;)
+        self.setMinimumSize(200,200)
+
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)  # 将maya窗口的问号标志排除掉
+
+if __name__ == &#39;__main__&#39;:
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="noXJv"></a></p>
+<h1 id="添加控件"><a href="#添加控件" class="headerlink" title="添加控件"></a>添加控件</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660209348067-aab29e6c-8246-464d-8317-e7e652053ceb.png#averageHue=%235c5b5b&amp;clientId=u766e0595-34d2-4&amp;from=paste&amp;height=239&amp;id=Bz6mZ&amp;originHeight=239&amp;originWidth=216&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=5305&amp;status=done&amp;style=none&amp;taskId=ue78fdd29-f90b-4374-b166-ff10332b25f&amp;title=&amp;width=216" alt="image.png"><br>教程中将控件和布局都分开放到函数里面了</p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    # 将maya主窗口的C++指针转换为python可以接受的对象。
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+        window_name = &quot;my_window&quot;
+        if cmds.window(window_name, exists=True):
+            cmds.deleteUI(window_name, window=True)
+        self.setWindowTitle(&#39;Test Dialog&#39;)
+        self.setMinimumSize(200, 200)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)  # 将maya窗口的问号标志排除掉
+
+        self.create_widgets()
+        self.create_layouts()
+
+    def create_widgets(self):
+        self.lineEdit = QtWidgets.QLineEdit()
+        self.checkBox1 = QtWidgets.QCheckBox(&quot;Checkbox1&quot;)
+        self.checkBox2 = QtWidgets.QCheckBox(&quot;Checkbox2&quot;)
+        self.button1 = QtWidgets.QPushButton(&quot;Button 1&quot;)
+        self.button2 = QtWidgets.QPushButton(&quot;Button 2&quot;)
+
+    def create_layouts(self):
+        main_layout = QtWidgets.QVBoxLayout(self)  # 传递self将这个layout作为主layout
+        main_layout.addWidget(self.lineEdit)
+        main_layout.addWidget(self.checkBox1)
+        main_layout.addWidget(self.checkBox2)
+        main_layout.addWidget(self.button1)
+        main_layout.addWidget(self.button2)
+
+
+if __name__ == &#39;__main__&#39;:
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="eu3dY"></a></p>
+<h1 id="layout基础"><a href="#layout基础" class="headerlink" title="layout基础"></a>layout基础</h1><p>代码很优雅<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660211434381-4c844e6c-e74b-4585-9562-d7ee77a631e2.png#averageHue=%23676767&amp;clientId=u766e0595-34d2-4&amp;from=paste&amp;height=151&amp;id=ub9a89202&amp;originHeight=151&amp;originWidth=216&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=4631&amp;status=done&amp;style=none&amp;taskId=ubdcf75eb-e84f-4704-9bf7-3258c9fc134&amp;title=&amp;width=216" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    # 将maya主窗口的C++指针转换为python可以接受的对象。
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Test Dialog&#39;)
+        self.setMinimumWidth(200)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)  # 将maya窗口的问号标志排除掉
+
+        self.create_widgets()
+        self.create_layouts()
+
+    def create_widgets(self):
+        self.lineEdit = QtWidgets.QLineEdit()
+        self.checkBox1 = QtWidgets.QCheckBox()
+        self.checkBox2 = QtWidgets.QCheckBox()
+        self.ok_btn = QtWidgets.QPushButton(&quot;OK&quot;)
+        self.cancel_btn = QtWidgets.QPushButton(&quot;Cancel&quot;)
+
+    def create_layouts(self):
+        form_layout = QtWidgets.QFormLayout()
+        form_layout.addRow(&quot;Name:&quot;, self.lineEdit)
+        form_layout.addRow(&quot;Hidden:&quot;, self.checkBox1)
+        form_layout.addRow(&quot;Locked:&quot;, self.checkBox2)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.ok_btn)
+        button_layout.addWidget(self.cancel_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)  # 传递self将这个layout作为主layout
+        main_layout.addLayout(form_layout)
+        main_layout.addLayout(button_layout)
+
+
+if __name__ == &#39;__main__&#39;:
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="pGV9c"></a></p>
+<h1 id="删除对话框"><a href="#删除对话框" class="headerlink" title="删除对话框"></a>删除对话框</h1><pre><code class="lang-python">if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="rat7r"></a></p>
+<h1 id="信号与槽"><a href="#信号与槽" class="headerlink" title="信号与槽"></a>信号与槽</h1><pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    # 将maya主窗口的C++指针转换为python可以接受的对象。
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Test Dialog&#39;)
+        self.setMinimumWidth(200)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)  # 将maya窗口的问号标志排除掉
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.lineEdit = QtWidgets.QLineEdit()
+        self.checkBox1 = QtWidgets.QCheckBox()
+        self.checkBox2 = QtWidgets.QCheckBox()
+        self.ok_btn = QtWidgets.QPushButton(&quot;OK&quot;)
+        self.cancel_btn = QtWidgets.QPushButton(&quot;Cancel&quot;)
+
+    def create_layouts(self):
+        form_layout = QtWidgets.QFormLayout()
+        form_layout.addRow(&quot;Name:&quot;, self.lineEdit)
+        form_layout.addRow(&quot;Hidden:&quot;, self.checkBox1)
+        form_layout.addRow(&quot;Locked:&quot;, self.checkBox2)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.ok_btn)
+        button_layout.addWidget(self.cancel_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)  # 传递self将这个layout作为主layout
+        main_layout.addLayout(form_layout)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.lineEdit.editingFinished.connect(self.print_hello_name)
+        self.checkBox1.toggled.connect(self.print_is_hidden)
+        self.cancel_btn.clicked.connect(self.close)  # self.close是自带的不需要自己写函数
+
+    def print_hello_name(self):
+        name = self.lineEdit.text()
+        print(&quot;Hello &#123;&#125;!&quot;.format(name))
+
+    def print_is_hidden(self):
+        hidden = self.checkBox1.isChecked()
+        if hidden:
+            print(&quot;Hidden&quot;)
+        else:
+            print(&quot;Visible&quot;)
+
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="bjO1K"></a></p>
+<h2 id="过载信号"><a href="#过载信号" class="headerlink" title="过载信号"></a>过载信号</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660271563886-f57ad54c-dc87-4574-ae27-6ebb78fec497.png#averageHue=%232a2c28&amp;clientId=uc3617f6a-1057-4&amp;from=paste&amp;height=282&amp;id=u7bd615cb&amp;originHeight=282&amp;originWidth=662&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=127516&amp;status=done&amp;style=none&amp;taskId=uf32b9790-1ea2-48e6-99ca-1dd7ea32f28&amp;title=&amp;width=662" alt="image.png"><br>通过@QtCore.Slot(int)和@QtCore.Slot(str)使信号传递的参数类型改变<br><a name="mVcMe"></a></p>
+<h2 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1671169445449-5e7ff7c9-4408-440d-9fe3-f4f6c73d7d88.png#averageHue=%23707070&amp;clientId=u0295db91-fe64-4&amp;from=paste&amp;height=136&amp;id=u0c1e930c&amp;originHeight=122&amp;originWidth=202&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3205&amp;status=done&amp;style=none&amp;taskId=u09cc59b7-0282-4952-b90f-600b0e45c40&amp;title=&amp;width=224.4444503901919" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    # 将maya主窗口的C++指针转换为python可以接受的对象。
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class MyLineEdit(QtWidgets.QLineEdit):
+    enter_pressed = QtCore.Signal(str)  # 新建自定义信号
+
+    def keyPressEvent(self, e):  # 使用QLineEdit自带的事件，当按键按下时触发并发送数据
+        super(MyLineEdit, self).keyPressEvent(e)
+
+        if e.key() == QtCore.Qt.Key_Enter:
+            self.enter_pressed.emit(&quot;Enter Key Pressed&quot;)  # 信号触发时发送的字符串
+        elif e.key() == QtCore.Qt.Key_Return:
+            self.enter_pressed.emit(&quot;Enter Key Pressed&quot;)
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Test Dialog&#39;)
+        self.setMinimumWidth(200)
+        self.setMinimumHeight(90)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)  # 将maya窗口的问号标志排除掉
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.lineEdit = MyLineEdit()  # MyLineEdit 是自定义的继承QtWidgets.QLineEdit的类
+        self.ok_btn = QtWidgets.QPushButton(&quot;OK&quot;)
+        self.cancel_btn = QtWidgets.QPushButton(&quot;Cancel&quot;)
+
+    def create_layouts(self):
+        form_layout = QtWidgets.QFormLayout()
+        form_layout.addRow(&quot;Name:&quot;, self.lineEdit)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.ok_btn)
+        button_layout.addWidget(self.cancel_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)  # 传递self将这个layout作为主layout
+        main_layout.addLayout(form_layout)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.lineEdit.enter_pressed.connect(self.on_enter_pressed)
+        self.cancel_btn.clicked.connect(self.close)  # self.close是自带的不需要自己写函数
+
+    def on_enter_pressed(self, text):
+        print(text)
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="PJwXP"></a></p>
+<h1 id="打开-导入-引用文件举例"><a href="#打开-导入-引用文件举例" class="headerlink" title="打开/导入/引用文件举例"></a>打开/导入/引用文件举例</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660486774209-460c6550-a87b-416f-b824-5837e80e3c46.png#averageHue=%23626161&amp;clientId=ud565464f-f3f4-4&amp;from=paste&amp;height=171&amp;id=u578a9f29&amp;originHeight=171&amp;originWidth=316&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=7870&amp;status=done&amp;style=none&amp;taskId=u1e460f4b-9d08-4527-b323-06e1b6f468d&amp;title=&amp;width=316" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QDialog):
+    FILE_FILTERS = &quot;Maya(*.ma *.mb);;Maya ASCII (*.ma);;Maya Binary (*.mb);;All Files (*.*)&quot;  # 全部的过滤项
+
+    selected_filter = &quot;Maya (*.ma *.mb)&quot;  # 记录选择的过滤项，每次更改过滤项的同时会更改这个全局变量的值
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Open/Import/Reference&#39;)
+        self.setMinimumSize(300, 80)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.filepath_le = QtWidgets.QLineEdit()
+        self.select_file_path_btn = QtWidgets.QPushButton()
+        self.select_file_path_btn.setIcon(QtGui.QIcon(&#39;:fileOpen.png&#39;))
+        self.select_file_path_btn.setToolTip(&quot;select File&quot;)
+
+        self.open_rb = QtWidgets.QRadioButton(&quot;Open&quot;)
+        self.open_rb.setChecked(True)
+        self.import_rb = QtWidgets.QRadioButton(&quot;Import&quot;)
+        self.reference_rb = QtWidgets.QRadioButton(&quot;Reference&quot;)
+
+        self.force_cb = QtWidgets.QCheckBox(&quot;Force&quot;)
+
+        self.apply_btn = QtWidgets.QPushButton(&quot;Apply&quot;)
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_layouts(self):
+        file_path_layout = QtWidgets.QHBoxLayout()
+        file_path_layout.addWidget(self.filepath_le)
+        file_path_layout.addWidget(self.select_file_path_btn)
+
+        radio_btn_layout = QtWidgets.QHBoxLayout()
+        radio_btn_layout.addWidget(self.open_rb)
+        radio_btn_layout.addWidget(self.import_rb)
+        radio_btn_layout.addWidget(self.reference_rb)
+
+        forme_layout = QtWidgets.QFormLayout()
+        forme_layout.addRow(&quot;File&quot;, file_path_layout)
+        forme_layout.addRow(&quot;&quot;, radio_btn_layout)
+        forme_layout.addRow(&quot;&quot;, self.force_cb)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.apply_btn)
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.addLayout(forme_layout)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.select_file_path_btn.clicked.connect(self.show_file_select_dialog)
+
+        self.open_rb.toggled.connect(self.update_force_visibility)
+
+        self.apply_btn.clicked.connect(self.load_file)
+        self.close_btn.clicked.connect(self.close)
+
+    def show_file_select_dialog(self):
+        file_path, self.selected_filter = QtWidgets.QFileDialog.getOpenFileName(self, &quot;Select File&quot;, &quot;&quot;,
+                                                                                self.FILE_FILTERS, self.selected_filter)
+        if file_path:
+            self.filepath_le.setText(file_path)
+
+    def update_force_visibility(self, checked):
+        self.force_cb.setVisible(checked)
+
+    def load_file(self):
+        file_path = self.filepath_le.text()
+        if not file_path:
+            return
+
+        file_info = QtCore.QFileInfo(file_path)  # 得到文件的信息
+        if not file_info.exists():  # 判断文件是否存在
+            om.MGlobal.displayError(&quot;File does not exist: &#123;&#125;&quot;.format(file_path))
+            return
+        if self.open_rb.isChecked():
+            self.open_file(file_path)
+        if self.import_rb.isChecked():
+            self.import_file(file_path)
+        else:
+            self.reference_file(file_path)
+
+    def open_file(self, file_path):
+        force = self.force_cb.isChecked()
+        if not force and cmds.file(q=True, modified=True):
+            result = QtWidgets.QMessageBox.question(self, &quot;Modified&quot;, &quot;Current scene has unsaved changes. Continue?&quot;)
+            if result == QtWidgets.QMessageBox.StandardButton.Yes:
+                force = True
+            else:
+                return
+        cmds.file(file_path, open=True, ignoreVersion=True, force=force)
+
+    def import_file(self, file_path):
+        cmds.file(file_path, i=True, ignoreVersion=True)
+
+    def reference_file(self, file_path):
+        cmds.file(file_path, r=True, ignoreVersion=True)
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="RbM6Q"></a></p>
+<h1 id="将插件放入到工具架上"><a href="#将插件放入到工具架上" class="headerlink" title="将插件放入到工具架上"></a>将插件放入到工具架上</h1><p><a name="HzMTb"></a></p>
+<h2 id="主要功能模块"><a href="#主要功能模块" class="headerlink" title="主要功能模块"></a>主要功能模块</h2><p>首先这个是上一节使用的打开与导入对话框，区别是添加了show<em>dialog类方法来替代if name == ‘<em>_main</em></em>‘  。将这个py模块放到maya的script文件夹中后，然后通过另一组代码来调用类方法达到显示窗口的需求。好处是可以保存在窗口执行的操作，比如在文本框中输入了数据，关闭窗口再打开后数据依然保留。<br>然后新增加了两个函数show_event 和 close_event，这两个的作用是关闭窗口时记录窗口位置，打开窗口时设置窗口位置。</p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class OpenImportDialog(QtWidgets.QDialog):
+    FILE_FILTERS = &quot;Maya(*.ma *.mb);;Maya ASCII (*.ma);;Maya Binary (*.mb);;All Files (*.*)&quot;  # 全部的过滤项
+
+    selected_filter = &quot;Maya (*.ma *.mb)&quot;  # 记录选择的过滤项，每次更改过滤项的同时会更改这个全局变量的值
+
+    dlg_instance = None
+
+    @classmethod
+    def show_dialog(cls):
+        if not cls.dlg_instance:
+            cls.dlg_instance = OpenImportDialog()  # 第一次使用函数会生成窗口实例给dlg_instance全局变量
+
+        if cls.dlg_instance.isHidden():
+            cls.dlg_instance.show()  # 如果窗口隐藏了就显示出来
+        else:
+            # 如果窗口还在屏幕中就激活窗口并顶端显示
+            cls.dlg_instance.raise_()
+            cls.dlg_instance.activateWindow()
+
+    def __init__(self, parent=maya_main_window()):
+        super(OpenImportDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Open/Import/Reference&#39;)
+        self.setMinimumSize(300, 80)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+        self.geometry = None
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.filepath_le = QtWidgets.QLineEdit()
+        self.select_file_path_btn = QtWidgets.QPushButton()
+        self.select_file_path_btn.setIcon(QtGui.QIcon(&#39;:fileOpen.png&#39;))
+        self.select_file_path_btn.setToolTip(&quot;select File&quot;)
+
+        self.open_rb = QtWidgets.QRadioButton(&quot;Open&quot;)
+        self.open_rb.setChecked(True)
+        self.import_rb = QtWidgets.QRadioButton(&quot;Import&quot;)
+        self.reference_rb = QtWidgets.QRadioButton(&quot;Reference&quot;)
+
+        self.force_cb = QtWidgets.QCheckBox(&quot;Force&quot;)
+
+        self.apply_btn = QtWidgets.QPushButton(&quot;Apply&quot;)
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_layouts(self):
+        file_path_layout = QtWidgets.QHBoxLayout()
+        file_path_layout.addWidget(self.filepath_le)
+        file_path_layout.addWidget(self.select_file_path_btn)
+
+        radio_btn_layout = QtWidgets.QHBoxLayout()
+        radio_btn_layout.addWidget(self.open_rb)
+        radio_btn_layout.addWidget(self.import_rb)
+        radio_btn_layout.addWidget(self.reference_rb)
+
+        forme_layout = QtWidgets.QFormLayout()
+        forme_layout.addRow(&quot;File&quot;, file_path_layout)
+        forme_layout.addRow(&quot;&quot;, radio_btn_layout)
+        forme_layout.addRow(&quot;&quot;, self.force_cb)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.apply_btn)
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.addLayout(forme_layout)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.select_file_path_btn.clicked.connect(self.show_file_select_dialog)
+
+        self.open_rb.toggled.connect(self.update_force_visibility)
+
+        self.apply_btn.clicked.connect(self.load_file)
+        self.close_btn.clicked.connect(self.close)
+
+    def show_file_select_dialog(self):
+        file_path, self.selected_filter = QtWidgets.QFileDialog.getOpenFileName(self, &quot;Select File&quot;, &quot;&quot;,
+                                                                                self.FILE_FILTERS, self.selected_filter)
+        if file_path:
+            self.filepath_le.setText(file_path)
+
+    def update_force_visibility(self, checked):
+        self.force_cb.setVisible(checked)
+
+    def load_file(self):
+        file_path = self.filepath_le.text()
+        if not file_path:
+            return
+
+        file_info = QtCore.QFileInfo(file_path)  # 得到文件的信息
+        if not file_info.exists():  # 判断文件是否存在
+            om.MGlobal.displayError(&quot;File does not exist: &#123;&#125;&quot;.format(file_path))
+            return
+        if self.open_rb.isChecked():
+            self.open_file(file_path)
+        if self.import_rb.isChecked():
+            self.import_file(file_path)
+        else:
+            self.reference_file(file_path)
+
+    def open_file(self, file_path):
+        force = self.force_cb.isChecked()
+        if not force and cmds.file(q=True, modified=True):
+            result = QtWidgets.QMessageBox.question(self, &quot;Modified&quot;, &quot;Current scene has unsaved changes. Continue?&quot;)
+            if result == QtWidgets.QMessageBox.StandardButton.Yes:
+                force = True
+            else:
+                return
+        cmds.file(file_path, open=True, ignoreVersion=True, force=force)
+
+    def import_file(self, file_path):
+        cmds.file(file_path, i=True, ignoreVersion=True)
+
+    def reference_file(self, file_path):
+        cmds.file(file_path, r=True, ignoreVersion=True)
+
+    def showEvent(self, e):
+        super(OpenImportDialog, self).showEvent(e)
+
+        if self.geometry:
+            self.restoreGeometry(self.geometry)
+
+    def closeEvent(self, e):
+        super(OpenImportDialog, self).closeEvent(e)
+
+        self.geometry = self.saveGeometry()
+</code></pre>
+<p><a name="LGRqV"></a></p>
+<h2 id="调用窗口显示的模块"><a href="#调用窗口显示的模块" class="headerlink" title="调用窗口显示的模块"></a>调用窗口显示的模块</h2><p>open_import_dialog为模块名(py程序名)<br>OpenImportDialog为模块中的类名<br>注意：前两行是当py文件有更改时运行的，当没有更改py文件时不要运行。因为运行前两行会重置窗口的实例数。</p>
+<pre><code class="lang-python">import open_import_dialog
+reload(open_import_dialog)
+
+from open_import_dialog import OpenImportDialog
+
+OpenImportDialog.show_dialog()
+</code></pre>
+<p><a name="FF1Ia"></a></p>
+<h1 id="各种模式对话框"><a href="#各种模式对话框" class="headerlink" title="各种模式对话框"></a>各种模式对话框</h1><p><a name="HWSLO"></a></p>
+<h2 id="自定义对话框"><a href="#自定义对话框" class="headerlink" title="自定义对话框"></a>自定义对话框</h2><p>这里有文件夹对话框，警告对话框，颜色选择对话框，自定义对话框<br>这里最主要学习的是自定义对话框<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1671170114446-0a3d0bcd-baf4-42ee-aa68-4e09b5d92771.png#averageHue=%23655f5d&amp;clientId=u0295db91-fe64-4&amp;from=paste&amp;height=594&amp;id=ua0005fb4&amp;originHeight=535&amp;originWidth=1002&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=52403&amp;status=done&amp;style=none&amp;taskId=u9f31be18-e0e4-4adf-8e57-a662337af7a&amp;title=&amp;width=1113.3333628265955" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class CustomDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(CustomDialog, self).__init__(parent)
+
+        self.setWindowTitle(&quot;Custom Dialog&quot;)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.lineedit = QtWidgets.QLineEdit()
+        self.ok_btn = QtWidgets.QPushButton(&#39;OK&#39;)
+
+    def create_layouts(self):
+        wdg_layout = QtWidgets.QHBoxLayout()
+        wdg_layout.addWidget(QtWidgets.QLabel(&quot;Name: &quot;))
+        wdg_layout.addWidget(self.lineedit)
+
+        btn_layout = QtWidgets.QHBoxLayout()
+        btn_layout.addStretch()
+        btn_layout.addWidget(self.ok_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.addLayout(wdg_layout)
+        main_layout.addLayout(btn_layout)
+
+    def create_connections(self):
+        self.ok_btn.clicked.connect(self.accept)
+
+    def get_text(self):
+        return (self.lineedit.text())
+
+
+class TestDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Test Dialog&#39;)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.initial_directory = cmds.internalVar(userPrefDir=True)  # 默认文件窗口打开路径
+        self.initial_color = QtGui.QColor(255, 0, 0)  # 默认颜色窗口初始选择的颜色
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.warning_btn = QtWidgets.QPushButton(&quot;Warning&quot;)
+        self.folder_select_btn = QtWidgets.QPushButton(&quot;Folder Select&quot;)
+        self.color_select_btn = QtWidgets.QPushButton(&quot;Color Select&quot;)
+        self.custom_btn = QtWidgets.QPushButton(&quot;Modal (Custom)&quot;)
+
+    def create_layouts(self):
+        main_layout = QtWidgets.QHBoxLayout(self)
+        main_layout.addWidget(self.warning_btn)
+        main_layout.addWidget(self.folder_select_btn)
+        main_layout.addWidget(self.color_select_btn)
+        main_layout.addWidget(self.custom_btn)
+
+    def create_connections(self):
+        self.warning_btn.clicked.connect(self.show_warning_dialog)
+        self.folder_select_btn.clicked.connect(self.show_folder_select)
+        self.color_select_btn.clicked.connect(self.show_color_select)
+        self.custom_btn.clicked.connect(self.show_custom_dialog)
+
+    def show_warning_dialog(self):
+        QtWidgets.QMessageBox.warning(self, &quot;Object Not Found&quot;, &quot;Camera &#39;shotcam&#39; not found.&quot;)
+
+    def show_folder_select(self):
+        new_directory = QtWidgets.QFileDialog.getExistingDirectory(self, &quot;Select Folder&quot;, self.initial_directory)
+        if new_directory:
+            self.initial_directory = new_directory
+
+        print (&quot;Selected Folder : &#123;&#125;&quot;.format(new_directory))
+
+    def show_color_select(self):
+        self.initial_color = QtWidgets.QColorDialog.getColor(self.initial_color, self)
+
+        print(&quot;Red:&#123;&#125; Green:&#123;&#125; Blue:&#123;&#125;&quot;.format(self.initial_color.red(),
+                                               self.initial_color.green(),
+                                               self.initial_color.blue()))
+
+    def show_custom_dialog(self):
+        custom_dialog = CustomDialog()
+
+        result = custom_dialog.exec_()  # 自定义窗口模式 这个模式是打开后只能够在当前窗口操作，窗口关闭前不能执行窗口外的操作
+
+        if result == QtWidgets.QDialog.Accepted:
+            print(&quot;Name: &#123;&#125;&quot;.format(custom_dialog.get_text()))
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="n7TgF"></a></p>
+<h2 id="标准Qt对话框"><a href="#标准Qt对话框" class="headerlink" title="标准Qt对话框"></a>标准Qt对话框</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660703172622-7846ab65-52cb-4757-bcd4-e64748ce6b24.png#averageHue=%234c4c4c&amp;clientId=u88fb9660-6e1f-4&amp;from=paste&amp;height=523&amp;id=ucbd9754e&amp;originHeight=523&amp;originWidth=665&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=86237&amp;status=done&amp;style=none&amp;taskId=ufec16794-3083-451f-87df-542146cd64f&amp;title=&amp;width=665" alt="image.png"><br>没找到源码，视频上也没显示全，就不放代码了。<br><a name="az5pO"></a></p>
+<h1 id="QListWidget"><a href="#QListWidget" class="headerlink" title="QListWidget"></a>QListWidget</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660710501521-ea737a89-d60d-45aa-996b-a4db34ad19aa.png#averageHue=%23494948&amp;clientId=u88fb9660-6e1f-4&amp;from=paste&amp;height=260&amp;id=u4932fb14&amp;originHeight=260&amp;originWidth=236&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=7610&amp;status=done&amp;style=none&amp;taskId=ucf9c9473-c59c-498e-839f-60d0b31d97b&amp;title=&amp;width=236" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class OutputResolutionDialog(QtWidgets.QDialog):
+    # 数值用带小数点的原因是要计算长宽比，长宽比是小数
+    RESOLUTION_ITEMS = [[&quot;1920X1080 (1080p)&quot;, 1920.0, 1080.0],
+                        [&quot;1280X720 (720p)&quot;, 1280.0, 720.0],
+                        [&quot;960X540 (540p)&quot;, 960.0, 540.0],
+                        [&quot;640X480&quot;, 640.0, 480.0],
+                        [&quot;320X240&quot;, 320.0, 240.0]]
+
+    def __init__(self, parent=maya_main_window()):
+        super(OutputResolutionDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Output Resolution&#39;)
+        self.setFixedWidth(220)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.resolution_list_wdg = QtWidgets.QListWidget()
+
+        for resolution_item in self.RESOLUTION_ITEMS:
+            list_wdg_item = QtWidgets.QListWidgetItem(resolution_item[0])
+            # QtCore.Qt.UserRole可以理解为序号0,一个item可以拥有多个数据，因此可以通过QtCore.Qt.UserRole，QtCore.Qt.UserRole+1来设置数据的序号
+            list_wdg_item.setData(QtCore.Qt.UserRole,
+                                  [resolution_item[1], resolution_item[2]]) 
+            self.resolution_list_wdg.addItem(list_wdg_item)
+
+        self.close_btn = QtWidgets.QPushButton(&#39;Close&#39;)
+
+    def create_layouts(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)  # 设置布局与窗口边界的距离
+        main_layout.setSpacing(2)  # 设置布局中的控件之间的间隙
+        main_layout.addWidget(self.resolution_list_wdg)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.resolution_list_wdg.itemClicked.connect(self.set_output_resolution)
+
+        self.close_btn.clicked.connect(self.close)
+
+    def set_output_resolution(self, item):
+        resolution = item.data(QtCore.Qt.UserRole)
+
+        cmds.setAttr(&quot;defaultResolution.width&quot;, resolution[0])
+        cmds.setAttr(&quot;defaultResolution.height&quot;, resolution[1])
+        cmds.setAttr(&quot;defaultResolution.deviceAspectRatio&quot;, resolution[0]/resolution[1])
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = OutputResolutionDialog()
+    ui.show()
+</code></pre>
+<p><a name="BM1yP"></a></p>
+<h1 id="可以设置的选择模式"><a href="#可以设置的选择模式" class="headerlink" title="可以设置的选择模式"></a>可以设置的选择模式</h1><p>举例：<br>self.resolution_list_wdg = QtWidgets.QListWidget()<br>self.resolution_list_wdg.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection) # 设置listWidget控件的选择模式为MultiSelection     <br>ExtendedSelection与MultiSelection的区别是第一个需要按住ctrl或者shift多选，第二个不需要</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QAbstractItemView::SingleSelection</td>
+<td>1</td>
+<td>When the user selects an item, any already-selected item becomes unselected. It is possible for the user to deselect the selected item by pressing the Ctrl key when clicking the selected item.</td>
+</tr>
+<tr>
+<td>QAbstractItemView::ContiguousSelection</td>
+<td>4</td>
+<td>When the user selects an item in the usual way, the selection is cleared and the new item selected. However, if the user presses the Shift key while clicking on an item, all items between the current item and the clicked item are selected or unselected, depending on the state of the clicked item.</td>
+</tr>
+<tr>
+<td>QAbstractItemView::ExtendedSelection</td>
+<td>3</td>
+<td>When the user selects an item in the usual way, the selection is cleared and the new item selected. However, if the user presses the Ctrl key when clicking on an item, the clicked item gets toggled and all other items are left untouched. If the user presses the Shift key while clicking on an item, all items between the current item and the clicked item are selected or unselected, depending on the state of the clicked item. Multiple items can be selected by dragging the mouse over them.</td>
+</tr>
+<tr>
+<td>QAbstractItemView::MultiSelection</td>
+<td>2</td>
+<td>When the user selects an item in the usual way, the selection status of that item is toggled and the other items are left alone. Multiple items can be toggled by dragging the mouse over them.</td>
+</tr>
+<tr>
+<td>QAbstractItemView::NoSelection</td>
+<td>0</td>
+<td>Items cannot be selected.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="LaZ0H"></a></p>
+<h1 id="QTableDialog"><a href="#QTableDialog" class="headerlink" title="QTableDialog"></a>QTableDialog</h1><p><a name="PgPfM"></a></p>
+<h2 id="显示大纲模型名字以及变换信息窗口"><a href="#显示大纲模型名字以及变换信息窗口" class="headerlink" title="显示大纲模型名字以及变换信息窗口"></a>显示大纲模型名字以及变换信息窗口</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1660717613536-9bd230fa-ce6a-43ed-8188-b428b498e914.png#averageHue=%23595755&amp;clientId=u88fb9660-6e1f-4&amp;from=paste&amp;height=356&amp;id=ue9e1df1d&amp;originHeight=356&amp;originWidth=691&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=76846&amp;status=done&amp;style=none&amp;taskId=ua6156b97-b453-4274-a681-bd2645ee798&amp;title=&amp;width=691" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TableExampleDialog(QtWidgets.QDialog):
+
+    ATTR_ROLE = QtCore.Qt.UserRole
+    VALUE_ROLE = QtCore.Qt.UserRole + 1
+
+    def __init__(self, parent=maya_main_window()):
+        super(TableExampleDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Table Example&#39;)
+        self.setFixedWidth(500)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.table_wdg = QtWidgets.QTableWidget()
+        self.table_wdg.setColumnCount(5)
+        self.table_wdg.setColumnWidth(0, 22)
+        self.table_wdg.setColumnWidth(2, 70)
+        self.table_wdg.setColumnWidth(3, 70)
+        self.table_wdg.setColumnWidth(4, 70)
+        self.table_wdg.setHorizontalHeaderLabels([&quot;&quot;, &quot;Name&quot;, &quot;TransX&quot;, &quot;TransY&quot;, &quot;TransZ&quot;])
+        header_view = self.table_wdg.horizontalHeader()
+        header_view.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)  # 设置标题栏为自动填充窗口
+
+        self.refresh_btn = QtWidgets.QPushButton(&quot;Refresh&quot;)
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_layouts(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.setSpacing(2)
+        button_layout.addStretch()
+        button_layout.addWidget(self.refresh_btn)
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.setSpacing(2)
+        main_layout.addWidget(self.table_wdg)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.set_cell_changed_connection_enabled(True)
+        self.refresh_btn.clicked.connect(self.refresh_table)
+        self.close_btn.clicked.connect(self.close)
+
+    def set_cell_changed_connection_enabled(self, enabled):  # 设置单元格信号与槽的连接状态  目的是使执行refresh时不执行槽函数
+        if enabled:
+            self.table_wdg.cellChanged.connect(self.on_cell_changed)
+        else:
+            self.table_wdg.cellChanged.disconnect(self.on_cell_changed)
+
+    def showEvent(self, e):
+        super(TableExampleDialog, self).showEvent(e)  # 当启动窗口时执行这个函数
+        self.refresh_table()
+
+    def keyPressEvent(self, e):
+        super(TableExampleDialog, self).keyPressEvent(e)
+        e.accept()  # 当在工具窗口中使用键盘时不会影响到maya主窗口的对象
+
+    def refresh_table(self):
+        self.set_cell_changed_connection_enabled(False)
+
+        self.table_wdg.setRowCount(0)  # 将tableWidget 的所有项清空
+
+        meshes = cmds.ls(typ=&quot;mesh&quot;)
+        for i in range(len(meshes)):
+            transform_name = cmds.listRelatives(meshes[i], parent=True)[0]
+            translation = cmds.getAttr(&quot;&#123;&#125;.translate&quot;.format(transform_name))[0]
+            visible = cmds.getAttr(&quot;&#123;&#125;.visibility&quot;.format(transform_name))
+
+            self.table_wdg.insertRow(i)
+            self.insert_item(i, 0, &quot;&quot;, &quot;visibility&quot;, visible, True)
+            self.insert_item(i, 1, transform_name, None, transform_name, False)
+            self.insert_item(i, 2, self.float_to_string(translation[0]), &quot;tx&quot;, translation[0], False)
+            self.insert_item(i, 3, self.float_to_string(translation[1]), &quot;ty&quot;, translation[0], False)
+            self.insert_item(i, 4, self.float_to_string(translation[2]), &quot;tz&quot;, translation[0], False)
+
+        self.set_cell_changed_connection_enabled(True)
+
+    def insert_item(self, row, column, text, attr, value, is_boolean):
+        item = QtWidgets.QTableWidgetItem(text)
+        self.set_item_attr(item, attr)
+        self.set_item_value(item, value)
+        if is_boolean:
+            item.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)  # 设置复选框
+            self.set_item_checked(item, value)
+
+        self.table_wdg.setItem(row, column, item)
+
+    def on_cell_changed(self, row, column):
+        # 单元格进行改变时先将信号与槽断开连接，当rename执行完成以后再连接起来
+        # 控制信号与槽连接状态的目的就是控制什么时候改变单元格的信息时执行槽函数
+        self.set_cell_changed_connection_enabled(False)
+
+        item = self.table_wdg.item(row, column)
+        if column == 1:
+            self.rename(item)
+        else:
+            is_boolean = column == 0
+            self.update_attr(self.get_full_attr_name(row, item), item, is_boolean)
+
+        self.set_cell_changed_connection_enabled(True)
+
+    def rename(self, item):
+        old_name = self.get_item_value(item)
+        new_name = self.get_item_text(item)
+        if old_name != new_name:
+            actual_new_name = cmds.rename(old_name, new_name)
+            if actual_new_name != new_name:
+                self.set_item_text(item, actual_new_name)
+            self.set_item_value(item, actual_new_name)
+
+    def update_attr(self, attr_name, item, is_boolean):
+        if is_boolean:
+            value = self.is_item_checked(item)
+            self.set_item_text(item, &quot;&quot;)
+        else:
+            text = self.get_item_text(item)
+            try:
+                value = float(text)
+            except ValueError:
+                self.revert_original_value(item, is_boolean)
+                return
+        try:
+            cmds.setAttr(attr_name, value)
+        except:
+            self.revert_original_value(item, is_boolean)
+            return
+
+        new_value = cmds.getAttr(attr_name)
+        if is_boolean:
+            self.set_item_checked(item, new_value)
+        else:
+            self.set_item_text(item, self.float_to_string(new_value))
+        self.set_item_value(item, new_value)
+
+
+    def set_item_text(self, item, text):
+        item.setText(text)
+
+    def get_item_text(self, item):
+        return item.text()
+
+    def set_item_checked(self, item, checked):
+        if checked:
+            item.setCheckState(QtCore.Qt.Checked)
+        else:
+            item.setCheckState(QtCore.Qt.Unchecked)
+
+    def is_item_checked(self, item):
+        return item.checkState() == QtCore.Qt.Checked
+
+    def set_item_attr(self, item, attr):
+        item.setData(self.ATTR_ROLE, attr)
+
+    def get_item_attr(self, item):
+        return item.data(self.ATTR_ROLE)
+
+    def set_item_value(self, item, value):
+        item.setData(self.VALUE_ROLE, value)
+
+    def get_full_attr_name(self, row, item):
+        node_name = self.table_wdg.item(row, 1).data(self.VALUE_ROLE)
+        attr_name = self.get_item_attr(item)
+        return &quot;&#123;0&#125;.&#123;1&#125;&quot;.format(node_name, attr_name)
+
+    def get_item_value(self, item):
+        return item.data(self.VALUE_ROLE)
+
+    def float_to_string(self, value):
+        return &quot;&#123;0:.4f&#125;&quot;.format(value)  # 令浮点数变成保留四位数的字符串
+
+    def revert_original_value(self, item, is_boolean):
+        original_value = self.get_item_value(item)
+        if is_boolean:
+            self.set_item_checked(item, original_value)
+        else:
+            self.set_item_text(item, self.flate_to_string(original_value))
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TableExampleDialog()
+    ui.show()
+</code></pre>
+<p><a name="lWuF1"></a></p>
+<h2 id="在表格控件中添加其他控件"><a href="#在表格控件中添加其他控件" class="headerlink" title="在表格控件中添加其他控件"></a>在表格控件中添加其他控件</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661410775956-afb1b836-aa01-412e-846a-397b927d705f.png#averageHue=%23505050&amp;clientId=u9eaa8f12-95dd-4&amp;from=paste&amp;height=260&amp;id=uabb0d097&amp;originHeight=260&amp;originWidth=316&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=7437&amp;status=done&amp;style=none&amp;taskId=ua2bdaaf9-3ef7-4efe-9e3c-cdbc5f38ed8&amp;title=&amp;width=316" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TableExampleDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(TableExampleDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Table Example&#39;)
+        self.setFixedWidth(300)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.table_wdg = QtWidgets.QTableWidget()
+        self.table_wdg.setColumnCount(3)
+        self.table_wdg.setHorizontalHeaderLabels([&quot;QPushButton&quot;, &quot;QSpinBox&quot;, &quot;QComboBox&quot;])
+        header_view = self.table_wdg.horizontalHeader()
+        header_view.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)  # 设置标题栏为自动填充窗口
+
+        self.refresh_btn = QtWidgets.QPushButton(&quot;Refresh&quot;)
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_layouts(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.setSpacing(2)
+        button_layout.addStretch()
+        button_layout.addWidget(self.refresh_btn)
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.setSpacing(2)
+        main_layout.addWidget(self.table_wdg)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.refresh_btn.clicked.connect(self.refresh_table)
+        self.close_btn.clicked.connect(self.close)
+
+    def showEvent(self, e):
+        super(TableExampleDialog, self).showEvent(e)  # 当启动窗口时执行这个函数
+        self.refresh_table()
+
+    def refresh_table(self):
+        self.table_wdg.setRowCount(0)
+        self.table_wdg.insertRow(0)
+
+        btn = QtWidgets.QPushButton(&quot;Button&quot;)
+        btn.clicked.connect(self.on_button_pressed)
+        self.table_wdg.setCellWidget(0, 0, btn)
+
+        spin_box = QtWidgets.QSpinBox()
+        spin_box.valueChanged.connect(self.on_value_changed)
+        self.table_wdg.setCellWidget(0, 1, spin_box)
+
+        combo_box = QtWidgets.QComboBox()
+        combo_box.addItems([&quot;Item 1&quot;, &quot;Item2&quot;, &quot;Item3&quot;])
+        combo_box.currentTextChanged.connect(self.on_current_text_changed)
+        self.table_wdg.setCellWidget(0, 2, combo_box)
+
+    def on_button_pressed(self):
+        print(&quot;Button was pressed&quot;)
+
+    def on_value_changed(self, value):
+        print(&quot;SpinBox value changed: &#123;&#125;&quot;.format(value))
+
+    def on_current_text_changed(self, text):
+        print(&quot;ComboBox text changed: &#123;&#125;&quot;.format(text))
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TableExampleDialog()
+    ui.show()
+</code></pre>
+<p><a name="tbVxe"></a></p>
+<h1 id="QSpinBox与QDoubleSpinBox"><a href="#QSpinBox与QDoubleSpinBox" class="headerlink" title="QSpinBox与QDoubleSpinBox"></a>QSpinBox与QDoubleSpinBox</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661412226518-48951f98-411f-4fd4-9fc4-9b8306dfb70e.png#averageHue=%23737271&amp;clientId=u9eaa8f12-95dd-4&amp;from=paste&amp;height=106&amp;id=uf4e77954&amp;originHeight=106&amp;originWidth=211&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=5030&amp;status=done&amp;style=none&amp;taskId=u71974899-6a25-4801-b784-e71cbac61fa&amp;title=&amp;width=211" alt="image.png"><br>可以通过鼠标滚轮滑动来更改数值</p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class SpinBoxDialog(QtWidgets.QDialog):
+
+    def __init__(self, parent=maya_main_window()):
+        super(SpinBoxDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Spin Box Dialog&#39;)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.spin_box = QtWidgets.QSpinBox()
+        self.spin_box.setFixedWidth(80)
+        self.spin_box.setMinimum(-100)
+        self.spin_box.setMaximum(100)
+        self.spin_box.setSingleStep(5)
+        self.spin_box.setPrefix(&quot;$ &quot;)  # 设置显示的前缀 但是不会当值来交互，仅仅是显示
+        self.spin_box.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)  # 取消显示上下按钮框
+
+        self.double_spin_box = QtWidgets.QDoubleSpinBox()
+        self.double_spin_box.setFixedWidth(80)
+        self.double_spin_box.setRange(-50.0, 50.0)
+        self.double_spin_box.setSuffix(&quot; m&quot;)
+
+    def create_layouts(self):
+        main_layout = QtWidgets.QFormLayout(self)
+        main_layout.addRow(&quot;Spin Box:&quot;, self.spin_box)
+        main_layout.addRow(&quot;Double Spin Box:&quot;, self.double_spin_box)
+
+    def create_connections(self):
+        self.spin_box.valueChanged.connect(self.print_value)
+        self.double_spin_box.valueChanged.connect(self.print_value)
+
+    def print_value(self, value):
+        print(&quot;Value: &#123;&#125;&quot;.format(value))
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = SpinBoxDialog()
+    ui.show()
+</code></pre>
+<p><a name="L2Pcc"></a></p>
+<h1 id="启动maya图标资源管理器"><a href="#启动maya图标资源管理器" class="headerlink" title="启动maya图标资源管理器"></a>启动maya图标资源管理器</h1><p>import maya.app.general.resourceBrowser as resourceBrowser<br>resourceBrowser.resourceBrowser().run()<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661419111759-00e4785c-b7ec-4dbf-bc59-ef400fa10604.png#averageHue=%23514f4e&amp;clientId=uc6467607-8068-4&amp;from=paste&amp;height=296&amp;id=ubbdb2553&amp;originHeight=296&amp;originWidth=351&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=14092&amp;status=done&amp;style=none&amp;taskId=ue1cf3996-139b-4ae6-9efa-f1f57dc83aa&amp;title=&amp;width=351" alt="image.png"><br>在这里可以预览窗口的图标和名字<br><a name="uYFCq"></a></p>
+<h1 id="QTreeView-File-Explorer"><a href="#QTreeView-File-Explorer" class="headerlink" title="QTreeView File Explorer"></a>QTreeView File Explorer</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661422262493-6e04ef7d-e127-46ac-8ba1-ef98557b76b2.png#averageHue=%233d3d3c&amp;clientId=uc6467607-8068-4&amp;from=paste&amp;height=439&amp;id=u3bf9a10f&amp;originHeight=439&amp;originWidth=516&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=12708&amp;status=done&amp;style=none&amp;taskId=ua705bd21-cea0-4f6f-ac3c-1470a3bd245&amp;title=&amp;width=516" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TreeViewDialog(QtWidgets.QDialog):
+
+    WINDOW_TITLE = &quot;Tree View Dialog&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(TreeViewDialog, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        self.setMinimumSize(500, 400)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+    def create_widgets(self):
+        root_path = &quot;&#123;&#125;scripts&quot;.format(cmds.internalVar(userAppDir=True))  # 得到maya脚本目录
+
+        self.model = QtWidgets.QFileSystemModel() # 获得一个FileSystem模式
+        self.model.setRootPath(root_path)
+
+        self.tree_view = QtWidgets.QTreeView() # 创建QTreeView控件
+        self.tree_view.setModel(self.model) # 为控件添加模式
+        self.tree_view.setRootIndex(self.model.index(root_path))
+        self.tree_view.hideColumn(1)
+        self.tree_view.setColumnWidth(0, 240)
+
+        # self.model.setFilter(QtCore.QDir.Dirs | QtCore.QDir.NoDotAndDotDot)
+
+        self.model.setNameFilters([&quot;*.py&quot;])  # 使只能选中.py后缀的文件
+        self.model.setNameFilterDisables(False)  # 将不能选中的文件进行隐藏
+
+    def create_layout(self):
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addWidget(self.tree_view)
+
+
+    def create_connections(self):
+        self.tree_view.doubleClicked.connect(self.on_double_clicked)
+
+    def on_double_clicked(self, index):
+        path = self.model.filePath(index)
+
+        if self.model.isDir(index):
+            print(&quot;Directory selected: &#123;&#125;&quot;.format(path))
+        else:
+            print(&quot;Directory selected: &#123;&#125;&quot;.format(path))
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TreeViewDialog()
+    ui.show()
+</code></pre>
+<p><a name="ornOr"></a></p>
+<h1 id="制作简单的大纲"><a href="#制作简单的大纲" class="headerlink" title="制作简单的大纲"></a>制作简单的大纲</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661497459146-e8a29ae1-0130-4554-abcd-245750f64cfa.png#averageHue=%23494848&amp;clientId=u7b21ee06-bbc2-4&amp;from=paste&amp;height=345&amp;id=ub97e2f98&amp;originHeight=345&amp;originWidth=384&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=20501&amp;status=done&amp;style=none&amp;taskId=u9b265fd3-2f15-494b-aa9b-c4a7a3b5274&amp;title=&amp;width=384" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+from functools import partial
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class SimpleOutliner(QtWidgets.QDialog):
+    WINDOW_TITLE = &quot;Simple Outliner&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(SimpleOutliner, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        if cmds.about(ntOS=True):
+            self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+        elif cmds.about(macOS=True):
+            self.setWindowFlags(QtCore.Qt.Tool)
+
+        self.setMinimumWidth(300)
+
+        self.transform_icon = QtGui.QIcon(&quot;:transform.svg&quot;)
+        self.camera_icon = QtGui.QIcon(&quot;:Camera.png&quot;)
+        self.mesh_icon = QtGui.QIcon(&quot;:mesh.svg&quot;)
+
+        self.script_job_number = -1
+
+        self.create_actions()
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)  # 使能显示上下文菜单
+        self.customContextMenuRequested.connect(self.show_context_menu)  # 设置上下文菜单的ui
+
+        self.refresh_tree_widget()
+
+    def create_actions(self):
+        self.about_action = QtWidgets.QAction(&quot;About&quot;, self)
+
+        self.display_shape_action = QtWidgets.QAction(&quot;Shapes&quot;, self)
+        self.display_shape_action.setCheckable(True)
+        self.display_shape_action.setChecked(True)
+        self.display_shape_action.setShortcut(QtGui.QKeySequence(&quot;Ctrl+Shift+H&quot;))
+
+    def create_widgets(self):
+        self.menu_bar = QtWidgets.QMenuBar()
+        display_menu = self.menu_bar.addMenu(&quot;Display&quot;)
+        display_menu.addAction(self.display_shape_action)
+        help_menu = self.menu_bar.addMenu(&quot;Help&quot;)
+        help_menu.addAction(self.about_action)
+
+        self.tree_widget = QtWidgets.QTreeWidget()
+        self.tree_widget.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.tree_widget.setHeaderHidden(True)
+        # header = self.tree_widget.headerItem()
+        # header.setText(0, &quot;Column 0 Text&quot;)
+
+        self.refresh_btn = QtWidgets.QPushButton(&quot;Refresh&quot;)
+
+    def create_layout(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.refresh_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2) # 设置左上右下的边距
+        main_layout.setSpacing(2)
+        main_layout.setMenuBar(self.menu_bar)
+        main_layout.addWidget(self.tree_widget)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.about_action.triggered.connect(self.about)
+        self.display_shape_action.toggled.connect(self.set_shape_nodes_visible)
+
+        self.tree_widget.itemCollapsed.connect(self.update_icon)
+        self.tree_widget.itemExpanded.connect(self.update_icon)
+        self.tree_widget.itemSelectionChanged.connect(self.select_items)
+
+        self.refresh_btn.clicked.connect(self.refresh_tree_widget)
+
+    def refresh_tree_widget(self):
+        self.shape_nodes = cmds.ls(shapes=True)
+
+        self.tree_widget.clear()
+
+        top_level_object_names = cmds.ls(assemblies=True)
+        for name in top_level_object_names:
+            item = self.create_item(name)
+            self.tree_widget.addTopLevelItem(item)
+
+        self.update_selection()
+
+    def create_item(self, name):
+        item = QtWidgets.QTreeWidgetItem([name])
+        self.add_children(item)
+        self.update_icon(item)
+
+        is_shape = name in self.shape_nodes
+        item.setData(0, QtCore.Qt.UserRole, is_shape)
+
+        return item
+
+    def add_children(self, item):
+        children = cmds.listRelatives(item.text(0), children=True)
+        if children:
+            for child in children:
+                child_item = self.create_item(child)
+                item.addChild(child_item)
+
+    def update_icon(self, item):
+        object_type = &quot;&quot;
+
+        if item.isExpanded():  # 如果item被展开
+            object_type = &quot;transform&quot;
+        else:
+            child_count = item.childCount()
+            if child_count == 0:
+                object_type = cmds.objectType(item.text(0))
+            elif child_count == 1:
+                child_item = item.child(0)
+                object_type = cmds.objectType(child_item.text(0))
+            else:
+                object_type = &quot;transform&quot;
+        if object_type == &quot;transform&quot;:
+            item.setIcon(0, self.transform_icon)
+        elif object_type == &quot;camera&quot;:
+            item.setIcon(0, self.camera_icon)
+        elif object_type == &quot;mesh&quot;:
+            item.setIcon(0, self.mesh_icon)
+
+    def select_items(self):
+        items = self.tree_widget.selectedItems()
+        names = []
+        for item in items:
+            names.append(item.text(0))
+
+        cmds.select(names, replace=True)
+
+    def about(self):
+        QtWidgets.QMessageBox.about(self, &quot;About Simple Outliner&quot;, &quot;Add About Text Here&quot;)
+
+    def set_shape_nodes_visible(self, visible):
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.tree_widget)
+        while iterator.value():
+            item = iterator.value()
+            is_shape = item.data(0, QtCore.Qt.UserRole)
+            if is_shape:
+                item.setHidden(not visible)
+
+            iterator += 1
+
+    def show_context_menu(self, point):
+        context_menu = QtWidgets.QMenu()
+        context_menu.addAction(self.display_shape_action)
+        context_menu.addSeparator()  # 分割线
+        context_menu.addAction(self.about_action)
+
+        context_menu.exec_(self.mapToGlobal(point))  # 右键显示菜单
+
+    def update_selection(self):
+        selection = cmds.ls(selection=True)
+
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.tree_widget)
+        while iterator.value():
+            item = iterator.value()
+            is_selected = item.text(0) in selection
+            item.setSelected(is_selected)
+
+            iterator += 1
+
+    def set_script_job_enabled(self, enabled):
+        if enabled and self.script_job_number &lt; 0:
+            self.script_job_number = cmds.scriptJob(event=[&quot;SelectionChanged&quot;, partial(self.update_selection)], protected=True)
+        elif not enabled and self.script_job_number &gt;= 0:
+            cmds.scriptJob(kill=self.script_job_number, force=True)
+            self.script_job_number = -1
+
+    def showEvent(self, e):
+        super(SimpleOutliner, self).showEvent(e)
+        self.set_script_job_enabled(True)
+
+    def closeEvent(self, e):
+        if isinstance(self, SimpleOutliner):
+            super(SimpleOutliner, self).closeEvent(e)
+            self.set_script_job_enabled(False)
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.set_script_job_enabled(False)
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = SimpleOutliner()
+    ui.show()
+</code></pre>
+<p><a name="i75Bg"></a></p>
+<h1 id="制作进度条"><a href="#制作进度条" class="headerlink" title="制作进度条"></a>制作进度条</h1><p><a name="QCRZm"></a></p>
+<h2 id="不同对话框"><a href="#不同对话框" class="headerlink" title="不同对话框"></a>不同对话框</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661740738923-bdd5fa24-618f-4436-b04c-b92f416af8ff.png#averageHue=%23636262&amp;clientId=u8655e55d-37ca-4&amp;from=paste&amp;height=183&amp;id=uf5be9777&amp;originHeight=183&amp;originWidth=602&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=10984&amp;status=done&amp;style=none&amp;taskId=u4732af8d-49c4-43a5-a08f-52902460a05&amp;title=&amp;width=602" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+import time
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class ProgressTestDialog(QtWidgets.QDialog):
+    WINDOW_TITLE = &quot;Progress Test&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(ProgressTestDialog, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        if cmds.about(ntOS=True):
+            self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+        elif cmds.about(macOS=True):
+            self.setWindowFlags(QtCore.Qt.Tool)
+
+        self.setMinimumSize(300, 120)
+
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.progress_bar_button = QtWidgets.QPushButton(&quot;Do It!&quot;)
+
+    def create_layout(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.progress_bar_button)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.progress_bar_button.clicked.connect(self.run_progress_test)
+
+    def run_progress_test(self):
+        number_of_operations = 10  # 循环的数量
+
+        progress_dialog = QtWidgets.QProgressDialog(&quot;Waiting to process...&quot;, &quot;Cancel&quot;, 0, number_of_operations, self)
+        progress_dialog.setWindowTitle(&quot;Progress...&quot;)
+        progress_dialog.setValue(0)
+        progress_dialog.setWindowModality(QtCore.Qt.WindowModal)  # 设置为进度条窗口出现时，代码依然能够执行，但是不能使用除对话框之外的操作
+        progress_dialog.show()
+
+        QtCore.QCoreApplication.processEvents()  # 在执行代码之前显示对话框
+
+        for i in range(1, number_of_operations + 1):
+            if progress_dialog.wasCanceled():  # 当按了cancel按钮后中止代码
+                break
+            progress_dialog.setLabelText(&quot;Processing operation: &#123;0&#125; (fo &#123;1&#125;)&quot;.format(i, number_of_operations))
+            progress_dialog.setValue(i)
+            time.sleep(0.5)
+
+            QtCore.QCoreApplication.processEvents()  # 显示对话框的内容
+
+        progress_dialog.close()
+
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = ProgressTestDialog()
+    ui.show()
+</code></pre>
+<p>换一个函数举例</p>
+<pre><code class="lang-python">    def run_progress_test(self):
+
+        mesh_list = cmds.ls(assemblies=True)
+        number_of_operations = len(mesh_list)
+
+        progress_dialog = QtWidgets.QProgressDialog(&quot;Waiting to process...&quot;, &quot;Cancel&quot;, 0, number_of_operations, self)
+        progress_dialog.setWindowTitle(&quot;Progress...&quot;)
+        progress_dialog.setValue(0)
+        progress_dialog.setWindowModality(QtCore.Qt.WindowModal)  # 设置为进度条窗口出现时，代码依然能够执行，但是不能使用除对话框之外的操作
+        progress_dialog.show()
+
+        QtCore.QCoreApplication.processEvents()  # 在执行代码之前显示对话框
+
+        for num,i in enumerate(mesh_list):
+            if progress_dialog.wasCanceled():  # 当按了cancel按钮后中止代码
+                break
+            progress_dialog.setLabelText(&quot;&#123;0&#125;&quot;.format(i))
+            progress_dialog.setValue(num)
+            print i
+            time.sleep(0.5)
+
+            QtCore.QCoreApplication.processEvents()  # 显示对话框的内容
+
+        progress_dialog.close()
+</code></pre>
+<p><a name="gP9wT"></a></p>
+<h2 id="同一个对话框"><a href="#同一个对话框" class="headerlink" title="同一个对话框"></a>同一个对话框</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661744051767-0810ebd0-b8ae-434d-ac81-c539eb784adf.png#averageHue=%23696969&amp;clientId=u8655e55d-37ca-4&amp;from=paste&amp;height=139&amp;id=u6ef4cc63&amp;originHeight=139&amp;originWidth=316&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3399&amp;status=done&amp;style=none&amp;taskId=ud246af90-c02d-4c8b-a77b-e03625aadad&amp;title=&amp;width=316" alt="image.png"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1661744057610-f2773001-1ecb-4c07-b68f-8eabdd426779.png#averageHue=%23696968&amp;clientId=u8655e55d-37ca-4&amp;from=paste&amp;height=139&amp;id=u9287f141&amp;originHeight=139&amp;originWidth=316&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=5246&amp;status=done&amp;style=none&amp;taskId=u7482b385-c5c1-46f8-aa0e-a9604252dce&amp;title=&amp;width=316" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+import time
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class ProgressTestDialog(QtWidgets.QDialog):
+    WINDOW_TITLE = &quot;Progress Test&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(ProgressTestDialog, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        if cmds.about(ntOS=True):
+            self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+        elif cmds.about(macOS=True):
+            self.setWindowFlags(QtCore.Qt.Tool)
+
+        self.setMinimumSize(300, 100)
+
+        self.test_in_progress = False
+
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.progress_bar_label = QtWidgets.QLabel(&quot;Operation Progress&quot;)
+        self.progress_bar = QtWidgets.QProgressBar()
+
+        self.progress_bar_button = QtWidgets.QPushButton(&quot;Do It!&quot;)
+        self.cancel_button = QtWidgets.QPushButton(&quot;Cancel&quot;)
+
+        self.update_visibility()
+
+    def create_layout(self):
+        progress_layout = QtWidgets.QVBoxLayout()
+        progress_layout.addWidget(self.progress_bar_label)
+        progress_layout.addWidget(self.progress_bar)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.progress_bar_button)
+        button_layout.addWidget(self.cancel_button)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2) # 设置左上右下的边距
+        main_layout.addLayout(progress_layout)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.progress_bar_button.clicked.connect(self.run_progress_test)
+        self.cancel_button.clicked.connect(self.cancel_progress_test)
+
+    def update_visibility(self):
+        self.progress_bar_label.setVisible(self.test_in_progress)
+        self.progress_bar.setVisible(self.test_in_progress)
+
+        self.cancel_button.setVisible(self.test_in_progress)
+        self.progress_bar_button.setHidden(self.test_in_progress)
+
+    def run_progress_test(self):
+        if self.test_in_progress:
+            return
+
+        number_of_operation = 10
+
+        self.progress_bar.setRange(0, number_of_operation)
+        self.progress_bar.setValue(0)
+        self.progress_bar_label.setText(&quot;Operation Progress&quot;)
+
+        self.test_in_progress = True
+        self.update_visibility()
+
+        for i in range(1, number_of_operation + 1):
+            if not self.test_in_progress:
+                break
+
+            self.progress_bar_label.setText(&quot;Processing operation: &#123;0&#125; (of &#123;1&#125;)&quot;.format(i, number_of_operation))
+            self.progress_bar.setValue(i)
+            time.sleep(0.5)
+
+            QtCore.QCoreApplication.processEvents()
+
+        self.test_in_progress = False
+        self.update_visibility()
+
+    def cancel_progress_test(self):
+        self.test_in_progress = False
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = ProgressTestDialog()
+    ui.show()
+</code></pre>
+<p><a name="oQ0bx"></a></p>
+<h1 id="QWidget-vs-QDialog"><a href="#QWidget-vs-QDialog" class="headerlink" title="QWidget vs QDialog"></a>QWidget vs QDialog</h1><p><a name="GiDDj"></a></p>
+<h2 id="QWidget与QDialog的显示区别"><a href="#QWidget与QDialog的显示区别" class="headerlink" title="QWidget与QDialog的显示区别"></a>QWidget与QDialog的显示区别</h2><p>首先一个区别就是这两个<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1662026474082-19caa88c-f472-4130-9f16-c0d88eee7657.png#averageHue=%23494949&amp;clientId=u283bb055-7ea9-4&amp;from=paste&amp;height=337&amp;id=u7f86f38f&amp;originHeight=337&amp;originWidth=918&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=45973&amp;status=done&amp;style=none&amp;taskId=ub15c8f00-9cf4-4090-ae90-0b144a8e8c6&amp;title=&amp;width=918" alt="image.png"><br>但是如果想要使用QWidget窗口的话可能会出现窗口不能独立显示出画面中，可能会内嵌到maya主窗口中，要想使用QWidget需要解决这个问题。<br>导致QWidget窗口内嵌到maya主窗口中的原因是因为之前都一直设置的将maya主窗口设置为我们的工具UI的parent，因此QWidget会内嵌到maya主窗口中。<br>要想解决QWidget窗口内嵌到maya主窗口，这里给出一个QWidget的案例<br>主要解决代码为：self.setWindowFlags(QtCore.Qt.WindowType.Window)<br><strong>这行代码也可以直接用在QDialog的案例上面，可以直接将QDialog中的窗口类型改为Window。使QDialog窗口也能够显示最小化最大化窗口按钮</strong></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QWidget):
+    WINDOW_TITLE = &quot;Window Test&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        self.setMinimumSize(300, 200)
+        self.setWindowFlags(QtCore.Qt.WindowType.Window)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.ok_button = QtWidgets.QPushButton(&quot;OK&quot;)
+        self.ok_button.setMinimumWidth(80)
+        self.cancel_button = QtWidgets.QPushButton(&quot;Cancel&quot;)
+        self.cancel_button.setMinimumWidth(80)
+
+    def create_layouts(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.ok_button)
+        button_layout.addWidget(self.cancel_button)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        pass
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="hAiut"></a></p>
+<h1 id="添加图片（QImage，QPixmap）"><a href="#添加图片（QImage，QPixmap）" class="headerlink" title="添加图片（QImage，QPixmap）"></a>添加图片（QImage，QPixmap）</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1662358835263-488379c3-ddef-4112-9de1-9efe02044a60.png#averageHue=%23ceb079&amp;clientId=u4f2d97de-80f8-4&amp;from=paste&amp;height=259&amp;id=u9f6dd67f&amp;originHeight=259&amp;originWidth=619&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=112997&amp;status=done&amp;style=none&amp;taskId=u3f249d07-3316-4b17-8bfe-078053fe98f&amp;title=&amp;width=619" alt="image.png">左边是使用平滑模式，右边没有使用。<br>image = image.scaled(280, 100, QtCore.Qt.IgnoreAspectRatio, QtCore.Qt.SmoothTransformation)  # 使用平滑模式，使缩小图片时不会丢失细节。<br>QPushButton 使用setIcon方法<br>QLabel 使用setPixmap方法<br>设置pixmap对象时需要为pixmap指定一个image对象，调整图片就调整image。</p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.OpenMaya as om
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class TestDialog(QtWidgets.QDialog):
+    FILE_FILTERS = &quot;Maya(*.ma *.mb);;Maya ASCII (*.ma);;Maya Binary (*.mb);;All Files (*.*)&quot;  # 全部的过滤项
+
+    selected_filter = &quot;Maya (*.ma *.mb)&quot;  # 记录选择的过滤项，每次更改过滤项的同时会更改这个全局变量的值
+
+    def __init__(self, parent=maya_main_window()):
+        super(TestDialog, self).__init__(parent)
+
+        self.setWindowTitle(&#39;Open/Import/Reference&#39;)
+        self.setMinimumSize(300, 80)
+        self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        self.create_title_label()
+
+        self.filepath_le = QtWidgets.QLineEdit()
+        self.select_file_path_btn = QtWidgets.QPushButton()
+        self.select_file_path_btn.setIcon(QtGui.QIcon(&#39;:fileOpen.png&#39;))
+        self.select_file_path_btn.setToolTip(&quot;select File&quot;)
+
+        self.open_rb = QtWidgets.QRadioButton(&quot;Open&quot;)
+        self.open_rb.setChecked(True)
+        self.import_rb = QtWidgets.QRadioButton(&quot;Import&quot;)
+        self.reference_rb = QtWidgets.QRadioButton(&quot;Reference&quot;)
+
+        self.force_cb = QtWidgets.QCheckBox(&quot;Force&quot;)
+
+        self.apply_btn = QtWidgets.QPushButton(&quot;Apply&quot;)
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_title_label(self):
+        image_path = &quot;D:/ZhangRuiChen/image/test_image.jpg&quot;
+        image = QtGui.QImage(image_path)
+        image = image.scaled(280, 100, QtCore.Qt.IgnoreAspectRatio, QtCore.Qt.SmoothTransformation)
+
+        pixmap = QtGui.QPixmap()
+        pixmap.convertFromImage(image)
+
+        self.title_label = QtWidgets.QLabel(&quot;My Awesome Utility&quot;)
+        self.title_label.setPixmap(pixmap)
+
+    def create_layouts(self):
+        file_path_layout = QtWidgets.QHBoxLayout()
+        file_path_layout.addWidget(self.filepath_le)
+        file_path_layout.addWidget(self.select_file_path_btn)
+
+        radio_btn_layout = QtWidgets.QHBoxLayout()
+        radio_btn_layout.addWidget(self.open_rb)
+        radio_btn_layout.addWidget(self.import_rb)
+        radio_btn_layout.addWidget(self.reference_rb)
+
+        forme_layout = QtWidgets.QFormLayout()
+        forme_layout.addRow(&quot;File&quot;, file_path_layout)
+        forme_layout.addRow(&quot;&quot;, radio_btn_layout)
+        forme_layout.addRow(&quot;&quot;, self.force_cb)
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.apply_btn)
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.addWidget(self.title_label)
+        main_layout.addLayout(forme_layout)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.select_file_path_btn.clicked.connect(self.show_file_select_dialog)
+
+        self.open_rb.toggled.connect(self.update_force_visibility)
+
+        self.apply_btn.clicked.connect(self.load_file)
+        self.close_btn.clicked.connect(self.close)
+
+    def show_file_select_dialog(self):
+        file_path, self.selected_filter = QtWidgets.QFileDialog.getOpenFileName(self, &quot;Select File&quot;, &quot;&quot;,
+                                                                                self.FILE_FILTERS, self.selected_filter)
+        if file_path:
+            self.filepath_le.setText(file_path)
+
+    def update_force_visibility(self, checked):
+        self.force_cb.setVisible(checked)
+
+    def load_file(self):
+        file_path = self.filepath_le.text()
+        if not file_path:
+            return
+
+        file_info = QtCore.QFileInfo(file_path)  # 得到文件的信息
+        if not file_info.exists():  # 判断文件是否存在
+            om.MGlobal.displayError(&quot;File does not exist: &#123;&#125;&quot;.format(file_path))
+            return
+        if self.open_rb.isChecked():
+            self.open_file(file_path)
+        if self.import_rb.isChecked():
+            self.import_file(file_path)
+        else:
+            self.reference_file(file_path)
+
+    def open_file(self, file_path):
+        force = self.force_cb.isChecked()
+        if not force and cmds.file(q=True, modified=True):
+            result = QtWidgets.QMessageBox.question(self, &quot;Modified&quot;, &quot;Current scene has unsaved changes. Continue?&quot;)
+            if result == QtWidgets.QMessageBox.StandardButton.Yes:
+                force = True
+            else:
+                return
+        cmds.file(file_path, open=True, ignoreVersion=True, force=force)
+
+    def import_file(self, file_path):
+        cmds.file(file_path, i=True, ignoreVersion=True)
+
+    def reference_file(self, file_path):
+        cmds.file(file_path, r=True, ignoreVersion=True)
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = TestDialog()
+    ui.show()
+</code></pre>
+<p><a name="jN8Ha"></a></p>
+<h1 id="遍历文件夹列出树结构"><a href="#遍历文件夹列出树结构" class="headerlink" title="遍历文件夹列出树结构"></a>遍历文件夹列出树结构</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1671160357979-d432cf28-a6dd-4089-a185-1fca578d8897.png#averageHue=%23484847&amp;clientId=u0295db91-fe64-4&amp;from=paste&amp;height=309&amp;id=u14a78c68&amp;originHeight=278&amp;originWidth=262&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=6045&amp;status=done&amp;style=none&amp;taskId=u0d81fb05-71d8-41c8-817f-2df86fdee7e&amp;title=&amp;width=291.11111882292215" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+# 以树状结构显示指定路径下的所有内容，并且可以通过右键打开资源管理器并进入路径
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
+from shiboken2 import wrapInstance
+
+import maya.cmds as cmds
+import maya.OpenMayaUI as omui
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+class FileExplorerDialog(QtWidgets.QDialog):
+
+    WINDOW_TITLE = &quot;File Explorer&quot;
+
+    DIRECTOR_PATH = &quot;&#123;0&#125;scripts&quot;.format(cmds.internalVar(userAppDir=True))
+
+    def __init__(self, parent=maya_main_window()):
+        super(FileExplorerDialog, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        if cmds.about(ntOS=True):
+            self.setWindowFlags(self.windowFlags() ^ QtCore.Qt.WindowContextHelpButtonHint)
+        elif cmds.about(macOS=True):
+            self.setWindowFlags(QtCore.Qt.Tool)
+
+        self.create_actions()
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+        self.tree_wdg.setContextMenuPolicy(QtCore.Qt.CustomContextMenu) # 使Context菜单只针对tree_wdg
+        self.tree_wdg.customContextMenuRequested.connect(self.show_context_menu) # 使Context菜单为自定义的并给出菜单
+
+        self.refresh_list()
+
+    def create_actions(self):
+        self.show_in_folder_action = QtWidgets.QAction(&quot;Show in Folder&quot;, self)
+
+    def create_widgets(self):
+        self.path_label = QtWidgets.QLabel(self.DIRECTOR_PATH)
+
+        self.tree_wdg = QtWidgets.QTreeWidget()
+        self.tree_wdg.setHeaderHidden(True)
+
+        self.close_btn = QtWidgets.QPushButton(&quot;Close&quot;)
+
+    def create_layout(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.close_btn)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2) # 设置左上右下的边距
+        main_layout.addWidget(self.path_label)
+        main_layout.addWidget(self.tree_wdg)
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        self.close_btn.clicked.connect(self.close)
+        self.show_in_folder_action.triggered.connect(self.show_in_folder)
+
+    def refresh_list(self):
+        &quot;&quot;&quot; 显示文件树状结构 &quot;&quot;&quot;
+        self.tree_wdg.clear()
+
+        self.add_children(None, self.DIRECTOR_PATH)
+
+    def add_children(self, parent_item, dir_path):
+        &quot;&quot;&quot; 添加所有的子节点 &quot;&quot;&quot;
+        directory = QtCore.QDir(dir_path) # 创建目录为dir_path的QDir对象
+        # entryList作用是得到目录下的所有文件的字符串列表，参数第一个是设置过滤器，这里是要所有项并且没有.和..   第二个是设置排列，目录在最上方并且不区分大小写
+        files_in_directory = directory.entryList(QtCore.QDir.NoDotAndDotDot | QtCore.QDir.AllEntries, QtCore.QDir.DirsFirst | QtCore.QDir.IgnoreCase) 
+
+        for file_name in files_in_directory:
+            self.add_child(parent_item, dir_path, file_name)
+
+    def add_child(self, parent_item, dir_path, file_name):
+        &quot;&quot;&quot; 实现添加子节点 &quot;&quot;&quot;
+        file_path = &quot;&#123;0&#125;/&#123;1&#125;&quot;.format(dir_path, file_name)
+        file_info = QtCore.QFileInfo(file_path)
+
+        if file_info.suffix().lower() == &quot;pyc&quot;: # 过滤后缀为pyc的文件
+            return
+
+        item = QtWidgets.QTreeWidgetItem(parent_item, [file_name])
+        item.setData(0, QtCore.Qt.UserRole, file_path) # QtCore.Qt.UserRole可以理解为序号0,一个item可以拥有多个数据，因此可以通过QtCore.Qt.UserRole，QtCore.Qt.UserRole+1来设置数据的序号
+
+        if file_info.isDir():
+            &quot;&quot;&quot; 如果是文件夹就用add_children方法 &quot;&quot;&quot;
+            self.add_children(item, file_info.absoluteFilePath())
+
+        if not parent_item:
+            &quot;&quot;&quot; 将item添加到最顶层树结构中 &quot;&quot;&quot;
+            self.tree_wdg.addTopLevelItem(item)
+
+    def show_context_menu(self, pos):
+        &quot;&quot;&quot; 自定义菜单 &quot;&quot;&quot;
+        item = self.tree_wdg.itemAt(pos) # 鼠标位置处的item
+        if not item:
+            return
+
+        file_path = item.data(0, QtCore.Qt.UserRole) # 得到item里的数据
+        self.show_in_folder_action.setData(file_path) # 设置action对应的数据
+
+        context_menu = QtWidgets.QMenu() # 创建一个菜单
+        context_menu.addAction(self.show_in_folder_action) # 将action添加到菜单下
+        context_menu.exec_(self.tree_wdg.mapToGlobal(pos)) # 在鼠标位置处右键显示菜单
+
+    def show_in_folder(self):
+        file_path = self.show_in_folder_action.data()
+
+        if cmds.about(windows=True): # 如果是windows系统就使用windows系统的方法打开资源管理器
+            if self.open_in_explorer(file_path): 
+                return
+        elif cmds.about(macOS=True): # 如果是mac系统就使用mac系统的方法打开资源管理器
+            if self.open_in_finder(file_path):
+                return
+        # 两个方法都不可以的情况下，使用Qt自带的方法打开，缺点是不能自动选择对应的文件
+        file_info = QtCore.QFileInfo(file_path)
+        if file_info.isDir(): # 如果是路径是目录就直接使用
+            QtGui.QDesktopServices.openUrl(file_path)
+        else: # 如果是文件就通过file_info.path方法得到目录路径
+            QtGui.QDesktopServices.openUrl(file_info.path())
+
+    def open_in_explorer(self, file_path):
+        &quot;&quot;&quot; Windows打开资源管理器 &quot;&quot;&quot;
+        file_info = QtCore.QFileInfo(file_path)
+        args = []
+        if not file_info.isDir(): # 如果不是目录就选择路径对应的文件
+            args.append(&quot;/select,&quot;)
+
+        args.append(QtCore.QDir.toNativeSeparators(file_path))
+
+        if QtCore.QProcess.startDetached(&quot;explorer&quot;, args):
+            return True
+
+        return False
+
+    def open_in_finder(self, file_path):
+        args = []
+        args.append(&#39;-e&#39;)
+        args.append(&#39;tell application &quot;Finder&quot;&#39;)
+        args.append(&#39;-e&#39;)
+        args.append(&#39;activate&#39;)
+        args.append(&#39;-e&#39;)
+        args.append(&#39;select POSIX file &quot;&#123;0&#125;&quot;&#39;.format(file_path))
+        args.append(&#39;-e&#39;)
+        args.append(&#39;end tell&#39;)
+        args.append(&#39;-e&#39;)
+        args.append(&#39;return&#39;)
+
+        if(QtCore.QPrecess.startDetached(&quot;/usr/bin/osascript&quot;, args)):
+            return True
+
+        return False
+
+
+if __name__ == &quot;__main__&quot;:
+
+    try:
+        my_dialog.close()  
+        my_dialog.deleteLater()
+    except:
+        pass
+
+    my_dialog = FileExplorerDialog()
+    my_dialog.show()
+</code></pre>
+<p><a name="NIYFB"></a></p>
+<h1 id="灯光面板"><a href="#灯光面板" class="headerlink" title="灯光面板"></a>灯光面板</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1672827738289-ccf9c154-f02e-4b86-9323-dde79302d9bb.png#averageHue=%23595958&amp;clientId=u1b81c09d-af2e-4&amp;from=paste&amp;height=324&amp;id=u58ec6abd&amp;originHeight=292&amp;originWidth=502&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13895&amp;status=done&amp;style=none&amp;taskId=uf8b0edb7-09fb-4b48-a1c4-4ca5add6f0d&amp;title=&amp;width=557.7777925538431" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+# 灯光面板举例
+from functools import partial
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+class CustomColorButton(QtWidgets.QWidget): # 自定义颜色按钮
+
+    color_changed = QtCore.Signal(QtGui.QColor) # 自定义信号
+
+    def __init__(self, color=QtCore.Qt.white, parent=None): # 表示可以类接收一个颜色参数,默认是白色
+        super(CustomColorButton, self).__init__(parent)
+
+        self.setObjectName(&quot;CustomColorButton&quot;)
+
+        self.create_control()
+
+        self.set_size(50, 14)
+        self.set_color(color) # 设置初始颜色,如果对象有传过来颜色设置则为对象的颜色
+
+    def create_control(self):
+        &quot;&quot;&quot; 1. 创建colorSliderGrp &quot;&quot;&quot;
+        window = cmds.window()
+        self._name = cmds.colorSliderGrp()
+        # print(&quot;original name: &#123;0&#125;&quot;.format(self._name))
+
+        &quot;&quot;&quot; 2. 找到colorSliderGrp控件 &quot;&quot;&quot;
+        color_slider_obj = omui.MQtUtil.findControl(self._name) # color_slider_obj是一个c++的形式
+        if color_slider_obj:
+            self._color_slider_widget = wrapInstance(long(color_slider_obj), QtWidgets.QWidget)
+
+            &quot;&quot;&quot; 3. 将colorSliderGrp控件的父级设置为这个自定义控件 &quot;&quot;&quot;
+            main_layout = QtWidgets.QVBoxLayout(self)
+            main_layout.setObjectName(&quot;main_layout&quot;)
+            main_layout.setContentsMargins(0, 0, 0, 0)
+            main_layout.addWidget(self._color_slider_widget)
+
+            &quot;&quot;&quot; 4. 更新colorSliderGrp的control name (之前是属于maya的) &quot;&quot;&quot;
+            self._name = self._color_slider_widget.objectName()
+            # print(&quot;new name: &#123;0&#125;&quot;.format(self._name))
+
+            &quot;&quot;&quot; 5. 识别或存储 colorSliderGrp的子控件(在必要的时候可以隐藏它) &quot;&quot;&quot;
+            # children = self._color_slider_widget.children()
+            # for child in children:
+            #     print(child)
+            #     print(child.objectName())
+            # print(&quot;---&quot;)
+
+            self._slider_widget = self._color_slider_widget.findChild(QtWidgets.QWidget, &quot;slider&quot;)
+            if self._slider_widget:
+                self._slider_widget.hide()
+
+            self._color_widget = self._color_slider_widget.findChild(QtWidgets.QWidget, &quot;port&quot;)
+
+            cmds.colorSliderGrp(self._name, e=True, changeCommand=partial(self.on_color_changed))
+
+        cmds.deleteUI(window, window=True)
+
+
+    def set_size(self, width, height):
+        self._color_slider_widget.setFixedWidth(width)
+        self._color_widget.setFixedHeight(height)
+
+    def set_color(self, color):
+        color = QtGui.QColor(color)
+
+        if color != self.get_color():
+            cmds.colorSliderGrp(self._name, e=True, rgbValue=(color.redF(), color.greenF(), color.blueF())) # F代表以浮点数表示
+            self.on_color_changed()
+
+    def get_color(self):
+        color = cmds.colorSliderGrp(self._name, q=True, rgbValue=True)
+
+        color = QtGui.QColor(color[0] *255, color[1] * 255, color[2] * 255)
+        return color
+
+    def on_color_changed(self, *args):
+        self.color_changed.emit(self.get_color())
+
+class LightItem(QtWidgets.QWidget):
+    # 自定义灯光控件，一个灯光对应一个控件
+
+    SUPPORTED_TYPES = [&quot;ambientLight&quot;, &quot;directionalLight&quot;, &quot;pointLight&quot;, &quot;spotLight&quot;, &quot;areaLight&quot;]
+    EMIT_TYPES = [&quot;directionalLight&quot;, &quot;pointLight&quot;, &quot;spotLight&quot;, &quot;areaLight&quot;]
+
+    node_deleted = QtCore.Signal(str) # 自定义节点删除时的信号
+
+    def __init__(self, shape_name, parent=None):
+        super(LightItem, self).__init__(parent)
+
+        self.setFixedHeight(26)
+
+        self.shape_name = shape_name # 灯光的shape名字
+        self.uuid = cmds.ls(shape_name, uuid=True) # 灯光的uuid
+
+        self.script_jobs = []
+
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+        self.create_script_jobs()
+
+    def create_widgets(self):
+        &quot;&quot;&quot; 创建控件 &quot;&quot;&quot;
+        self.light_type_btn = QtWidgets.QPushButton()
+        self.light_type_btn.setFixedSize(20, 20)
+        self.light_type_btn.setFlat(True) # 设置按钮的显示形式
+
+        self.visiblity_cb = QtWidgets.QCheckBox()
+
+        self.transform_name_label = QtWidgets.QLabel(&quot;placeholder&quot;)
+        self.transform_name_label.setFixedWidth(120)
+        self.transform_name_label.setAlignment(QtCore.Qt.AlignCenter)
+
+        light_type = self.get_light_type()
+        if light_type in self.SUPPORTED_TYPES:
+            self.intensity_dsb = QtWidgets.QDoubleSpinBox()
+            self.intensity_dsb.setRange(0.0, 100.0)
+            self.intensity_dsb.setDecimals(3) # 设置数值到小数点后三位
+            self.intensity_dsb.setSingleStep(0.1)
+            self.intensity_dsb.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons) # 设置spinbox没有上下箭头
+
+            self.color_btn = CustomColorButton()
+
+            if light_type in self.EMIT_TYPES:
+                self.emit_diffuse_cb = QtWidgets.QCheckBox()
+                self.emit_specular_cb = QtWidgets.QCheckBox()
+
+        self.update_values()
+
+    def create_layout(self):
+        &quot;&quot;&quot; 创建布局 &quot;&quot;&quot;
+        main_layout = QtWidgets.QHBoxLayout(self)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addWidget(self.light_type_btn)
+        main_layout.addWidget(self.visiblity_cb)
+        main_layout.addWidget(self.transform_name_label)
+
+        light_type = self.get_light_type()
+        if light_type in self.SUPPORTED_TYPES:
+            main_layout.addWidget(self.intensity_dsb)
+            main_layout.addSpacing(10)
+            main_layout.addWidget(self.color_btn)
+
+            if light_type in self.EMIT_TYPES:
+                main_layout.addSpacing(34)
+                main_layout.addWidget(self.emit_diffuse_cb)
+                main_layout.addSpacing(50)
+                main_layout.addWidget(self.emit_specular_cb)
+
+        main_layout.addStretch()
+
+    def create_connections(self):
+        &quot;&quot;&quot; 创建信号与槽的连接 &quot;&quot;&quot;
+        self.light_type_btn.clicked.connect(self.select_light)
+        self.visiblity_cb.toggled.connect(self.set_visibility)
+
+        light_type = self.get_light_type()
+        if light_type in self.SUPPORTED_TYPES:
+            self.intensity_dsb.editingFinished.connect(self.on_intensity_changed)
+            self.color_btn.color_changed.connect(self.set_color)
+
+            if light_type in self.EMIT_TYPES:
+                self.emit_diffuse_cb.toggled.connect(self.set_emit_diffuse)
+                self.emit_specular_cb.toggled.connect(self.set_emit_specular)
+
+    def update_values(self):
+        self.light_type_btn.setIcon(self.get_light_type_icon())
+        self.visiblity_cb.setChecked(self.is_visible())
+        self.transform_name_label.setText(self.get_transform_name())
+
+        light_type = self.get_light_type()
+        if light_type in self.SUPPORTED_TYPES:
+            self.intensity_dsb.setValue(self.get_intensity())
+            self.color_btn.set_color(self.get_color())
+
+            if light_type in self.EMIT_TYPES:
+                self.emit_diffuse_cb.setChecked(self.emits_diffuse())
+                self.emit_specular_cb.setChecked(self.emits_specular())
+
+    def get_transform_name(self):
+        return cmds.listRelatives(self.shape_name, parent=True)[0]
+
+    def get_attribute_value(self, name, attribute):
+        return cmds.getAttr(&quot;&#123;0&#125;.&#123;1&#125;&quot;.format(name, attribute))
+
+    def set_attribute_value(self, name, attribute,*args):
+
+        # 如果设置颜色或者属性的值与当前值相同就不进行设置，避免script job产生的重复设置属性的bug
+        if attribute == &quot;color&quot;:
+            if self.get_color() == self.color_btn.get_color():
+                return
+        elif args[0] == self.get_attribute_value(name, attribute):
+            return
+
+        attr_name = &quot;&#123;0&#125;.&#123;1&#125;&quot;.format(name, attribute)
+        cmds.setAttr(attr_name, *args)
+
+    def get_light_type(self):
+        return cmds.objectType(self.shape_name)
+
+    def get_light_type_icon(self):
+        light_type = self.get_light_type()
+
+        icon = QtGui.QIcon()
+        if light_type == &quot;ambientLight&quot;:
+            icon = QtGui.QIcon(&quot;:ambientLight.svg&quot;)
+        elif light_type == &quot;directionalLight&quot;:
+            icon = QtGui.QIcon(&quot;:directionalLight.svg&quot;)
+        elif light_type == &quot;pointLight&quot;:
+            icon = QtGui.QIcon(&quot;:pointLight.svg&quot;)
+        elif light_type == &quot;spotLight&quot;:
+            icon = QtGui.QIcon(&quot;:spotLight.svg&quot;)
+        else:
+            icon = QtGui.QIcon(&quot;:Light.png&quot;)
+
+        return icon
+
+    def is_visible(self):
+        transform_name = self.get_transform_name()
+        return self.get_attribute_value(transform_name, &quot;visibility&quot;)
+
+    def get_intensity(self):
+        return self.get_attribute_value(self.shape_name, &quot;intensity&quot;)
+
+    def get_color(self):
+        temp_color = self.get_attribute_value(self.shape_name, &quot;color&quot;)[0]
+        return QtGui.QColor(temp_color[0] * 255, temp_color[1] * 255, temp_color[2] * 255)
+
+    def emits_diffuse(self):
+        return self.get_attribute_value(self.shape_name, &quot;emitDiffuse&quot;)
+
+    def emits_specular(self):
+        return self.get_attribute_value(self.shape_name, &quot;emitSpecular&quot;)
+
+    def select_light(self):
+        cmds.select(self.get_transform_name())
+
+    def set_visibility(self, checked):
+        self.set_attribute_value(self.get_transform_name(), &quot;visibility&quot;, checked)
+
+    def on_intensity_changed(self):
+        self.set_attribute_value(self.shape_name, &quot;intensity&quot;, self.intensity_dsb.value())
+
+    def set_color(self, color):
+        self.set_attribute_value(self.shape_name, &quot;color&quot;, color.redF(), color.greenF(), color.blueF())
+
+    def set_emit_diffuse(self, checked):
+        self.set_attribute_value(self.shape_name, &quot;emitDiffuse&quot;, checked)
+
+    def set_emit_specular(self, checked):
+        self.set_attribute_value(self.shape_name, &quot;emitSpecular&quot;, checked)
+
+    def on_node_deleted(self):
+        &quot;&quot;&quot; 当节点删除时执行 &quot;&quot;&quot;
+        self.node_deleted.emit(self.shape_name)
+
+    def on_name_changed(self):
+        &quot;&quot;&quot; 当名字修改时执行 &quot;&quot;&quot;
+        self.shape_name = cmds.ls(self.uuid)[0]
+        self.update_values()
+
+    def create_script_jobs(self):
+        &quot;&quot;&quot; 为每个灯光都创建script jobs &quot;&quot;&quot;
+        self.delete_script_jobs()
+
+        self.add_attribute_change_script_job(self.get_transform_name(), &quot;visibility&quot;)
+        light_type = self.get_light_type()
+        if light_type in self.SUPPORTED_TYPES:
+            self.add_attribute_change_script_job(self.shape_name, &quot;color&quot;)
+            self.add_attribute_change_script_job(self.shape_name, &quot;intensity&quot;)
+
+            if light_type in self.EMIT_TYPES:
+                self.add_attribute_change_script_job(self.shape_name, &quot;emitDiffuse&quot;)
+                self.add_attribute_change_script_job(self.shape_name, &quot;emitSpecular&quot;)
+
+        self.script_jobs.append(cmds.scriptJob(nodeDeleted=(self.shape_name, partial(self.on_node_deleted))))
+        self.script_jobs.append(cmds.scriptJob(nodeNameChanged=(self.shape_name, partial(self.on_name_changed))))
+
+    def add_attribute_change_script_job(self, name, attribute):
+        &quot;&quot;&quot; 添加某一节点的某一属性改变时的script_job时使用的方法 &quot;&quot;&quot;
+        self.script_jobs.append(cmds.scriptJob(attributeChange=(&quot;&#123;0&#125;.&#123;1&#125;&quot;.format(name, attribute), partial(self.update_values))))
+
+    def delete_script_jobs(self):
+        for job_number in self.script_jobs:
+            cmds.evalDeferred(&quot;if cmds.scriptJob(exists=&#123;0&#125;):\tcmds.scriptJob(kill=&#123;0&#125;, force=True)&quot;.format(job_number))
+
+        self.script_jobs = []
+
+
+class LightPanel(QtWidgets.QDialog):
+
+    WINDOW_TITLE = &quot;Light Panel&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(LightPanel, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        self.setMinimumSize(500, 260)
+        self.setWindowFlags(QtCore.Qt.WindowType.Window)
+
+        self.light_items = []
+        self.script_jobs = []
+
+        self.create_widgets()
+        self.create_layouts()
+        self.create_connections()
+
+    def create_widgets(self):
+        &quot;&quot;&quot; 控件 &quot;&quot;&quot;
+        self.refreshButton = QtWidgets.QPushButton(&quot;Refresh Lights&quot;)
+
+    def create_layouts(self):
+        &quot;&quot;&quot; 布局 &quot;&quot;&quot;
+        header_layout = QtWidgets.QHBoxLayout()
+        header_layout.addSpacing(100)
+        header_layout.addWidget(QtWidgets.QLabel(&quot;Light&quot;))
+        header_layout.addSpacing(50)
+        header_layout.addWidget(QtWidgets.QLabel(&quot;Intensity&quot;))
+        header_layout.addSpacing(44)
+        header_layout.addWidget(QtWidgets.QLabel(&quot;Color&quot;))
+        header_layout.addSpacing(24)
+        header_layout.addWidget(QtWidgets.QLabel(&quot;Emit Diffuse&quot;))
+        header_layout.addSpacing(10)
+        header_layout.addWidget(QtWidgets.QLabel(&quot;Emit Spec&quot;))
+        header_layout.addStretch()
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.refreshButton)
+
+        light_list_wdg = QtWidgets.QWidget()
+
+        self.light_layout = QtWidgets.QVBoxLayout(light_list_wdg) # light_list_wdg在light_layout下
+        self.light_layout.setContentsMargins(2, 2, 2, 2)
+        self.light_layout.addSpacing(3)
+        self.light_layout.setAlignment(QtCore.Qt.AlignTop)
+
+        light_list_scroll_area = QtWidgets.QScrollArea()
+        light_list_scroll_area.setWidgetResizable(True)
+        light_list_scroll_area.setWidget(light_list_wdg) # scroll_area下有light_list_wdg
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addLayout(header_layout)
+        main_layout.addWidget(light_list_scroll_area) # 主布局下有个scroll_area
+        main_layout.addLayout(button_layout)
+
+    def create_connections(self):
+        &quot;&quot;&quot; 信号与槽的连接 &quot;&quot;&quot;
+        self.refreshButton.clicked.connect(self.refresh_lights)
+
+    def get_lights_in_scene(self):
+        &quot;&quot;&quot; 得到场景中所有灯光 &quot;&quot;&quot;
+        return cmds.ls(typ=&quot;light&quot;)
+
+    def refresh_lights(self):
+        &quot;&quot;&quot; 刷新灯光面板 &quot;&quot;&quot;
+        self.clear_lights()
+
+        scene_lights = self.get_lights_in_scene()
+        for light in scene_lights:
+            light_item = LightItem(light)
+            light_item.node_deleted.connect(self.on_node_deleted) # 自定义信号node_deleted发送数据时传给on_node_deleted函数
+
+            self.light_layout.addWidget(light_item)
+            self.light_items.append(light_item)
+
+
+    def clear_lights(self):
+        &quot;&quot;&quot; 清空灯光面板 &quot;&quot;&quot;
+        for light in self.light_items:
+            light.delete_script_jobs()
+
+        self.light_items = []
+
+        while self.light_layout.count() &gt; 0:
+            light_item = self.light_layout.takeAt(0)
+            if light_item.widget():
+                light_item.widget().deleteLater()
+
+    def create_script_jobs(self):
+        &quot;&quot;&quot; 创建script jobs &quot;&quot;&quot;
+        self.script_jobs.append(cmds.scriptJob(event=[&quot;DagObjectCreated&quot;, partial(self.on_dag_object_created)])) # 当创建dag物体时执行on_dag_object_created函数
+        self.script_jobs.append(cmds.scriptJob(event=[&quot;Undo&quot;, partial(self.on_undo)])) # 当ctrl+z时执行on_undo函数
+
+    def delete_script_jobs(self):
+        &quot;&quot;&quot; 删除script jobs &quot;&quot;&quot;
+        for job_number in self.script_jobs:
+            cmds.scriptJob(kill=job_number)
+
+        self.script_jobs = []
+
+    def on_dag_object_created(self):
+        &quot;&quot;&quot; 当dag中出现新物体时执行 &quot;&quot;&quot;
+        if len(cmds.ls(typ=&quot;light&quot;)) != len(self.light_items):
+            print(&quot;New light created...&quot;)
+            self.refresh_lights()
+
+    def on_undo(self):
+        &quot;&quot;&quot; ctrl+z时执行 &quot;&quot;&quot;
+        if len(cmds.ls(typ=&quot;light&quot;)) != len(self.light_items):
+            print(&quot;Undo light created...&quot;)
+            self.refresh_lights()
+
+    def on_node_deleted(self):
+        &quot;&quot;&quot; 节点删除时执行 &quot;&quot;&quot;
+        self.refresh_lights()
+
+    def showEvent(self, event):
+        &quot;&quot;&quot; 当打开窗口时执行 &quot;&quot;&quot;
+        self.refresh_lights()
+        self.create_script_jobs()
+
+    def closeEvent(self, event):
+        &quot;&quot;&quot; 当关闭窗口时执行 &quot;&quot;&quot;
+        self.clear_lights()
+        self.delete_script_jobs()
+
+if __name__ == &#39;__main__&#39;:
+    cmds.file(new=True,f=True)
+    cmds.file(&quot;D:/ZhangRuiChen/Pyside2ForMaya/light_test.ma&quot;,o=True,f=True)
+    try:
+        light_panel_dialog.close()
+        light_panel_dialog.deleteLater()
+    except:
+        pass
+    light_panel_dialog = LightPanel()
+    light_panel_dialog.show()
+</code></pre>
+<p><a name="ZzJ9v"></a></p>
+<h2 id="scriptJob"><a href="#scriptJob" class="headerlink" title="scriptJob"></a>scriptJob</h2><p>不知道scriptJob的话在这里看<a href="https://www.yuque.com/quanmianxiaokangdelouwangzhiyu/pk4uzy/ucqe3u#Rk562">https://www.yuque.com/quanmianxiaokangdelouwangzhiyu/pk4uzy/ucqe3u#Rk562</a><br>注册scriptJob：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1671697160970-4d903cf0-97ad-438b-bd77-a3ad27d538c2.png#averageHue=%2334302c&amp;clientId=ub7d727ca-d9ed-4&amp;from=paste&amp;height=382&amp;id=u618a8281&amp;originHeight=344&amp;originWidth=1208&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=174235&amp;status=done&amp;style=none&amp;taskId=udb8d8554-33f9-4a7f-9192-67c2b7e20eb&amp;title=&amp;width=1342.2222577789694" alt="image.png"><br>取消注册scriptJob:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1671697289737-9aca734a-76ed-46bf-820c-849acdf948ba.png#averageHue=%23291d1d&amp;clientId=ub7d727ca-d9ed-4&amp;from=paste&amp;height=146&amp;id=u7a1ba4a6&amp;originHeight=131&amp;originWidth=885&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=49637&amp;status=done&amp;style=none&amp;taskId=u8326d511-f58c-4ccb-be1f-125f8ed025a&amp;title=&amp;width=983.3333593827714" alt="image.png"><br><a name="TgmeX"></a></p>
+<h1 id="Docking"><a href="#Docking" class="headerlink" title="Docking"></a>Docking</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1676368412774-62e89b75-050f-4042-ae72-172252a91f7c.png#averageHue=%230b0b0b&amp;clientId=u0ed65455-fe7e-4&amp;from=paste&amp;height=575&amp;id=u9137e5aa&amp;originHeight=575&amp;originWidth=1321&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=195907&amp;status=done&amp;style=none&amp;taskId=u361a55fc-af62-47f2-bdfc-d0f90735912&amp;title=&amp;width=1321" alt="image.png"><br><a name="rVb0T"></a></p>
+<h2 id="maya的workspaces设置存放的位置"><a href="#maya的workspaces设置存放的位置" class="headerlink" title="maya的workspaces设置存放的位置"></a>maya的workspaces设置存放的位置</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1676428725500-72ba1326-f7bc-45b8-8e11-030d22cc2206.png#averageHue=%23f9f9f9&amp;clientId=u0ed65455-fe7e-4&amp;from=paste&amp;height=174&amp;id=ub49c11ba&amp;originHeight=174&amp;originWidth=537&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=48522&amp;status=done&amp;style=none&amp;taskId=u0996483e-911b-4ff2-90b3-113dba0bc9b&amp;title=&amp;width=537" alt="image.png"><br><a name="Ooqxq"></a></p>
+<h2 id="mayaMixin-py"><a href="#mayaMixin-py" class="headerlink" title="mayaMixin.py"></a>mayaMixin.py</h2><p>mayaMixin模块可以令我们更方便的创建可以停靠的窗口。<br>模块的路径为:C:\Program Files\Autodesk\Maya2018\Python\Lib\site-packages\maya\app\general\mayaMixin.py<br>其中模块使用的最重要的命令是cmds.workspaceControl<br>这里的会自动保存在工作区上面，关掉maya不会清除窗口内容。是有一个前置条件的，条件是这个模块是实实在在存在的文件，然后这个模块在maya的识别目录上面。<br>令其能够自动保存在工作区上面，实现的代码是：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677225584722-63c8cec0-dea6-42fa-8dab-15951408b3b1.png#averageHue=%23ffffff&amp;clientId=ueacdff51-fb88-4&amp;from=paste&amp;height=167&amp;id=ua8a8de90&amp;originHeight=150&amp;originWidth=607&amp;originalType=binary&amp;ratio=0.8999999761581421&amp;rotation=0&amp;showTitle=false&amp;size=19623&amp;status=done&amp;style=none&amp;taskId=ua8a9886e-c8f0-4d96-8f6b-4e390b8bc36&amp;title=&amp;width=674.4444623111211" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677225538425-50afbed0-ddf3-4d53-9d07-a61791ef937b.png#averageHue=%23ffffff&amp;clientId=ueacdff51-fb88-4&amp;from=paste&amp;height=52&amp;id=ub903c2e4&amp;originHeight=47&amp;originWidth=833&amp;originalType=binary&amp;ratio=0.8999999761581421&amp;rotation=0&amp;showTitle=false&amp;size=11152&amp;status=done&amp;style=none&amp;taskId=u534c562f-94d8-47fb-bf23-516bfb8f0b8&amp;title=&amp;width=925.5555800744052" alt="image.png"><br><a href="https://help.autodesk.com/view/MAYAUL/2018/ENU/?guid=__CommandsPython_index_html">Help</a></p>
+<pre><code class="lang-python"># 配合MayaQWidgetDockableMixin模块制作 可以停靠在maya界面上的参考
+# 特点：会自动保存在工作区上面，关掉maya不会清除窗口内容
+# 开发时需要注意的点：在dock状态下不方便调试，开发时要在非dock状态以便调试
+from PySide2 import QtWidgets
+from shiboken2 import getCppPointer
+
+from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
+from maya.OpenMayaUI import MQtUtil
+
+import maya.cmds as cmds
+# 多重继承中要把MayaQWidgetDockableMixin放在首位
+class MyDockableButtonStatic(MayaQWidgetDockableMixin, QtWidgets.QPushButton):
+
+    UI_NAME = &quot;MyDockableButtonStatic&quot; # 定义一个准确的UI_NAME使UI具有唯一性
+
+    def __init__(self):
+        super(MyDockableButtonStatic, self).__init__()
+
+        self.setObjectName(self.UI_NAME)
+
+        self.setWindowTitle(&quot;Dockable Window&quot;)
+        self.setText(&quot;My Button&quot;)
+
+        workspace_control_name = &quot;&#123;0&#125;WorkspaceControl&quot;.format(self.UI_NAME)
+        # 设置父级为工作区
+        if cmds.workspaceControl(workspace_control_name, q=True, exists=True):
+            workspace_control_ptr = long(MQtUtil.findControl(workspace_control_name))
+            widget_ptr = long(getCppPointer(self)[0])
+
+            MQtUtil.addWidgetToMayaLayout(widget_ptr, workspace_control_ptr)
+
+if __name__ == &quot;__main__&quot;:
+    try:
+        if button and button.parent():
+            workspace_control_name = button.parent().objectName()
+
+            if cmds.window(workspace_control_name, exists=True):
+                cmds.deleteUI(workspace_control_name)
+    except:
+        pass
+
+    button = MyDockableButtonStatic()
+
+    ui_script = &quot;from dockable_button_example import MyDockableButtonStatic\nbutton = MyDockableButtonStatic()&quot;
+    button.show(dockable=True, uiScript=ui_script) # 调用MayaQWidgetDockableMixin模块的show方法来使创建的窗口能够dock
+</code></pre>
+<p><a name="OCpb5"></a></p>
+<h2 id="workspace-control-py"><a href="#workspace-control-py" class="headerlink" title="workspace_control.py"></a>workspace_control.py</h2><p>workspaceControl的介绍:<br>创建和管理用于在允许将窗口停靠和堆叠在一起的布局中托管窗口的小部件</p>
+<pre><code class="lang-python"># 让UI成为workspaceControl的widget，这样就能够创建出可以dock的UI了
+from PySide2 import  QtCore
+from PySide2 import  QtWidgets
+from shiboken2 import getCppPointer
+
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+class WorkspaceControl(object):
+    &quot;&quot;&quot; 根据workspaceControl命令自定义的方便使用类 &quot;&quot;&quot;
+
+    def __init__(self,name):
+        self.name = name
+        self.widget = None
+
+    def create(self, label, widget, ui_script=None):
+
+        cmds.workspaceControl(self.name, label=label)
+
+        if ui_script:
+            cmds.workspaceControl(self.name, e=True, uiScript=ui_script)
+
+        self.add_widget_to_layout(widget)
+        self.set_visible(True)
+
+    def restore(self, widget):
+        &quot;&quot;&quot; 恢复widget的显示 &quot;&quot;&quot;
+        self.add_widget_to_layout(widget)
+
+    def add_widget_to_layout(self, widget):
+        &quot;&quot;&quot; 将widget添加到layout上 &quot;&quot;&quot;
+        if widget:
+            self.widget = widget
+            self.widget.setAttribute(QtCore.Qt.WA_DontCreateNativeAncestors) # 参考mayaMixin推荐的一个属性设置，意思是我们的widget会跟随父窗口属性改变，但是不要跟随父窗口属性改变的同时将祖先窗口改变。
+
+            workspace_control_ptr = long(omui.MQtUtil.findControl(self.name)) # 得到workspaceControl的指针
+            widget_ptr = long(getCppPointer(self.widget)[0]) # 得到widget的cpp指针
+
+            omui.MQtUtil.addWidgetToMayaLayout(widget_ptr, workspace_control_ptr) # 令我们的widget属于maya布局
+
+    def exists(self):
+        &quot;&quot;&quot; 判断workspaceControl是否存在 &quot;&quot;&quot;
+        return cmds.workspaceControl(self.name, q=True, exists=True)
+
+    def is_visible(self):
+        &quot;&quot;&quot; 判断workspaceControl可视性 &quot;&quot;&quot;
+        return cmds.workspaceControl(self.name, q=True, visible=True)
+
+    def set_visible(self, visible):
+        &quot;&quot;&quot; 设置workspaceControl的可视性 &quot;&quot;&quot;
+        if visible:
+            cmds.workspaceControl(self.name, e=True, restore=True)
+        else:
+            cmds.workspaceControl(self.name, e=True, visible=False)
+
+    def set_label(self, label):
+        &quot;&quot;&quot; 设置workspaceControl的标签 &quot;&quot;&quot;
+        cmds.workspaceControl(self.name, e=True, label=label)
+
+    def is_floating(self):
+        &quot;&quot;&quot; 判断workspaceControl是否浮动 &quot;&quot;&quot;
+        return cmds.workspaceControl(self.name, q=True, floating=True)
+
+    def is_collapsed(self):
+        &quot;&quot;&quot; 判断workspaceControl是否收缩 &quot;&quot;&quot;
+        return cmds.workspaceControl(self.name, q=True, collapse=True)
+
+
+class SampleUI(QtWidgets.QWidget):
+
+    WINDOW_TITLE = &quot;Sample UI&quot;
+    UI_NAME = &quot;SampleUI&quot;
+
+    ui_instance = None
+
+    # 创建一个类方法，方便外界调用来显示可以dock的UI,如果SampleUI存在就显示它，不存在就创建
+    @classmethod
+    def display(cls):
+        if cls.ui_instance:
+            cls.ui_instance.show_workspace_control()
+        else:
+            cls.ui_instance = SampleUI()
+
+    @classmethod
+    def get_workspace_control_name(cls):
+        &quot;&quot;&quot; 设置控件对应的workspaceControl名字 &quot;&quot;&quot;
+        return &quot;&#123;0&#125;WorkspaceControl&quot;.format(cls.UI_NAME)
+
+
+    def __init__(self):
+        super(SampleUI, self).__init__()
+
+        self.setObjectName(self.__class__.UI_NAME)
+        self.setMinimumSize(200, 100)
+
+        self.create_widget()
+        self.create_layout()
+        self.create_connections()
+        self.create_workspace_control()
+
+    def create_widget(self):
+        self.apply_button = QtWidgets.QPushButton(&quot;Apply&quot;)
+
+    def create_layout(self):
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addStretch()
+        main_layout.addWidget(self.apply_button)
+
+    def create_connections(self):
+        self.apply_button.clicked.connect(self.on_clicked)
+
+    def create_workspace_control(self):
+        &quot;&quot;&quot; 创建workspaceControl &quot;&quot;&quot;
+        self.workspace_control_instance = WorkspaceControl(self.get_workspace_control_name())
+        if self.workspace_control_instance.exists():
+            self.workspace_control_instance.restore(self) # 如果workspace_control已经存在了那么就将它显示出来
+        else:
+            self.workspace_control_instance.create(self.WINDOW_TITLE, self, ui_script=&quot;from workspace_control import SampleUI\nSampleUI.display()&quot;)
+
+    def show_workspace_control(self):
+        self.workspace_control_instance.set_visible(True)
+
+    def on_clicked(self):
+        print(&quot;Button Clicked&quot;)
+
+    def showEvent(self, e):
+        &quot;&quot;&quot; 设置窗口float时以及dock时对应的标题 &quot;&quot;&quot;
+        if self.workspace_control_instance.is_floating():
+            self.workspace_control_instance.set_label(&quot;Floating Window&quot;)
+        else:
+            self.workspace_control_instance.set_label(&quot;Docked Window&quot;)
+
+
+
+if __name__ == &quot;__main__&quot;:
+
+    workspace_control_name = SampleUI.get_workspace_control_name()
+    if cmds.window(workspace_control_name, exists=True):
+        cmds.deleteUI(workspace_control_name)
+
+    # 这串代码可以使UI在dock的同时能够通过更改UI的代码来更新界面
+    # try:
+    #     sample_ui.setParent(None)
+    #     sample_ui.deleteLater()
+    # except:
+    #     pass
+
+    sample_ui = SampleUI()
+    sample_ui.show()
+</code></pre>
+<p><a name="mBEs1"></a></p>
+<h2 id="将workspace-control作为模块导入使用的步骤"><a href="#将workspace-control作为模块导入使用的步骤" class="headerlink" title="将workspace_control作为模块导入使用的步骤"></a>将workspace_control作为模块导入使用的步骤</h2><p><a name="Q6A1e"></a></p>
+<h3 id="workspace-control主要修改区域："><a href="#workspace-control主要修改区域：" class="headerlink" title="workspace_control主要修改区域："></a>workspace_control主要修改区域：</h3><p>新增类方法<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677206784328-27769875-35d3-4793-a1cd-9f5797845ec5.png#averageHue=%23201f1f&amp;clientId=u642778c3-94fb-4&amp;from=paste&amp;height=241&amp;id=u312e1185&amp;originHeight=241&amp;originWidth=1027&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=27884&amp;status=done&amp;style=none&amp;taskId=u1c14e281-ceaa-4e91-afcb-0e4981bc2f0&amp;title=&amp;width=1027" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677206827356-bdbb4405-ed33-4df9-bd50-6b9969887555.png#averageHue=%23231f1e&amp;clientId=u642778c3-94fb-4&amp;from=paste&amp;height=189&amp;id=ue63728d9&amp;originHeight=189&amp;originWidth=1212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37526&amp;status=done&amp;style=none&amp;taskId=u1cee2a55-4a75-43ba-ab90-f9a252f71ba&amp;title=&amp;width=1212" alt="image.png"></p>
+<pre><code class="lang-python">from PySide2 import QtCore
+from PySide2 import QtWidgets
+from shiboken2 import getCppPointer
+
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+class WorkspaceControl(object):
+
+    def __init__(self, name):
+        self.name = name
+        self.widget = None
+
+    def create(self, label, widget, ui_script=None):
+
+        cmds.workspaceControl(self.name, label=label)
+
+        if ui_script:
+            cmds.workspaceControl(self.name, e=True, uiScript=ui_script)
+
+        self.add_widget_to_layout(widget)
+        self.set_visible(True)
+
+    def restore(self, widget):
+        self.add_widget_to_layout(widget)
+
+    def add_widget_to_layout(self, widget):
+        if widget:
+            self.widget = widget
+            self.widget.setAttribute(QtCore.Qt.WA_DontCreateNativeAncestors)
+
+            workspace_control_ptr = long(omui.MQtUtil.findControl(self.name))
+            widget_ptr = long(getCppPointer(self.widget)[0])
+
+            omui.MQtUtil.addWidgetToMayaLayout(widget_ptr, workspace_control_ptr)
+
+    def exists(self):
+        return cmds.workspaceControl(self.name, q=True, exists=True)
+
+    def is_visible(self):
+        return cmds.workspaceControl(self.name, q=True, visible=True)
+
+    def set_visible(self, visible):
+        if visible:
+            cmds.workspaceControl(self.name, e=True, restore=True)
+        else:
+            cmds.workspaceControl(self.name, e=True, visible=False)
+
+    def set_label(self, label):
+        cmds.workspaceControl(self.name, e=True, label=label)
+
+    def is_floating(self):
+        return cmds.workspaceControl(self.name, q=True, floating=True)
+
+    def is_collapsed(self):
+        return cmds.workspaceControl(self.name, q=True, collapse=True)
+
+
+
+class DockableUI(QtWidgets.QWidget):
+
+    WINDOW_TITLE = &quot;DockableUI&quot;
+
+    ui_instance = None
+
+
+    @classmethod
+    def display(cls):
+        if cls.ui_instance:
+            cls.ui_instance.show_workspace_control()
+        else:
+            cls.ui_instance = cls()
+
+    @classmethod
+    def get_workspace_control_name(cls):
+        return &quot;&#123;0&#125;WorkspaceControl&quot;.format(cls.__name__)
+
+    @classmethod
+    def get_ui_script(cls):
+        module_name = cls.__module__
+        if module_name == &quot;__main__&quot;:
+            module_name = cls.module_name_override
+
+        ui_script = &quot;from &#123;0&#125; import &#123;1&#125;\n&#123;1&#125;.display()&quot;.format(module_name, cls.__name__)
+        return ui_script
+
+
+    def __init__(self):
+        super(DockableUI, self).__init__()
+
+        self.setObjectName(self.__class__.__name__)
+
+        self.create_actions()
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+        self.create_workspace_control()
+
+    def create_actions(self):
+        pass
+
+    def create_widgets(self):
+        pass
+
+    def create_layout(self):
+        pass
+
+    def create_connections(self):
+        pass
+
+    def create_workspace_control(self):
+        self.workspace_control_instance = WorkspaceControl(self.get_workspace_control_name())
+        if self.workspace_control_instance.exists():
+            self.workspace_control_instance.restore(self)
+        else:
+            self.workspace_control_instance.create(self.WINDOW_TITLE, self, ui_script=self.get_ui_script())
+
+    def show_workspace_control(self):
+        self.workspace_control_instance.set_visible(True)
+</code></pre>
+<p><a name="nmdWc"></a></p>
+<h3 id="dockable-outliner与原版的区别："><a href="#dockable-outliner与原版的区别：" class="headerlink" title="dockable_outliner与原版的区别："></a>dockable_outliner与原版的区别：</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677207029301-874922a2-f359-435d-98d9-0cf9bf68c815.png#averageHue=%23f9f0ef&amp;clientId=u642778c3-94fb-4&amp;from=paste&amp;height=570&amp;id=ub48cbe34&amp;originHeight=570&amp;originWidth=1597&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=63586&amp;status=done&amp;style=none&amp;taskId=ufb8c8f75-f8ce-4b61-aa78-830ce3efeb1&amp;title=&amp;width=1597" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1677207062777-560665cd-7aa2-4c38-a2fb-e418c1790104.png#averageHue=%23f9e7e7&amp;clientId=u642778c3-94fb-4&amp;from=paste&amp;height=221&amp;id=u25f2a923&amp;originHeight=221&amp;originWidth=1607&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=17522&amp;status=done&amp;style=none&amp;taskId=u4387a327-dd89-42da-abd6-615d531c8f8&amp;title=&amp;width=1607" alt="image.png"></p>
+<pre><code class="lang-python">from functools import partial
+
+
+from PySide2 import QtCore
+from PySide2 import QtGui
+from PySide2 import QtWidgets
+
+
+import maya.cmds as cmds
+
+
+from workspace_control import DockableUI
+
+
+
+class DockableOutliner(DockableUI):
+
+
+    WINDOW_TITLE = &quot;Dockable Outliner&quot;
+
+
+    def __init__(self):
+        super(DockableOutliner, self).__init__()
+
+
+        self.setMinimumWidth(300)
+        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.show_context_menu)
+
+
+        self.transform_icon = QtGui.QIcon(&quot;:transform.svg&quot;)
+        self.camera_icon = QtGui.QIcon(&quot;:Camera.png&quot;)
+        self.mesh_icon = QtGui.QIcon(&quot;:mesh.svg&quot;)
+
+
+        self.script_job_number = -1
+
+
+        self.refresh_tree_widget()
+
+
+    def create_actions(self):
+        self.about_action = QtWidgets.QAction(&quot;About&quot;, self)
+
+
+        self.display_shape_action = QtWidgets.QAction(&quot;Shapes&quot;, self)
+        self.display_shape_action.setCheckable(True)
+        self.display_shape_action.setChecked(True)
+        self.display_shape_action.setShortcut(QtGui.QKeySequence(&quot;Ctrl+Shift+H&quot;))
+
+
+    def create_widgets(self):
+        self.menu_bar = QtWidgets.QMenuBar()
+        display_menu = self.menu_bar.addMenu(&quot;Display&quot;)
+        display_menu.addAction(self.display_shape_action)
+        help_menu = self.menu_bar.addMenu(&quot;Help&quot;)
+        help_menu.addAction(self.about_action)
+
+
+        self.tree_widget = QtWidgets.QTreeWidget()
+        self.tree_widget.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.tree_widget.setHeaderHidden(True)
+        # header = self.tree_widget.headerItem()
+        # header.setText(0, &quot;Column 0 Text&quot;)
+
+
+        self.refresh_btn = QtWidgets.QPushButton(&quot;Refresh&quot;)
+
+
+    def create_layout(self):
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.refresh_btn)
+
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.setSpacing(2)
+        main_layout.setMenuBar(self.menu_bar)
+        main_layout.addWidget(self.tree_widget)
+        main_layout.addLayout(button_layout)
+
+
+    def create_connections(self):
+        self.about_action.triggered.connect(self.about)
+        self.display_shape_action.toggled.connect(self.set_shape_nodes_visible)
+
+
+        self.tree_widget.itemCollapsed.connect(self.update_icon)
+        self.tree_widget.itemExpanded.connect(self.update_icon)
+        self.tree_widget.itemSelectionChanged.connect(self.select_items)
+
+
+        self.refresh_btn.clicked.connect(self.refresh_tree_widget)
+
+
+    def refresh_tree_widget(self):
+        self.shape_nodes = cmds.ls(shapes=True)
+
+
+        self.tree_widget.clear()
+
+
+        top_level_object_names = cmds.ls(assemblies=True)
+        for name in top_level_object_names:
+            item = self.create_item(name)
+            self.tree_widget.addTopLevelItem(item)
+
+
+        self.update_selection()
+
+
+    def create_item(self, name):
+        item = QtWidgets.QTreeWidgetItem([name])
+        self.add_children(item)
+        self.update_icon(item)
+
+
+        is_shape = name in self.shape_nodes
+        item.setData(0, QtCore.Qt.UserRole, is_shape)
+
+
+        return item
+
+
+    def add_children(self, item):
+        children = cmds.listRelatives(item.text(0), children=True)
+        if children:
+            for child in children:
+                child_item = self.create_item(child)
+                item.addChild(child_item)
+
+
+    def update_icon(self, item):
+        object_type = &quot;&quot;
+
+
+        if item.isExpanded():
+            object_type = &quot;transform&quot;
+        else:
+            child_count = item.childCount()
+            if child_count == 0:
+                object_type = cmds.objectType(item.text(0))
+            elif child_count == 1:
+                child_item = item.child(0)
+                object_type = cmds.objectType(child_item.text(0))
+            else:
+                object_type = &quot;transform&quot;
+
+
+        if object_type == &quot;transform&quot;:
+            item.setIcon(0, self.transform_icon)
+        elif object_type == &quot;camera&quot;:
+            item.setIcon(0, self.camera_icon)
+        elif object_type == &quot;mesh&quot;:
+            item.setIcon(0, self.mesh_icon)
+
+
+    def select_items(self):
+        items = self.tree_widget.selectedItems()
+        names = []
+        for item in items:
+            names.append(item.text(0))
+
+
+        cmds.select(names, replace=True)
+
+
+    def about(self):
+        QtWidgets.QMessageBox.about(self, &quot;About Simple Outliner&quot;, &quot;Add About Text Here&quot;)
+
+
+    def set_shape_nodes_visible(self, visible):
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.tree_widget)
+        while iterator.value():
+            item = iterator.value()
+            is_shape = item.data(0, QtCore.Qt.UserRole)
+            if is_shape:
+                item.setHidden(not visible)
+
+
+            iterator += 1
+
+
+    def show_context_menu(self, point):
+        context_menu = QtWidgets.QMenu()
+        context_menu.addAction(self.display_shape_action)
+        context_menu.addSeparator()
+        context_menu.addAction(self.about_action)
+
+
+        context_menu.exec_(self.mapToGlobal(point))
+
+
+    def update_selection(self):
+        selection = cmds.ls(selection=True)
+
+
+        iterator = QtWidgets.QTreeWidgetItemIterator(self.tree_widget)
+        while iterator.value():
+            item = iterator.value()
+            is_selected = item.text(0) in selection
+            item.setSelected(is_selected)
+
+
+            iterator += 1
+
+
+    def set_script_job_enabled(self, enabled):
+        if enabled and self.script_job_number &lt; 0:
+            self.script_job_number = cmds.scriptJob(event=[&quot;SelectionChanged&quot;, partial(self.update_selection)], protected=True)
+        elif not enabled and self.script_job_number &gt;= 0:
+            cmds.scriptJob(kill=self.script_job_number, force=True)
+            self.script_job_number = -1
+
+
+    def showEvent(self, e):
+        super(DockableOutliner, self).showEvent(e)
+        self.set_script_job_enabled(True)
+
+
+    def closeEvent(self, e):
+        if isinstance(self, DockableOutliner):
+            super(DockableOutliner, self).closeEvent(e)
+            self.set_script_job_enabled(False)
+
+
+
+if __name__ == &quot;__main__&quot;:
+
+
+    workspace_control_name = DockableOutliner.get_workspace_control_name()
+    if cmds.window(workspace_control_name, exists=True):
+        cmds.deleteUI(workspace_control_name)
+
+
+    DockableOutliner.module_name_override = &quot;dockable_outliner&quot;
+    test_dialog = DockableOutliner()
+</code></pre>
+<p><a name="t4Cku"></a></p>
+<h1 id="Qt事件"><a href="#Qt事件" class="headerlink" title="Qt事件"></a>Qt事件</h1><p><a name="TNHWF"></a></p>
+<h2 id="事件介绍"><a href="#事件介绍" class="headerlink" title="事件介绍"></a>事件介绍</h2><p><a name="ENkHI"></a></p>
+<h3 id="事件系统"><a href="#事件系统" class="headerlink" title="事件系统"></a>事件系统</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673245476361-c19b8bda-147b-4b63-b911-2c617fab571b.png#averageHue=%230c0c0c&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=679&amp;id=u290a994e&amp;originHeight=611&amp;originWidth=1467&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=296520&amp;status=done&amp;style=none&amp;taskId=ucf5758dc-3e02-4f6a-aabb-391e65599eb&amp;title=&amp;width=1630.0000431802548" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673245481192-e407fce6-d96f-4dbb-826e-2700eed58b08.png#averageHue=%23100f0e&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=533&amp;id=u9e628b49&amp;originHeight=480&amp;originWidth=1061&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=67608&amp;status=done&amp;style=none&amp;taskId=u26ab3981-a2a1-454a-af85-fe10b864a6f&amp;title=&amp;width=1178.88892011878" alt="image.png"><br><a name="Miv2S"></a></p>
+<h3 id="事件驱动VS实时"><a href="#事件驱动VS实时" class="headerlink" title="事件驱动VS实时"></a>事件驱动VS实时</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246046841-93f5eafd-7c7b-4b50-b79b-75d9b3819b6a.png#averageHue=%230b0b0b&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=832&amp;id=uafbddc9f&amp;originHeight=749&amp;originWidth=1560&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=366420&amp;status=done&amp;style=none&amp;taskId=udd76986b-f221-4f4b-b16e-72f9b1d9c34&amp;title=&amp;width=1733.3333792509868" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246088391-e3b83926-7b34-40de-a0ad-84bf9428a48a.png#averageHue=%230e0d0c&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=613&amp;id=u1524d774&amp;originHeight=552&amp;originWidth=1512&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=87238&amp;status=done&amp;style=none&amp;taskId=ud5e95d16-6dca-46a5-9155-c5151bff665&amp;title=&amp;width=1680.0000445048026" alt="image.png"><br><a name="C3KQI"></a></p>
+<h3 id="Qt事件-1"><a href="#Qt事件-1" class="headerlink" title="Qt事件"></a>Qt事件</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246124739-710bc149-89f6-4a35-a955-089bb7e468ed.png#averageHue=%23080808&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=787&amp;id=u7d60f664&amp;originHeight=708&amp;originWidth=1586&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=274694&amp;status=done&amp;style=none&amp;taskId=u7403b032-62a3-4e27-b7d9-12e5fd26a66&amp;title=&amp;width=1762.22226890517" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246139637-502905e8-36c7-4804-90e8-3a07a874ebe1.png#averageHue=%230b0a09&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=638&amp;id=ued172028&amp;originHeight=574&amp;originWidth=1077&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=63418&amp;status=done&amp;style=none&amp;taskId=u01787e55-a086-430c-8775-795e6e142f8&amp;title=&amp;width=1196.6666983675082" alt="image.png"><br><a name="IQQkl"></a></p>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246166933-d98416fc-5646-4c61-b821-a40aafcda3bf.png#averageHue=%230a0a0a&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=780&amp;id=u3142b467&amp;originHeight=702&amp;originWidth=1624&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=350911&amp;status=done&amp;style=none&amp;taskId=u17e17f0c-3953-4dc1-825a-4b72eea3c04&amp;title=&amp;width=1804.444492245899" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246180926-469e0cbf-b90c-4b60-9766-4638289cef72.png#averageHue=%23090908&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=579&amp;id=u8b97687c&amp;originHeight=521&amp;originWidth=1598&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=69519&amp;status=done&amp;style=none&amp;taskId=u68fcd36c-086c-422f-a635-d9b3036c141&amp;title=&amp;width=1775.555602591716" alt="image.png"><br><a name="DWTYd"></a></p>
+<h3 id="事件过滤"><a href="#事件过滤" class="headerlink" title="事件过滤"></a>事件过滤</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246220310-155f22c4-3bc3-4967-bf62-9980f0ce6665.png#averageHue=%230b0b0b&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=543&amp;id=u9d714b1b&amp;originHeight=489&amp;originWidth=1574&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=232756&amp;status=done&amp;style=none&amp;taskId=uf7edba98-7884-4862-99c9-f020cc1bb21&amp;title=&amp;width=1748.8889352186238" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673246260732-b5d7bcd7-19f6-46ac-b103-4a72c450d97a.png#averageHue=%230d0c0b&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=390&amp;id=u94cec4c9&amp;originHeight=312&amp;originWidth=1266&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=39026&amp;status=done&amp;style=none&amp;taskId=ud6a3f8ef-4721-4be4-9711-e7d89090604&amp;title=&amp;width=1582.4999764189129" alt="image.png"><br><a name="KYXAz"></a></p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><a name="zdhdh"></a></p>
+<h3 id="KeyPress事件处理"><a href="#KeyPress事件处理" class="headerlink" title="KeyPress事件处理"></a>KeyPress事件处理</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673247679167-269b96f7-fd7d-447f-9332-8ae9a1310fce.png#averageHue=%23464645&amp;clientId=u07b614fd-bd46-4&amp;from=paste&amp;height=285&amp;id=ufb2910ab&amp;originHeight=228&amp;originWidth=302&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3096&amp;status=done&amp;style=none&amp;taskId=uc597ac55-cdd1-47db-a24e-bafbaf9e786&amp;title=&amp;width=377.4999943748117" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class CustomPlainTextEdit(QtWidgets.QPlainTextEdit):
+    &quot;&quot;&quot; 输入文本编辑器 &quot;&quot;&quot;
+    def __init__(self, parent=None):
+        super(CustomPlainTextEdit, self).__init__(parent)
+
+    def keyPressEvent(self, key_event):
+        &quot;&quot;&quot; 重载keyPressEvent方法 &quot;&quot;&quot;
+        # print(&quot;Key Pressed: &#123;0&#125;&quot;.format(key_event.text()))
+
+
+        ctrl = key_event.modifiers() == QtCore.Qt.ControlModifier # ctrl为布尔值，代表ctrl键是否处于按下的状态
+        # print(&quot;Control Modifiers: &#123;0&#125;&quot;.format(ctrl))
+
+
+        shift = key_event.modifiers() == QtCore.Qt.ShiftModifier
+        # print(&quot;Shift Modifiers: &#123;0&#125;&quot;.format(shift))
+
+
+        alt = key_event.modifiers() == QtCore.Qt.AltModifier
+        # print(&quot;Alt Modifiers: &#123;0&#125;&quot;.format(alt))
+
+
+        ctrl_alt = key_event.modifiers() == (QtCore.Qt.ControlModifier | QtCore.Qt.AltModifier)
+        # print(&quot;Ctrl+Alt Modifiers: &#123;0&#125;&quot;.format(ctrl_alt))
+
+
+        # if shift:
+        #     return
+
+
+        key = key_event.key()
+
+
+        if key == QtCore.Qt.Key_Return or key == QtCore.Qt.Key_Enter:
+            &quot;&quot;&quot; Key_Return代表中间的回车键 Key_Enter代表右边的回车键 &quot;&quot;&quot;
+            if ctrl: # 如果是ctrl+enter
+                print(&quot;Execute Code&quot;)
+            elif ctrl_alt: # 如果是ctrl+alt+enter
+                print(&quot;Execute Line&quot;)
+                return
+
+        super(CustomPlainTextEdit, self).keyPressEvent(key_event) # 重载QtWidgets.QPlainTextEdit的keyPressEvent方法的同时，不影响keyPressEvent的功能
+
+
+class KeyPressExample(QtWidgets.QDialog):
+
+
+    WINDOW_TITLE = &quot;Keypress Example&quot;
+
+
+    def __init__(self, parent=maya_main_window()):
+        super(KeyPressExample, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        self.setMinimumSize(300, 80)
+        self.setWindowFlags(QtCore.Qt.WindowType.Window)
+
+
+        self.create_widgets()
+        self.create_layouts()
+
+
+    def create_widgets(self):
+        &quot;&quot;&quot; 控件 &quot;&quot;&quot;
+        self.plain_text = CustomPlainTextEdit()
+
+
+    def create_layouts(self):
+        &quot;&quot;&quot; 布局 &quot;&quot;&quot;
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+        main_layout.addWidget(self.plain_text)
+
+
+
+
+if __name__ == &#39;__main__&#39;:
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+
+    ui = KeyPressExample()
+    ui.show()
+</code></pre>
+<p><a name="Rwerv"></a></p>
+<h3 id="Mouse事件处理"><a href="#Mouse事件处理" class="headerlink" title="Mouse事件处理"></a>Mouse事件处理</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673251794443-0628b284-6f6f-49c8-b3e0-5dec7bb5f149.png#averageHue=%23504f4f&amp;clientId=ud572c1dd-7c66-4&amp;from=paste&amp;height=540&amp;id=u5a5d4291&amp;originHeight=432&amp;originWidth=402&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3716&amp;status=done&amp;style=none&amp;taskId=u36be2f99-c435-4d76-a543-e34e857c7e5&amp;title=&amp;width=502.4999925121666" alt="image.png"></p>
+<pre><code class="lang-python"># coding:utf-8
+from PySide2 import QtCore
+from PySide2 import QtWidgets
+from PySide2 import QtGui
+from shiboken2 import wrapInstance
+import maya.OpenMayaUI as omui
+import maya.cmds as cmds
+
+
+def maya_main_window():
+    main_window_ptr = omui.MQtUtil.mainWindow()
+    return wrapInstance(long(main_window_ptr), QtWidgets.QWidget)
+
+
+class MoveableWidget(QtWidgets.QWidget):
+
+    def __init__(self, x, y, width, height, color, parent=None):
+        super(MoveableWidget, self).__init__(parent)
+
+        self.setFixedSize(width, height)
+        self.move(x, y)
+
+        self.color = color
+        self.original_color = color
+
+        self.move_enabled = False
+
+    def mousePressEvent(self, mouse_event):
+        &quot;&quot;&quot; 鼠标点击时的事件 &quot;&quot;&quot;
+        print(&quot;Mouse Button Pressed&quot;)
+
+        if mouse_event.button() == QtCore.Qt.LeftButton:
+            self.initial_pos = self.pos()
+            self.global_pos = mouse_event.globalPos()
+
+            self.move_enabled = True # 点击时可以移动widget
+
+    def mouseReleaseEvent(self, mouse_event):
+        &quot;&quot;&quot; 鼠标释放时的事件 &quot;&quot;&quot;
+        print(&quot;Mouse Button Released&quot;)
+
+        if self.move_enabled:
+            self.move_enabled = False # 松开后不能移动widget
+
+    def mouseDoubleClickEvent(self, mouse_event):
+        &quot;&quot;&quot; 鼠标双击后改变颜色 &quot;&quot;&quot;
+        print(&quot;Mouse Double-Click&quot;)
+
+        if self.color == self.original_color:
+            self.color = QtCore.Qt.yellow
+        else:
+            self.color = self.original_color
+
+        self.update() # 更新颜色
+
+    def mouseMoveEvent(self, mouse_event):
+        &quot;&quot;&quot; 鼠标点击并移动时widget也移动 &quot;&quot;&quot;
+        print(&quot;Mouse Move&quot;)
+
+        if self.move_enabled:
+            diff = mouse_event.globalPos() - self.global_pos
+            self.move(self.initial_pos + diff)
+
+    def paintEvent(self, paint_event):
+        &quot;&quot;&quot; 绘制填充矩形 &quot;&quot;&quot;
+        painter = QtGui.QPainter(self)
+        painter.fillRect(paint_event.rect(), self.color)
+
+class MouseEventExample(QtWidgets.QDialog):
+
+    WINDOW_TITLE = &quot;MAYA-2018&quot;
+
+    def __init__(self, parent=maya_main_window()):
+        super(MouseEventExample, self).__init__(parent)
+
+        self.setWindowTitle(self.WINDOW_TITLE)
+        self.setMinimumSize(400, 400)
+        self.setWindowFlags(QtCore.Qt.WindowType.Window)
+
+        self.create_widgets()
+        self.create_layouts()
+
+    def create_widgets(self):
+        &quot;&quot;&quot; 控件 &quot;&quot;&quot;
+        self.red_widget = MoveableWidget(100, 100, 24, 24, QtCore.Qt.red, self)
+        self.blue_widget = MoveableWidget(300, 300, 24, 24, QtCore.Qt.blue, self)
+
+    def create_layouts(self):
+        &quot;&quot;&quot; 布局 &quot;&quot;&quot;
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.setContentsMargins(2, 2, 2, 2)
+
+if __name__ == &#39;__main__&#39;:
+
+    try:
+        ui.close()
+        ui.deleteLater()
+    except:
+        pass
+    ui = MouseEventExample()
+    ui.show()
+</code></pre>
+<p><a name="Hk9pA"></a></p>
+<h1 id="Drag-and-Drop"><a href="#Drag-and-Drop" class="headerlink" title="Drag and Drop"></a>Drag and Drop</h1></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>pyside2 for maya</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://example.com/2023/08/29/PySide2-pyside2-for-maya/">http://example.com/2023/08/29/PySide2-pyside2-for-maya/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>RuiChen</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-08-29</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-07-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PySide2/"><div class="tags-punctuation"><svg class="faa-tada icon" style="height:1.1em;width:1.1em;fill:currentColor;position:relative;top:2px;margin-right:3px" aria-hidden="true"><use xlink:href="#icon-sekuaibiaoqian"></use></svg></div>PySide2</a></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/29/PySide2-PyQt5/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(44).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PyQt5</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/29/UnrealEngine-UE-3D%E6%95%B0%E5%AD%A6%E6%9D%90%E8%B4%A8/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(67).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UE 3D数学材质</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/07/PySide2-PySide2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BD%92%E7%BA%B3/" title="pyside2的一些归纳"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(76).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">pyside2的一些归纳</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg class="meta_icon" style="width:22px;height:22px;position:relative;top:5px"><use xlink:href="#icon-mulu1"></use></svg><span style="font-weight:bold">目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%95%8C%E9%9D%A2%E7%9A%84%E5%88%9D%E5%A7%8B%E6%A8%A1%E6%9D%BF"><span class="toc-text">创建一个新的界面的初始模板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">创建对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%8E%A7%E4%BB%B6"><span class="toc-text">添加控件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#layout%E5%9F%BA%E7%A1%80"><span class="toc-text">layout基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">删除对话框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E4%B8%8E%E6%A7%BD"><span class="toc-text">信号与槽</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E8%BD%BD%E4%BF%A1%E5%8F%B7"><span class="toc-text">过载信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E5%8F%B7"><span class="toc-text">自定义信号</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%93%E5%BC%80-%E5%AF%BC%E5%85%A5-%E5%BC%95%E7%94%A8%E6%96%87%E4%BB%B6%E4%B8%BE%E4%BE%8B"><span class="toc-text">打开&#x2F;导入&#x2F;引用文件举例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E6%8F%92%E4%BB%B6%E6%94%BE%E5%85%A5%E5%88%B0%E5%B7%A5%E5%85%B7%E6%9E%B6%E4%B8%8A"><span class="toc-text">将插件放入到工具架上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-text">主要功能模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%AA%97%E5%8F%A3%E6%98%BE%E7%A4%BA%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-text">调用窗口显示的模块</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">各种模式对话框</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">自定义对话框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%87%86Qt%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">标准Qt对话框</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QListWidget"><span class="toc-text">QListWidget</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E7%9A%84%E9%80%89%E6%8B%A9%E6%A8%A1%E5%BC%8F"><span class="toc-text">可以设置的选择模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QTableDialog"><span class="toc-text">QTableDialog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%A4%A7%E7%BA%B2%E6%A8%A1%E5%9E%8B%E5%90%8D%E5%AD%97%E4%BB%A5%E5%8F%8A%E5%8F%98%E6%8D%A2%E4%BF%A1%E6%81%AF%E7%AA%97%E5%8F%A3"><span class="toc-text">显示大纲模型名字以及变换信息窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E8%A1%A8%E6%A0%BC%E6%8E%A7%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%85%B6%E4%BB%96%E6%8E%A7%E4%BB%B6"><span class="toc-text">在表格控件中添加其他控件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QSpinBox%E4%B8%8EQDoubleSpinBox"><span class="toc-text">QSpinBox与QDoubleSpinBox</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8maya%E5%9B%BE%E6%A0%87%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-text">启动maya图标资源管理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QTreeView-File-Explorer"><span class="toc-text">QTreeView File Explorer</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%A7%E7%BA%B2"><span class="toc-text">制作简单的大纲</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="toc-text">制作进度条</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">不同对话框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-text">同一个对话框</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QWidget-vs-QDialog"><span class="toc-text">QWidget vs QDialog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#QWidget%E4%B8%8EQDialog%E7%9A%84%E6%98%BE%E7%A4%BA%E5%8C%BA%E5%88%AB"><span class="toc-text">QWidget与QDialog的显示区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%EF%BC%88QImage%EF%BC%8CQPixmap%EF%BC%89"><span class="toc-text">添加图片（QImage，QPixmap）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%97%E5%87%BA%E6%A0%91%E7%BB%93%E6%9E%84"><span class="toc-text">遍历文件夹列出树结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%81%AF%E5%85%89%E9%9D%A2%E6%9D%BF"><span class="toc-text">灯光面板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#scriptJob"><span class="toc-text">scriptJob</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docking"><span class="toc-text">Docking</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#maya%E7%9A%84workspaces%E8%AE%BE%E7%BD%AE%E5%AD%98%E6%94%BE%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">maya的workspaces设置存放的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mayaMixin-py"><span class="toc-text">mayaMixin.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#workspace-control-py"><span class="toc-text">workspace_control.py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86workspace-control%E4%BD%9C%E4%B8%BA%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">将workspace_control作为模块导入使用的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#workspace-control%E4%B8%BB%E8%A6%81%E4%BF%AE%E6%94%B9%E5%8C%BA%E5%9F%9F%EF%BC%9A"><span class="toc-text">workspace_control主要修改区域：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dockable-outliner%E4%B8%8E%E5%8E%9F%E7%89%88%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">dockable_outliner与原版的区别：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt%E4%BA%8B%E4%BB%B6"><span class="toc-text">Qt事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-text">事件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">事件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8VS%E5%AE%9E%E6%97%B6"><span class="toc-text">事件驱动VS实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt%E4%BA%8B%E4%BB%B6-1"><span class="toc-text">Qt事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E8%BF%87%E6%BB%A4"><span class="toc-text">事件过滤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B"><span class="toc-text">举例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#KeyPress%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">KeyPress事件处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mouse%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">Mouse事件处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Drag-and-Drop"><span class="toc-text">Drag and Drop</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>

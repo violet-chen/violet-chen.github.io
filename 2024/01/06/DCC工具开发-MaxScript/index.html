@@ -1,0 +1,811 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MaxScript | RuiChen</title><meta name="keywords" content="MaxScript"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="如何阅读帮助文档文档地址:https:&#x2F;&#x2F;help.autodesk.com&#x2F;view&#x2F;MAXDEV&#x2F;2024&#x2F;ENU&#x2F;?guid&#x3D;GUID-F039181A-C072-4469-A329-AE60FF7535E7max的各种object类的描述的地址:https:&#x2F;&#x2F;help.autodesk.com&#x2F;view&#x2F;MAXDEV&#x2F;2024&#x2F;ENU&#x2F;?guid&#x3D;GUID-F159E458-15C2-4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MaxScript">
+<meta property="og:url" content="http://example.com/2024/01/06/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MaxScript/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="如何阅读帮助文档文档地址:https:&#x2F;&#x2F;help.autodesk.com&#x2F;view&#x2F;MAXDEV&#x2F;2024&#x2F;ENU&#x2F;?guid&#x3D;GUID-F039181A-C072-4469-A329-AE60FF7535E7max的各种object类的描述的地址:https:&#x2F;&#x2F;help.autodesk.com&#x2F;view&#x2F;MAXDEV&#x2F;2024&#x2F;ENU&#x2F;?guid&#x3D;GUID-F159E458-15C2-4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true">
+<meta property="article:published_time" content="2024-01-06T07:43:00.000Z">
+<meta property="article:modified_time" content="2024-07-27T18:58:06.870Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="MaxScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2024/01/06/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MaxScript/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MaxScript',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 02:58:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">MaxScript</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-meta-icon" style="width:30px;height:30px;position:relative;top:10px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2024-01-06T07:43:00.000Z" title="发表于 2024-01-06 15:43:00">2024-01-06</time><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-gengxin1"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.870Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-biaoqian"></use></svg><a class="post-meta-categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:8px"><use xlink:href="#icon-charuword"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">5548</span><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:20px;height:20px;position:relative;top:5px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MaxScript"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:5px"><use xlink:href="#icon-eye"></use></svg><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="如何阅读帮助文档"><a href="#如何阅读帮助文档" class="headerlink" title="如何阅读帮助文档"></a>如何阅读帮助文档</h1><p>文档地址:<a href="https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-F039181A-C072-4469-A329-AE60FF7535E7">https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-F039181A-C072-4469-A329-AE60FF7535E7</a><br>max的各种object类的描述的地址:<a href="https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-F159E458-15C2-4CDC-B926-0FB7EFB810DB">https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-F159E458-15C2-4CDC-B926-0FB7EFB810DB</a><br>文档的描述约定:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-1.png" alt="Alt text"><br>尖括号中的词语是对内容的规则定义<br>方括号中的内容是可选的<br>被竖线分割的的内容是在其中选择一个<br>大括号的内容可以重复零次或多次<br>大括号+意思是里的内容可以重复一次或多次<br>::= 可以理解为一个符号,右边描述了左边名称的定义,例如 <digit> ::= 1|2|3|4 意思是 digit可以取1,2,3,4一共四个数</digit></p>
+<h1 id="VScode-for-MaxScript"><a href="#VScode-for-MaxScript" class="headerlink" title="VScode for MaxScript"></a>VScode for MaxScript</h1><ol>
+<li>搜索Language MaxScript插件并安装</li>
+<li>点击下载:<a href="https://github.com/techartorg/MXSPyCOM/releases/download/1.14/MXSPyCOM.zip">MXSPyCOM</a>,<a href="https://github.com/techartorg/MXSPyCOM">可以参考的GitHub地址</a></li>
+<li>解压文件,将MXSPyCOM.exe放入到”C:\Program Files\MXSPyCOM\MXSPyCOM.exe”,将initialize_COM_server.ms放入到”C:\Program Files\Autodesk\3ds Max 2024\scripts\Startup\initialize_COM_server.ms”</li>
+<li><a href="https://github.com/techartorg/MXSPyCOM/wiki/Visual-Studio-Code">进行vscode的配置</a><br>配置的关键:<br>将以下内容放到task里面<pre><code class="lang-json">&#123;
+         &quot;label&quot;: &quot;Execute Script in 3ds Max&quot;,
+         &quot;type&quot;: &quot;shell&quot;,
+         &quot;command&quot;: &quot;C:\\Program Files\\MXSPyCOM\\MXSPyCOM.exe&quot;,
+         &quot;args&quot;: [
+             &quot;-s&quot;,
+             &quot;$&#123;file&#125;&quot;
+         ],
+         &quot;presentation&quot;: &#123;
+             &quot;echo&quot;: false,
+             &quot;reveal&quot;: &quot;never&quot;,
+             &quot;focus&quot;: false,
+             &quot;panel&quot;: &quot;dedicated&quot;
+         &#125;,
+         &quot;problemMatcher&quot;: [],
+&#125;
+</code></pre>
+然后输入&gt;key进入快捷键绑定<br>填入内容,将ctrl+e与运行任务进行绑定.<pre><code class="lang-json">[
+ &#123;
+     &quot;key&quot;: &quot;ctrl+e&quot;,
+     &quot;command&quot;: &quot;workbench.action.tasks.runTask&quot;,
+     &quot;args&quot;: &quot;Execute Script in 3ds max&quot;
+ &#125;,
+]
+</code></pre>
+<h1 id="MaxScript的语法"><a href="#MaxScript的语法" class="headerlink" title="MaxScript的语法"></a>MaxScript的语法</h1>```<br>— 数学表达式</li>
+</ol>
+<ul>
+<li><ul>
+<li><ul>
+<li>/ ^ as(类型转换)<br>— 比较表达式<br>== != &gt; &lt; &gt;= &lt;=<br>— 逻辑表达式<br>or and not<br>— 判断<br>if … then … else …<br>if … do …<br>— case语句 语法一<br>for obj in geometry do<br>(<br>local d = distance obj $cam1<br>case of<br>(<br>  (d &lt;= 50):  obj.segs = 40<br>  (d &lt;= 120): obj.segs = 25<br>  (d &lt;= 250): obj.segs = 10<br>  default:    obj.segs = 5<br>)<br>)<br>— case语句 语法二<br>newObj = case cloneType.state of<br>   (<pre><code>  1: instance pickedObj
+  2: reference pickedObj
+  3: copy pickedObj
+</code></pre>   )<br>— while 循环<br>while … do …<br>— for 循环<br>写法1,遍历数字: for i = 1 to 10 do print i<br>写法2,遍历数组: for item in [able] do x = x+item.height<br>写法3,在for循环里判断然后放到数组中: bigones = for obj in $Box* where obj.height &gt; 100 collect obj</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>— continue 同python的continue<br>— exit 同python的break<br>— try 异常处理<br>try … catch …</p>
+<pre><code>
+# MaxScript的UI
+## 控件类型与介绍
+文档地址:https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-E421933F-958E-42FD-80A1-D66F2A2C0A06
+参考图片:
+![Alt text](image-12.png)
+
+### 各种button的区别:
+button:最基础的按钮,有点击事件
+checkbutton:点一次和点两次的状态不同
+mapbutton:单击按钮时会弹出3dsmax的贴图浏览器对话框
+materialbutton:单击按钮时会弹出3dsmax的材质浏览器对话框
+pickbutton:单击按钮后进入对象拾取模式,再单击一个场景对象后自动退出拾取模式或右键单击取消拾取模式
+button举例:
+</code></pre><p>rollout test_buttons “Testing Buttons”<br>(<br>    button theButton iconName:@”PolyTools\TransformTools\PB_CW” iconSize:[20,20]<br>    button theBorderlessButton “I am a button, too!” border:false<br>    on theButton pressed do<br>    messagebox “Remember: Never press unknown buttons!”<br>)<br>createDialog test_buttons 150 60</p>
+<pre><code>checkbutton举例:
+</code></pre><p>rollout test “Test”<br>(<br>checkbutton setup “Setup” checked:true tooltip:”Opens setup panels”<br>on setup changed state do<br>if state == on then<br>    openRollout setup_pan<br>else<br>    closeRollout setup_pan<br>)</p>
+<pre><code>mapbutton举例:
+</code></pre><p>rollout test_mapbutton “Background”<br>(<br>    label sbm_lbl “Background Map:”<br>    mapbutton choosemap “&lt;<none>&gt;” tooltip:”Select Background Map” width:120<br>    on choosemap picked texmap do<br>    (<br>    environmentmap = texmap<br>    choosemap.text=classof texmap as string<br>    )<br>)<br>createDialog test_mapbutton</none></p>
+<pre><code>materialbutton举例:
+</code></pre><p>Rollout assign_material “Assign Material”<br>(<br>    label smtl_lbl “Set selected object’s material to:”<br>    materialbutton choosemtl “Pick Material”<br>    on choosemtl picked mtl do<br>    (<br>    print mtl<br>    if $ != undefined do $.material=mtl<br>    )<br>)<br>createDialog assign_material</p>
+<pre><code>pcikbutton举例:
+</code></pre><p>rollout pick_box_test “Pick Box Test”<br>(<br>—filter all objects of class Box:<br>fn box_filt obj = classof obj == Box<br>—Pickbutton to select a Box from the scene<br>pickbutton chooseit “Select Box” width:140 filter:box_filt<br>—If the user picked an object, then<br>on chooseit picked obj do<br>(<br>—see if the user did not cancel the picking…<br>if obj != undefined do<br>(<br>—if he did not, make the box’s wireframe red:<br>obj.wirecolor = red<br>—and display the name of the object on the button:<br>chooseit.text = obj.name<br>)<br>)—end on<br>)—end rollout<br>createDialog pick_box_test</p>
+<pre><code># 让max启动时就执行对应的脚本
+参考官方文档:https://help.autodesk.com/view/MAXDEV/2024/ENU/?guid=GUID-615D14FB-0F2D-4801-B381-1128C4128C70
+## 使用startup.ms文件
+通过文档可知MAXScript首先按列出的顺序在以下目录中搜索名为startup.ms 的文件然后运行:用户脚本目录,用户启动脚本目录,3ds Max 系统脚本目录,3ds Max 系统启动脚本目录.
+用户脚本、系统脚本、用户启动脚本和系统启动脚本分别对应于 #userscripts 、 #systemscripts 、 #userstartupscripts 和 #startupScripts 的位置。
+可以通过命令:GetDir &lt;文件类型名字&gt;来获取路径
+举例:GetDir #startupScripts
+返回:C:\Program Files\Autodesk\3ds Max 2024\scripts\startup
+## 使用命令行启动max,并伴随对应脚本文件
+```shell
+# 首先先cd到对应的max目录中
+cd C:\Program Files\Autodesk\3ds Max 2024
+# 参考以下命令打开对应max文件并启动对应脚本
+3dsmax.exe E:\3dsmaxTest\a.max -U MAXScript D:\MaxScript\TestMaxScript.ms
+</code></pre><h1 id="使用MaxScript处理数据"><a href="#使用MaxScript处理数据" class="headerlink" title="使用MaxScript处理数据"></a>使用MaxScript处理数据</h1><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="分割字符串"><a href="#分割字符串" class="headerlink" title="分割字符串"></a>分割字符串</h3><p>filterString \<string> \<token_string><br><strong>注意:</strong> token_string,也就是第二个的字符串中的每个字符都会被识别为分割<br>点,因此第二个字符串建议只有单字符</token_string></string></p>
+<pre><code>filterString &quot;MAX Script, is-dead-funky&quot; &quot;, -&quot;  -- 返回#(&quot;MAX&quot;, &quot;Script&quot;, &quot;is&quot;, &quot;dead&quot;, &quot;funky&quot;)
+filterString &quot;MAX Script, is-dead-funky&quot; &quot;-&quot;    -- 返回#(&quot;MAX Script, is&quot;, &quot;dead&quot;, &quot;funky&quot;)
+</code></pre><h3 id="替换字符串"><a href="#替换字符串" class="headerlink" title="替换字符串"></a>替换字符串</h3><p>replace \<string> \<from_integer> \<length_integer> \<new_string></new_string></length_integer></from_integer></string></p>
+<pre><code>s = &quot;1234567890&quot;
+s1=replace s 5 3 &quot;inserted string&quot; --返回&quot;1234inserted string890&quot;
+</code></pre><h3 id="字符串的切片"><a href="#字符串的切片" class="headerlink" title="字符串的切片"></a>字符串的切片</h3><p>substring \<string> \<from_integer> \<length_integer></length_integer></from_integer></string></p>
+<pre><code>s = &quot;Balerofon&quot;
+ss = substring s 5 3 --返回&quot;rof&quot;
+ss = substring s 5 -1 --返回&quot;rofon&quot;
+ss = substring s 5 100 --返回&quot;rofon&quot;
+</code></pre><h3 id="查询字符串"><a href="#查询字符串" class="headerlink" title="查询字符串"></a>查询字符串</h3><p>matchPattern \<string> pattern:\<pattern_string> [ ignoreCase:\<boolean> ]<br>如果字符串\<string>与通配符 pattern:匹配，返回 True，否则返回 False。如果没有指定<br>参数 ignoreCase:False，比较是大小写不敏感的。</string></boolean></pattern_string></string></p>
+<pre><code>s = &quot;text1&quot;
+matchPattern s pattern : &quot;text?&quot; --返回 True
+matchPattern s pattern : &quot;T*&quot; --返回 True
+matchPattern s pattern : &quot;T*&quot; ignoreCase:False --返回 False
+matchPattern s pattern : &quot;s*&quot; --返回 False
+</code></pre><h2 id="Point3矢量"><a href="#Point3矢量" class="headerlink" title="Point3矢量"></a>Point3矢量</h2><p>Point3 类定义了三维空间的点，也称为三维矢量，包含三个 Float 类数。<br>[320,240] — 定义2维点<br>[10,20,30] — 定义3维点<br>有x,y,z三个属性来代表xyz坐标</p>
+<pre><code>-- 定义两个point3类型的对象
+vector1 = [10,20,30]
+vector2 = [20,30,40]
+-- 返回矢量的长度
+length vector1
+-- 返回两个矢量的点积
+dot vector1 vector2
+-- 返回两个矢量的叉积
+cross vector1 vector2
+-- 返回矢量的标准矢量
+normalize vector1
+-- 返回指定两点之间的距离
+distance vector1 vector2
+-- 返回指定两点之间的随机点
+random vector1 vector2
+</code></pre><h2 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array 数组"></a>Array 数组</h2><p>定义数组的语法是: #(数组内容)<br>用户可以将一个对象集和通配符路径名用 as 操作符转化为一个数组。这相当于给对象集或与路径名匹配的当前对象拍了一张“快照”，这样可以在随后的脚本里操作集合里的对象，而不用担心对象集改变。这种功能与 3ds max 用户界面下的 Named Selection Sets 按钮类似。如果用户删除了数组里的某一对象，而在随后的脚本里再对数组进行映射操作，系统会给出一个错误信息。<br>例子：<br>sel1 = Selection as array<br>Boxes_at_load = $Box<em> as array<br>snap_children = $torso…</em> as array<br>original_cameras = cameras as array </p>
+<h3 id="数组的方法"><a href="#数组的方法" class="headerlink" title="数组的方法"></a>数组的方法</h3><ol>
+<li>append\<array>\<value><br>将指定值插入到数组的最后</value></array></li>
+<li>deleteItem\<array>\<number><br>从数组里删除指定序号的元素</number></array></li>
+<li>join\<array>\<collection><br>将变量\<collection>里的所有元素添加到数组\<array>的后面</array></collection></collection></array></li>
+<li>sort\<array><br>按升序对数组进行排序.所有数组的元素必须具有可比性</array></li>
+<li>findItem\<array>\<value><br>在数组里查找指定目标对象,返回第一次找到的元素序号,如果没有找到就返回0,Point3类值与String类值如果内容相同,系统也认为欸它们是匹配的.</value></array></li>
+<li>insertItem\<value>\<array>\<integer><br>在数组的指定位置\<integer>插入指定值\<value></value></integer></integer></array></value></li>
+<li>amin(\<array>|{value})<br>返回数组或指定值序列里的最小值.如果数组长度为0或没有指定值序列,返回值undefined</array></li>
+<li>amax(\<array>|{value})<br>返回数组或指定值序列里的最大值.如果数组长度为0或没有指定值序列,返回值undefined<h1 id="批量生成球"><a href="#批量生成球" class="headerlink" title="批量生成球"></a>批量生成球</h1><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image.png" alt="Alt text"><br>```MAXScript<br>— UI的定义<br>rollout SphereTool “Spheres Creator”<br>(<br> — 创建UI<br> spinner count “Number: “ type:#integer range:[1,100,10]<br> spinner growth “Radius growth: “ range:[1,100,10]<br> button create “Create Spheres”<br> — UI事件<br> on create pressed do<pre><code> for i in 1 to count.value do
+     sphere radius:(i*growth.value) position:[i^2*growth.value,0,0]
+</code></pre>)<br>— 创建对应UI窗口<br>createDialog SphereTool width:200</array></li>
+</ol>
+<pre><code># 函数的写法
+## 一般函数(生成一排球体)
+参数:count growth
+作用:生成一排球体
+</code></pre><p>— 函数的定义<br>function createSphere count growth =<br>(<br>    for i in 1 to count do<br>        sphere radius:(i<em>growth) position:[i^2</em>growth,0,0]<br>)<br>— 函数的调用<br>createSphere 25 10</p>
+<pre><code>## 带默认值的函数(渲染场景内所有摄像机)
+参数:label,size,frames,folder.  其中size与folder有默认值,frames意思是可选的,可以传参数也可以不传,不传时为unsupplied
+作用:寻找场景内所有摄像机并进行渲染
+</code></pre><p>— 函数的定义<br>function snapCams label size:[320,240] frames: folder:”C:/testimages/“ =<br>(<br>    for c in cameras do<br>    (<br>        local fname = folder + label + “-“ + c.name<br>        if frames == unsupplied then<br>            render camera:c outputFile:(fname+”.jpg”) outputSize:size<br>        else<br>            render camera:c frameRange:frames \<br>                   outputFile:(fname+”.avi”) outputSize:size<br>    )<br>)<br>— 函数的调用<br>snapCams “phase1” size:[640,480]</p>
+<pre><code>
+## 有返回值的函数(创建材质的函数)
+参数:baseColor cellSize
+作用:通过函数创建材质并返回
+这里函数调用是给模型Box001和Box002赋予材质
+</code></pre><p>— 函数的定义<br>function cellMaterial baseColor cellSize =<br>(<br>    local mtl = standardMaterial specularLevel:55 glossiness:35,<br>          map = cellular cellColor:baseColor size:cellSize fractal:on<br>    mtl.diffusemAP = map<br>    return mtl<br>)<br>— 函数调用<br>$Box001.material = cellMaterial red 25<br>$Box002.material = cellMaterial blue 50</p>
+<pre><code>
+## 递归
+这里举例是找名字叫Box001的模型,自动赋予材质,然后会找Box001的子模型并赋予材质(材质的参数也会自动发生变化)
+</code></pre><p>— 上一标题的函数的定义<br>function cellMaterial baseColor cellSize =<br>(<br>    local mtl = standardMaterial specularLevel:55 glossiness:35,<br>          map = cellular cellColor:baseColor size:cellSize fractal:on<br>    mtl.diffusemAP = map<br>    return mtl<br>)<br>— 函数的定义(写function和fn都可以,一样的效果)<br>fn mtlToChildren obj cellColor cellSize =<br>(<br>    — 设置材质给obj<br>    obj.material = cellMaterial cellColor cellSize<br>    — 循环遍历子obj<br>    for child in obj.children do<br>        mtlToChildren child (cellColor + [75,0,0]) (cellSize - 3)<br>)<br>— 函数调用<br>mtlToChildren $Box001 blue 10</p>
+<pre><code>
+# 得到变量的类型
+</code></pre><p>classOf 23 — Integer<br>classOf “foo” — String<br>classOf &amp;ball  — &amp;phere</p>
+<pre><code># 得到相关类名称与方法
+MAXWrapper是max的所有object的父类(maxscript里称为超类)
+</code></pre><p>showClass “sphere” — 显示sphere开头的类<br>showClass “sphere<em>.</em>“ — 显示sphere开头的类以及对应的方法</p>
+<p>— 通过对象或路径名得到其所具有的方法<br>b = box()<br>showproperties b<br>showproperties $Box001</p>
+<pre><code># 集合和数组
+数组的下标是从1开始的,不是0
+集合是没有重复元素的,集合是无序的
+定义数组: a = #(1,3,5,7,9)
+定义集合: a = #&#123;1,2,3,4,5&#125;
+修改数组的第三个数的值: a[3] = five
+向数组追加内容: append a 11   输出的数值:1,3,,5,7,9,11
+通过表达式创建数组: 
+遍历1到5,然后对其进行开平方并存入roots的数组中.
+roots = for i in 1 to 5 collect sqrt i
+遍历的同时进行判断:
+smallSpheres = for obj in geometry
+    where classOf obj == sphere and obj.numFaces &lt; 50
+    collect obj
+# 生成排列好的球体(增强版)
+界面:
+![Alt text](image-2.png)
+可以随时通过UI数值的调整来实时改变球体的数量和大小
+```maxScript
+rollout SphereTool3 &quot;Spheres Creator 3&quot;
+(
+    local spheres = #()
+    spinner count &quot;Number: &quot; type:#integer range:[1,100,10]
+    spinner growth &quot;Radius growth :&quot; range:[1,100,10]
+    button create &quot;Create Spheres&quot;
+    button del &quot;Delete Spheres&quot;
+    on create pressed do
+        spheres = for i in 1 to count.value collect
+            sphere radius:(i*growth.value) position:[i^2*growth.value,0,0]
+    on del pressed do delete spheres
+
+    on growth changed val do
+        for i in 1 to spheres.count do
+        (
+            spheres[i].radius = i * val
+            spheres[i].pos = [i ^ 2 * val, 0, 0]
+        )
+
+    on count changed val do
+    (
+        delete spheres
+        create.pressed()
+    )
+)
+create dialog SphereTool3 width: 300
+</code></pre><h1 id="类集合数据类型"><a href="#类集合数据类型" class="headerlink" title="类集合数据类型"></a>类集合数据类型</h1><h2 id="对象集合"><a href="#对象集合" class="headerlink" title="对象集合"></a>对象集合</h2><p>这些对象集合是动态刷新的<br>geometry 指定类型的3dsmax对象<br>lights<br>cameras<br>helpers<br>shapes<br>systems<br>spacewarps<br>objects 所有场景对象<br>selection 获得当前选择的对象并保存为数组</p>
+<p>相关方法:</p>
+<ol>
+<li>clearSelection() 清除当前场景对象选择集</li>
+<li>deselect \<PathName> 将指定对象从当前选择集里去掉</PathName></li>
+<li>select \<PathName> 先解除所有当前选择集,然后选择指定的对象</PathName></li>
+<li>selectMore \<PathName> 将指定对象集添加到当前选择集</PathName></li>
+<li>getCurrentSelection() 返回一个数组，表示当前选择集。本函数相当于函数 Selection as array，但如果场景里有大量的对象，本函数的执行速度会大大快于后者。</li>
+</ol>
+<p>基础对象集合的使用举例<br>举例1:<br>删除距离原点距离大于10000的几何体,使用 as array的作用是防止geometry发生改变而造成的影响<br>for o in geometry as array where (distance o.pos [0,0,0]) &gt; 10000 do delete o<br>举例2:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-4.png" alt="Alt text"><br>举例3:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-5.png" alt="Alt text"></p>
+<h2 id="Pathname"><a href="#Pathname" class="headerlink" title="Pathname"></a>Pathname</h2><p>模型可能有层级关系,因此可以用Pathname的方式来得到对应的模型<br>也可以通过类似正则表达式的方式来得到相关模型<br> select $Box002/Box003<br> select $Box<em><br> select $Box001/Box002/</em>  (注意这个的<em>号是只针对Box002的子集这个层级)<br> select $Box001/…/Sphere</em> 通过”…”让*号不止局限于固定的层级</p>
+<p> select $Box00? </p>
+<h1 id="动画脚本"><a href="#动画脚本" class="headerlink" title="动画脚本"></a>动画脚本</h1><p>开启自动k帧模式然后在0和100帧处k帧并设定名字叫Sphere001的模型的位置</p>
+<pre><code>-- 在界面中显示当前max模式为自动k帧模式
+max tool animmode
+-- 开启自动k帧 加set的作用是让自动k帧持续开启
+set animate on
+-- 进行脚本k帧
+animation on
+(
+    at time 0 $Sphere001.pos = [-100,0,0]
+    at time 100 $Sphere001.pos = [100,0,0]
+)
+</code></pre><p>制作一个动画,在名字叫做ball的模型位置处创建一个小球,然后0~100帧中每5帧在ball的模型位置处的16个距离单位下k一帧,然后将ball的半径进行sin趋势的改变</p>
+<pre><code>b2 = sphere radius:3 wireColor:red
+animate on for t in 0 to 100 by 5 do
+    at time t
+    (
+        b2.pos = $ball.pos + random [-16,-16,-16] [16,16,16]
+        $ball.radius = 8+4*sin(720*t/100)
+    )
+</code></pre><p>得到10帧和50帧ball名称的模型的位置并计算之间距离<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-3.png" alt="Alt text"><br>其他时间的写法<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-6.png" alt="Alt text"><br>遍历时间<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-7.png" alt="Alt text"><br>通过脚本制作,一个box在两个线之间移动的动画<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-8.png" alt="Alt text"><br>box的长度和方向会跟着线的距离来变化.</p>
+<pre><code>fn railFollow obj line1 line2 u =
+(
+    -- u的值代表了从起始点到结束点的值,范围是从0到1,计算方式是(t-start) as float/(end-start) as float
+    -- 计算位置,方向,距离
+    -- 通过lengthInterp可以得到在线的u的数值下的点位置
+    -- 通过nearestPathParam可以得到在线上,离p1点位置最近的点的位置的u值
+    -- 通过pathInterp可以得到在线上的u的数值下点的位置
+    -- p1-p2得到p1到p2向量
+    local p1 = lengthInterp line1 u,
+    u2 = nearestPathParam line2 p1,
+    p2 = pathInterp line2 u2,
+    dv = p2 - p1,
+    d = distance p1 p2
+
+    obj.pos = p1
+    obj.dir = dv
+    obj.height = d
+)
+
+start = animationRange.start
+end = animationRange.end
+animate on
+    for t in start to end by 2 do
+    (
+        local u = (t - start) as float / (end - start) as float
+        at time t railFollow $Box001 $Line001 $Line002 u
+    )
+</code></pre><h1 id="控制器的使用"><a href="#控制器的使用" class="headerlink" title="控制器的使用"></a>控制器的使用</h1><p>将box01的高度控制器赋予c<br>c = $box01.height.controller<br>创建一个路径约束控制器<br>pc = path_constraint follow:true bank:true path:$line01<br>创建一个路径约束控制器并赋予一个box的位置参数<br>$Box001.pos.controller = path_constraint follow:true bank:true path:$Line001<br>调整控制器的属性参数<br>$box01.pos.controller.bankAmount -= 0.25<br>复制控制器.<br>因为maxscript的变量赋值是引用赋值,所以第一句两个控制器变量是同一个值<br>使用copy语句以后会创建右边变量的一个副本来赋予左边<br>$box01.scale.controller = $box02.scale.controller<br>$sphere01.radius.controller = copy $box01.height.controller<br>得到控制器上的keys,返回一个数组<br>keys = $box02.height.controller.keys<br>得到keys后对应的可以使用的方法<br>keys = $box02.height.controller.keys<br>keys[1].value = 23<br>for k in keys do fomat “% at %\n” k.value k.time</p>
+<h1 id="通过读取数据文件-设置摄像机在对应key下的位置"><a href="#通过读取数据文件-设置摄像机在对应key下的位置" class="headerlink" title="通过读取数据文件,设置摄像机在对应key下的位置"></a>通过读取数据文件,设置摄像机在对应key下的位置</h1><p>数据文件:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-9.png" alt="Alt text"></p>
+<pre><code>function stepCam cam dataFile = 
+(
+    -- 判断摄像机是否有bezier_position控制器,如果有就删掉重新建,否则就直接建
+    if claasoOf cam.pos.controller != bezier_position then
+        cam.pos.controller = bezier_position()
+    else
+        deleteKeys cam.pos.controller
+    if classOf cam.target.pos.controller != bezier_position then
+        cam.target.pos.controller = bezier_postion()
+    else
+        deleteKeys cam.target.pos.controller
+    -- 得到摄像机的控制器
+    local cc = cam.pos.controller,
+          tc = cam.target.pos.controller
+    -- 得到文件
+    local f = openFile dataFile,
+          curFrame = 0
+    -- 读取文件并设置
+    -- eof 是 MaxScript 中的一个函数，用于检查文件是否已经到达末尾
+    while not eof f do
+    (
+        -- 读取文件三个参数
+        local camPos = readValue f,
+              targPos = readValue f,
+              frames = readValue f
+        -- 为摄像机的控制器在当前帧进行k帧
+        local ck = addNewKey cc curFrame,
+              tk = addNewKey tc curFrame
+        -- 设置帧的数值还有切线类型为#step
+        ck.value = camPos; ck.inTangentType = #step
+        tk.value = targPos;  tk.inTangentType = #step
+        -- 设置下一个要设置的关键帧
+        curFrame += frames
+    )
+    close f
+)
+</code></pre><h1 id="修改器的应用"><a href="#修改器的应用" class="headerlink" title="修改器的应用"></a>修改器的应用</h1><pre><code>-- 创建修改器
+b = bend angle:45 direction:90
+-- 将修改器添加到模型上
+addModifier $box01 b
+-- 创建修改器并添加到模型上
+addModifier $box01 (twist angle:90)
+-- 访问模型上的修改器(假如box01模型上有bend,twist)
+$box01.bend
+$box01.twist
+-- 修改模型上的修改器的数值
+$box01.bend.angle += 20
+-- 得到模型上的所有修改器
+$box01.modifiers
+</code></pre><h1 id="MaxScript中的循环"><a href="#MaxScript中的循环" class="headerlink" title="MaxScript中的循环"></a>MaxScript中的循环</h1><h2 id="while-…-do-…"><a href="#while-…-do-…" class="headerlink" title="while … do …"></a>while … do …</h2><pre><code>-- 定义一个获取路径名称的函数
+fn get_pathname obj =
+(
+    -- 一直循环找物体的parent,然后设置路径名,当parent为undefined时终止循环
+    local pathname = obj.name
+    while obj.parent != undefined do
+    (
+        obj = obj.parent
+        pathname = obj.name + &quot;/&quot; + pathname
+    )
+    &quot;&amp;&quot; + pathname
+)
+-- 对当前选择的物体进行获取路径名
+get_pathname $
+</code></pre><h2 id="continue命令"><a href="#continue命令" class="headerlink" title="continue命令"></a>continue命令</h2><pre><code>for obj in selection do
+(
+    -- 通过isKindOf 判断obj是否是Editable_Mesh类或其子类
+    if not isKindOf obj Editable_Mesh then
+    (
+        local msg = &quot;Selected object \&quot;&quot; + obj.name + &quot;\&quot; is not a mesh. \nObject skipped.&quot;
+        -- 显示信息弹窗
+        messageBox msg
+        continue
+    )
+    totalObjects += 1
+    totalFaces += obj.numFaces
+    totalVerts += obj.numVerts
+)
+</code></pre><h2 id="exit命令"><a href="#exit命令" class="headerlink" title="exit命令"></a>exit命令</h2><p>在循环中通过exit命令退出循环,类似于python的break<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-10.png" alt="Alt text"></p>
+<h2 id="return命令"><a href="#return命令" class="headerlink" title="return命令"></a>return命令</h2><p>函数中的循环中使用return命令也可以跳出循环<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-11.png" alt="Alt text"></p>
+<h1 id="coordsys控制坐标空间"><a href="#coordsys控制坐标空间" class="headerlink" title="coordsys控制坐标空间"></a>coordsys控制坐标空间</h1><h2 id="坐标空间的种类"><a href="#坐标空间的种类" class="headerlink" title="坐标空间的种类"></a>坐标空间的种类</h2><pre><code>coordsys word          -- 世界空间
+coordsys local         -- 局部空间
+coordsys parent        -- 父对象空间,如果没有父对象则是世界空间
+coordsys grid          -- 激活的网格的坐标空间
+coordsys screen        -- 当前激活的视图的坐标空间
+coordsys &lt;node&gt;        -- 对应node的局部的坐标空间
+coordsys &lt;matrix3&gt;     -- 基于给定的矩阵来当坐标空间
+</code></pre><h2 id="coordsys的使用参考"><a href="#coordsys的使用参考" class="headerlink" title="coordsys的使用参考"></a>coordsys的使用参考</h2><pre><code>coordsys local
+(
+    move $box3 [100,0,0]
+    rotate $box4 45 z_axis
+)
+</code></pre><h1 id="制作选取线然后生成锁链的工具"><a href="#制作选取线然后生成锁链的工具" class="headerlink" title="制作选取线然后生成锁链的工具"></a>制作选取线然后生成锁链的工具</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-13.png" alt="Alt text"></p>
+<pre><code>rollout ChainMaker &quot;Chain Maker&quot;
+(
+    local curve,
+          chain = #()
+    -- 定义一个负责筛选物体是否是shape的函数来辅助Pickbutton判断
+    fn shapesOnly obj = isKindOf obj Shape
+    group &quot;Controlling Shape&quot;
+    (
+        pickbutton pickCurve &quot;Pick Curve&quot; width:100 filter:shapesOnly
+        label theCurve &quot;-- none --&quot;
+    )
+
+    group &quot;Chain Parameters&quot;
+    (
+        -- diam负责控制锁链的大小
+        -- thickness负责控制锁链的宽厚
+        spinner diam &quot;Link Diameter: &quot; range:[1,500,12]
+        spinner thickness &quot;Link Thickness:&quot; range:[0.1,500,2]
+        colorPicker wireColor &quot;Wire Color:&quot; align:#center
+    )
+
+    button deleteChain &quot;Delete Chain&quot; width:100 enable:false
+    -- 负责生成锁链
+    fn updateChain = 
+    (
+        local len = curvelength curve, -- 曲线的长度
+              uStep = (diam.value - thickness.value) / len, -- 环的直径减去厚度等于内圈的直径,再除以曲线的长度可以得到一个圆环占曲线长度的比例
+              up = true,
+              i  = 1
+        for u = 0.0 to 1.0 by uStep do
+        (
+            if i &gt; chain.count then chain[i] = torus wireColor:wireColor.color
+            local t = chain[i]
+            t.radius1 = diam.value / 2  
+            t.radius2 = thickness.value / 2
+            t.pos = lengthInterp curve u
+            t.dir = lengthTangent curve u
+            -- 方向一次x,一次y
+            coordsys local rotate t 90 (if up then y_axis else x_axis)
+            up = not up 
+            i += 1
+        )
+        for j in i to chain.count do
+        (
+            delete chain[i]
+            deleteItem chain i
+        )
+    )
+
+    on pickCurve picked obj do
+    (
+        curve = obj
+        theCurve.text = obj.name
+        deleteChain.enabled = true
+        updateChain()
+    )
+
+    on deleteChain pressed do (delete chain; chain = #())
+    on diam changed val do updateChain()
+    on thickness changed val do updateChain()
+    on wireColor changed val do chain.wireColor = val
+)
+
+createDialog ChainMaker width:180
+</code></pre><h1 id="把脚本放到菜单栏中"><a href="#把脚本放到菜单栏中" class="headerlink" title="把脚本放到菜单栏中"></a>把脚本放到菜单栏中</h1><p>例如把刚才做的ChainMaker放到菜单栏中<br>前提已知:做好了一个脚本,脚本中的布局的变量名字叫ChainMaker,脚本另存到了3dmax的根目录的scripts文件夹中<br>创建macroScript:</p>
+<pre><code>macroScript ChainMakerMacro
+    category:&quot;My Tools&quot;
+    buttonText:&quot;Chain Maker&quot;
+    toolTip:&quot;根据曲线创建锁链的工具&quot;
+(
+    global ChainMaker
+    if ChainMaker == undefined or not ChainMaker.open do
+        fileIn &quot;ChainMaker.ms&quot;
+)
+</code></pre><p>创建自定义菜单:<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-14.png" alt="Alt text"></p>
+<h1 id="导出模型信息举例"><a href="#导出模型信息举例" class="headerlink" title="导出模型信息举例"></a>导出模型信息举例</h1><pre><code>function exportMesh obj fileName origin=
+(
+    local file = createfile fileName ,
+          vertStore = #(),
+          numFrames = (animationRange.end - animationRange.start).frame as integer
+
+    format &quot;%, numVerts = %, numFrames = %\n\n&quot; obj.name obj.numVerts numFrames to:file
+    format &quot;Frame,Vert #, Delta\n&quot; to:file
+
+    for f = animationRange.start to animationRange.end do
+    (
+    sliderTime = f
+    for i in 1 to obj.numVerts do
+    (
+        local v = coordsys origin getVert obj i
+        local dv = if vertStore[i] == undefined then v else v - vertStore[i]
+        vertStore[i] = v
+        format &quot;%, %, %\n&quot; (f.frame as integer) (i-1) dv to:file
+    )
+    )
+    close file
+    edit fileName  
+)
+exportMesh $Sphere001 &quot;E:/3dsmaxTest/test.txt&quot; $Sphere001
+</code></pre><h1 id="批量渲染对应文件夹下的max文件然后输出图片"><a href="#批量渲染对应文件夹下的max文件然后输出图片" class="headerlink" title="批量渲染对应文件夹下的max文件然后输出图片"></a>批量渲染对应文件夹下的max文件然后输出图片</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-15.png" alt="Alt text"></p>
+<pre><code>function thumbNailFolder inFolder outFolder thumbType:&quot;.jpg&quot; thumbSize:[320,240] =
+(
+    makeDir outFolder
+    local maxFilePattern = inFolder + &quot;\\*.max&quot;
+    -- 遍历对应文件夹下的所有max文件
+    for filePath in getFiles maxFilePattern do
+    (
+        local fileName = getFileNameFile filePath,
+              thumbPath = outFolder + &quot;\\&quot; + fileName + thumbType
+
+              format &quot;Rendering thumbnail for %\n&quot; filePath
+              -- 进入max文件进行渲染,并设置输出路径和输出大小,vfb为off则渲染完不自动打开图像窗口
+              loadMaxFile filePath
+              render outputFile:thumbPath outputSize:thumbSize vfb:off
+    )
+    resetMaxFile #noPrompt
+    print(&quot;Done.&quot;)
+)
+
+thumbNailFolder &quot;E:/3dsmaxTest&quot; &quot;E:/3dsmaxTest&quot;
+</code></pre><h1 id="沿着曲线种树的脚本"><a href="#沿着曲线种树的脚本" class="headerlink" title="沿着曲线种树的脚本"></a>沿着曲线种树的脚本</h1><p>前提:需要有名字叫road的曲线,有一个叫ground的地面模型,有一个叫masterTree的树的模型<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/.com//image-16.png" alt="Alt text"></p>
+<pre><code>numTrees = 500
+for i in 1 to numTrees do
+(
+    local u = random 0.0 1.0,
+          pos = lengthInterp $road u,
+          tan = lengthTangent $road u
+
+    local offset = random 5 18 * (if i &lt; numTrees / 2 then 1 else -1),
+          -- cross tan z_axis得到切线与z轴的叉积,然后再乘以偏移值,最终得到偏移的向量
+          offsetVec = cross tan z_axis * offset,
+          -- 当前位置加上偏移的向量等于偏移的位置
+          offsetPos = pos + offsetVec,
+          -- 以当前偏移的位置的z轴1000的位置处向正下方0,0,-1处生成射线
+          treeRay = ray [offsetPos.x, offsetPos.y, 1000] [0,0,-1]
+
+    -- 定义树的位置和大小,intersectRay $ground treeRay得到的是模型与射线相交地方的法向量,因此再加个.pos得到位置
+    local treePos = (intersectRay $ground treeRay).pos,
+          treeScale = [1,1,1] * random 0.2 1.1
+
+    -- 创建masterTree这个模型的实例
+    instance $masterTree pos:treePos scale:treeScale name:&quot;tree&quot;
+
+    -- 更新max的视图,来观察到脚本执行时的状态
+    if mod i 10 == 0 then redrawViews()
+)
+</code></pre><h1 id="实现进度条功能"><a href="#实现进度条功能" class="headerlink" title="实现进度条功能"></a>实现进度条功能</h1><pre><code>-- 进度条的名字
+progressStart &quot;test&quot;
+-- 进度条处理的任务总数
+loop_count = 500
+for i in 1 to loop_count do 
+(
+    if getProgressCancel() 
+    then 
+    (
+        progressEnd()
+        exit
+    )
+    else
+    (    
+        -- 这里填写要做的事情
+        print(i)
+        -- 更新进度条
+        percent = i*100/loop_count 
+        progressUpdate percent
+    )
+    if percent==100 do progressEnd()
+)
+</code></pre></article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>MaxScript</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://example.com/2024/01/06/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MaxScript/">http://example.com/2024/01/06/DCC工具开发-MaxScript/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>RuiChen</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-01-06</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-07-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MaxScript/"><div class="tags-punctuation"><svg class="faa-tada icon" style="height:1.1em;width:1.1em;fill:currentColor;position:relative;top:2px;margin-right:3px" aria-hidden="true"><use xlink:href="#icon-sekuaibiaoqian"></use></svg></div>MaxScript</a></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(83).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ComfyUI工作流</div></div></a></div><div class="next-post pull-right"><a href="/2023/12/10/Geek-JavaScript%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(79).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript快速入门</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg class="meta_icon" style="width:22px;height:22px;position:relative;top:5px"><use xlink:href="#icon-mulu1"></use></svg><span style="font-weight:bold">目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3"><span class="toc-text">如何阅读帮助文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VScode-for-MaxScript"><span class="toc-text">VScode for MaxScript</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MaxScript%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-text">MaxScript的语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8MaxScript%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE"><span class="toc-text">使用MaxScript处理数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">分割字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">替换字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%87%E7%89%87"><span class="toc-text">字符串的切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">查询字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Point3%E7%9F%A2%E9%87%8F"><span class="toc-text">Point3矢量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-%E6%95%B0%E7%BB%84"><span class="toc-text">Array 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">数组的方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E7%94%9F%E6%88%90%E7%90%83"><span class="toc-text">批量生成球</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E9%9B%86%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">类集合数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E9%9B%86%E5%90%88"><span class="toc-text">对象集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pathname"><span class="toc-text">Pathname</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E8%84%9A%E6%9C%AC"><span class="toc-text">动画脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">控制器的使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6-%E8%AE%BE%E7%BD%AE%E6%91%84%E5%83%8F%E6%9C%BA%E5%9C%A8%E5%AF%B9%E5%BA%94key%E4%B8%8B%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">通过读取数据文件,设置摄像机在对应key下的位置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%99%A8%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">修改器的应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MaxScript%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF"><span class="toc-text">MaxScript中的循环</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#while-%E2%80%A6-do-%E2%80%A6"><span class="toc-text">while … do …</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#continue%E5%91%BD%E4%BB%A4"><span class="toc-text">continue命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exit%E5%91%BD%E4%BB%A4"><span class="toc-text">exit命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#return%E5%91%BD%E4%BB%A4"><span class="toc-text">return命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#coordsys%E6%8E%A7%E5%88%B6%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4"><span class="toc-text">coordsys控制坐标空间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%A9%BA%E9%97%B4%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-text">坐标空间的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#coordsys%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%82%E8%80%83"><span class="toc-text">coordsys的使用参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E9%80%89%E5%8F%96%E7%BA%BF%E7%84%B6%E5%90%8E%E7%94%9F%E6%88%90%E9%94%81%E9%93%BE%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">制作选取线然后生成锁链的工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%8A%E8%84%9A%E6%9C%AC%E6%94%BE%E5%88%B0%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%B8%AD"><span class="toc-text">把脚本放到菜单栏中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA%E6%A8%A1%E5%9E%8B%E4%BF%A1%E6%81%AF%E4%B8%BE%E4%BE%8B"><span class="toc-text">导出模型信息举例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%B8%B2%E6%9F%93%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84max%E6%96%87%E4%BB%B6%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E5%9B%BE%E7%89%87"><span class="toc-text">批量渲染对应文件夹下的max文件然后输出图片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B2%BF%E7%9D%80%E6%9B%B2%E7%BA%BF%E7%A7%8D%E6%A0%91%E7%9A%84%E8%84%9A%E6%9C%AC"><span class="toc-text">沿着曲线种树的脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%9B%E5%BA%A6%E6%9D%A1%E5%8A%9F%E8%83%BD"><span class="toc-text">实现进度条功能</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>

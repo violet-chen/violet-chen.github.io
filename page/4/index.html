@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RuiChen</title><meta name="keywords" content="TD,TA"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="TD,TA">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RuiChen">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="TD,TA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/assets/TouXiang.jpg">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="TD,TA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/TouXiang.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/page/4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RuiChen',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-28 14:43:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="page home" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="site-info"><h1 id="site-title">RuiChen</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon faa-parent animated-hover" href="https://github.com/violet-chen?tab=repositories" target="_blank" title="Github"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/assets/WeChat.jpg" target="_blank" title="微信"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-weixin"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/assets/QQ.jpg" target="_blank" title="QQ"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-QQ"></use></svg></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-content left"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(69).jpg?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="FFmpeg in production"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-FFmpeg-in-production/" title="FFmpeg in production"><div class="article-title-link">FFmpeg in production</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.888Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/FFmpeg/">FFmpeg</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-FFmpeg-in-production/" title="FFmpeg in production"><div class="article-content-text">
+
+
+FFmpeg与ffmpeg的介绍
+FFmpeg or ffmpeg
+FFmpeg toolsFFmpeg提供的所有工具： 
+FFmpeg libraries
+ffmpeg
+安装ffmpeghttps://github.com/BtbN/FFmpeg-Builds/releases可以去这个github网站里下载构建版本
+ffmpeg基础语法在powershell中使用在构建好的ffmpeg目录下的bin目录下按shift加鼠标右键然后按s快捷键即可在目录下打开powershell前面是输入选项和路径，后面是输出选项和路径。
+将图片序列转成视频将 文件夹中符合img_seq.%04d的图片整合成24帧的视频序列，用h264编码：.\ffmpeg.exe -framerate 24 -i ._image_sequences\img_seq\img_seq.%04d.png -c:v h264 output.mp4  -c:v: h264 意思是使用h264编码视频流
+ffmpeg与输出以及h264相关的option介绍
+Constant Rate Factor （crf）输出质量
+P ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content right"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(4).png?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="UE4 BenCloward教程"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/UnrealEngine-UE4-BenCloward%E6%95%99%E7%A8%8B/" title="UE4 BenCloward教程"><div class="article-title-link">UE4 BenCloward教程</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.891Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/UnrealEngine/">UnrealEngine</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/UnrealEngine/">UnrealEngine</a></span></div></div></div><a class="article-content" href="/2023/08/29/UnrealEngine-UE4-BenCloward%E6%95%99%E7%A8%8B/" title="UE4 BenCloward教程"><div class="article-content-text">
+
+
+Ben Cloward材质课
+课程贴图设置如果实现的效果不是很好可能是贴图压缩设置问题，因为教程很多贴图都是混合的，因此虚幻引擎可能无法准确的判断出贴图的正确压缩以及颜色设置，因此将贴图设置成是最好的质量。
+什么是着色器着色器是控制屏幕上每个像素颜色的代码
+扭曲着色器解析：此贴图相当于将不同的noise灰度图分别储存到3个通道中。其中扭曲效果由此连接法产生，连接法的作用是为其不同地方添加很小的偏移数值实现扭曲。其中time节点和texcoord节点相加可以使Texture Sample的贴图在对角线处匀速移动，于是为Time节点乘以不同数值的float 2 节点可以实现非线性运动，通过不同数值的灰度图的叠加可以打破重复度。可以参考海洋材质的水的移动制作思想
+特效翻页动画（图像序列视图/Flipbook序列图）Flipbook 序列图：在DCC软件中如maya，blender，houdini，embergen 把制作好的流体，烟雾等等，烘焙成序列帧的形式，到UE4的材质里用flipbook节点播放，或者在粒子里用subuvindex播放。粒子特效纹理，相当于一个66=36帧的动画。 ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content left"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(5).png?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="MAYA PYTHON API"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MAYA-PYTHON-API/" title="MAYA PYTHON API"><div class="article-title-link">MAYA PYTHON API</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.893Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/MayaPy/">MayaPy</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MAYA-PYTHON-API/" title="MAYA PYTHON API"><div class="article-content-text">
+
+
+第二集面向对象编程
+类，对象和模块。类是一个蓝图，是一个数据的集合，根据类创建对象，也可以称为类的实例化，对象是基于类的结构的数据的集合，模块是类的集合。
+第三集maya api 术语
+dag path
+dag=directed acyclic graph有向非循环图树是一种很典型的有向非循环图在maya中创建的物体对象，具有两个节点，一个transform节点，一个shape节点，transform节点定义了变换（xyz位置）旋转，缩放，shape节点定义了物体的形状。
+dg=dependency graph依赖图
+
+dag pathdag path是从根到特定对象的路径，没有dag path，maya就不知道那个特定对象在世界空间的哪里。因为当一个物体是另一个物体的子物体时，它的原点坐标就会变成它的父物体的当前坐标位置。maya是通过dag path获得这些位置的。
+
+MObjectMObject是model object的缩写 MObject是可以访问maya的专门的处理程序，可以用来处理模型，渲染，灯光 
+Selection List方法有creating、add/rem ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content right"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(61).jpg?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="MayaPythonAPI_Zurbrigg"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MayaPythonAPI-Zurbrigg/" title="MayaPythonAPI_Zurbrigg"><div class="article-title-link">MayaPythonAPI_Zurbrigg</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.895Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/MayaPy/">MayaPy</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MayaPythonAPI-Zurbrigg/" title="MayaPythonAPI_Zurbrigg"><div class="article-content-text">
+
+Maya Python OpenMaya 教学第一卷 Zurbrigg - Maya Python API (Volume1)_哔哩哔哩_bilibili00introduction哔哩哔哩_bilibiliMaya Python OpenMaya 教学第三卷 Zurbrigg - Maya Python API (Volume3)_哔哩哔哩_bilibili
+第一卷
+Maya API的应用场景:maya api 主要应用于扩展maya，例如它可以用来为maya添加新的：节点，命令，工具，发射器等当需要遍历很多数据时，使用maya api 要比maya command要快很多
+C++的利与弊与python的利与弊
+C++左边是好处，右边是坏处
+python左边是好处，右边是坏处 
+api2.0与api1.0的一些区别api2.0：api1.0：
+api2.0自带MFnPlugin方法，而api1.0没有MFnPlugin方法，api1.0需要额外导入OpenMayaMPx模块来使用这个模块的MFnPlugin，MPxNode，MPxCommand等方法
+
+脚本(scripts)与插 ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content left"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(55).jpg?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="Python_for_nuke_101"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-NukePy-Python-for-nuke-101/" title="Python_for_nuke_101"><div class="article-title-link">Python_for_nuke_101</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.889Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/NukePy/">NukePy</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-NukePy-Python-for-nuke-101/" title="Python_for_nuke_101"><div class="article-content-text">
+
+https://www.bilibili.com/video/BV1bm4y1R7X1/?spm_id_from=333.788&amp;vd_source=b1de3fe38e887eb40fc55a5485724480
+为Nuke添加内置python编辑器github地址
+
+令脚本编辑器中显示在nuke中进行的操作对应的代码首先按shift+s进入首选项设置界面,然后再Panels-Script Editor中勾选 echo python commands to output window
+
+显示节点的详细信息(方便找节点属性名字)首先选中节点,然后按键盘的i键即可弹出一个窗口,在里面可以找到节点的详细信息.
+
+后台执行脚本首先通过nuke.env[‘ExecutablePath’]得到nuke程序的路径然后如果是当前python脚本想要调用令一个python脚本的话,就通过’{}/另一个python脚本的名字.py’.format(os.path.dirname(file))找到要调用的另一个python脚本的路径,或者就直接用绝对路径.然后创建command命令:comma ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content right"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="maya python 简易教程和B站maya TD"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-maya-python-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B%E5%92%8CB%E7%AB%99maya-TD/" title="maya python 简易教程和B站maya TD"><div class="article-title-link">maya python 简易教程和B站maya TD</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.892Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/MayaPy/">MayaPy</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-maya-python-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B%E5%92%8CB%E7%AB%99maya-TD/" title="maya python 简易教程和B站maya TD"><div class="article-content-text">
+
+
+开篇介绍真正复杂的东西“东西”很少，但是复杂的“组合”却是很多。复杂的“组合”往往需要自己创造，发挥自己的想象力吧。
+Unicode 字符串在Python2中，普通字符串是以8位ASCII码进行存储的，而Unicode字符串则存储为16位unicode字符串，这样能够表示更多的字符集。使用的语法是在字符串前面加上前缀 u。在Python3中，所有的字符串都是Unicode字符串。
+第一个简单代码import maya.cmds as mc
+def height(h):
+    sel=mc.ls(sl=1)
+    for i in range(0,len(sel)):
+        mc.setAttr(sel[i]+&#39;.ty&#39;,i*h)
+height(0.5)
+
+
+吸附工具import maya.cmds as mc
+def snap():
+    sel=mc.ls(sl=1)
+    pos=mc.xform(sel[1],t=1,ws=1,q=1)
+    mc.xform(sel[0],t=pos)
+snap()
+
+
+批量添加前缀后缀工具import ...</div></a><div class="recent-post-arrow"></div></div></div><div class="recent-post-item"><div class="recent-post-content left"><div class="recent-post-cover"><img class="article-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(85).jpg?raw=true" onerror="this.onerror=null;this.src='/assets/r2.jpg'" alt="Maya开发实践"></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-Maya%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" title="Maya开发实践"><div class="article-title-link">Maya开发实践</div></a><div class="recent-post-meta">               <div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:21px;height:21px;position:relative;top:6px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin1">                   </use></svg><span class="article-meta-label">更新于 </span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.894Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="article-meta"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:12px;height:12px;position:relative;top:1px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span><span class="article-meta tags"><span class="article-meta-separator"> | </span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian"></use></svg><a class="article-meta__tags" href="/tags/MayaPy/">MayaPy</a></span></div></div></div><a class="article-content" href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-Maya%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" title="Maya开发实践"><div class="article-content-text">
+
+
+第一节
+Maya帮助文档的查阅方法第一个框住的是命令的名称，也可以叫他函数第二个框住的是命令的标识与参数，只需要在其中找到自己需要的几个使用就可以了第三个框住的是返回值第四个框住的是与查询的命令相似的命令Flags下面是命令的标识与参数的使用方法最左边是每个标识的全称与简称，中间是标识所需要的参数的数量与类型，右边是标识的特性标识的特性介绍：介绍一下M：例如设置球体半径，因为球体半径只有一个值，因此不能多次使用，但是创建曲线的时候，曲线由许多点构成，每个点都有不同的数值，在创建时可以多次使用他点位置的标识，然后跟上不同点的坐标，然后来创建一个曲线。命令帮助文档的最下方是官方的帮助案例
+如何在maya中使用pythonmaya的命令在python中是以包的模式出现的。要使用maya的命令必须要先导入模块才能进行调用。MEL命令与python命令在参数或者标识上调用的区别：
+第二节
+获取场景中的操作对象在编程中，在确定对一个物体进行操作之前需要通过命令找到要操作的对象。
+
+通过对象的名字获取单一物体
+通过类型获取一类物体
+通过UUID获取某一物体（在名字出现重复的情况下）
+
+获取对象 ...</div></a><div class="recent-post-arrow"></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author_top is-center"><div class="card-info-avatar"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="this.onerror=null;this.src='/assets/r1.jpg'" alt="avatar"/></div><div class="author-status-box"><div class="author-status"><g-emoji class="g-emoji" alias="palm_tree" fallback-src="https://lskypro.acozycotage.net/LightPicture/2022/12/fe1dc0402e623096.jpg">🐟</g-emoji><span>认真摸鱼中</span></div></div></div><b><div class="author-info__name">RuiChen</div></b><div class="author-info__description">TD,TA</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" href="https://www.yuque.com/quanmianxiaokangdelouwangzhiyu" title="前往作者的语雀文章"><span>前往我的语雀文章</span><i class="faa-passing animated" style="padding-left:20px;display:inline-block;vertical-align:middle;"><svg class="icon" style="height:28px;width:28px;fill:currentColor;position:relative;top:5px"><use xlink:href="#icon-xiaoqiche"></use></svg></i></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/violet-chen?tab=repositories" target="_blank" title="Github"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/assets/WeChat.jpg" target="_blank" title="微信"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-weixin"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/assets/QQ.jpg" target="_blank" title="QQ"><svg class="social_icon faa-tada" aria-hidden="true" style="width:1.15em;height:1.15em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-QQ"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shujutongji2"></use></svg></a><span style="font-weight:bold">小站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">43</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">22w</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-28T06:43:50.011Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#subtitle', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('subtitle').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/typed.js/2.0.12/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>

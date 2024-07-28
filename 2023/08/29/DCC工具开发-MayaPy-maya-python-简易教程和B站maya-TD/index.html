@@ -1,0 +1,1338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>maya python 简易教程和B站maya TD | RuiChen</title><meta name="keywords" content="MayaPy"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="开篇介绍真正复杂的东西“东西”很少，但是复杂的“组合”却是很多。复杂的“组合”往往需要自己创造，发挥自己的想象力吧。 Unicode 字符串在Python2中，普通字符串是以8位ASCII码进行存储的，而Unicode字符串则存储为16位unicode字符串，这样能够表示更多的字符集。使用的语法是在字符串前面加上前缀 u。在Python3中，所有的字符串都是Unicode字符串。 第一个简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maya python 简易教程和B站maya TD">
+<meta property="og:url" content="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-maya-python-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B%E5%92%8CB%E7%AB%99maya-TD/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="开篇介绍真正复杂的东西“东西”很少，但是复杂的“组合”却是很多。复杂的“组合”往往需要自己创造，发挥自己的想象力吧。 Unicode 字符串在Python2中，普通字符串是以8位ASCII码进行存储的，而Unicode字符串则存储为16位unicode字符串，这样能够表示更多的字符集。使用的语法是在字符串前面加上前缀 u。在Python3中，所有的字符串都是Unicode字符串。 第一个简单">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true">
+<meta property="article:published_time" content="2023-08-28T19:57:00.000Z">
+<meta property="article:modified_time" content="2024-07-27T18:58:06.892Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="MayaPy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(7).jpg?raw=true"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-maya-python-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B%E5%92%8CB%E7%AB%99maya-TD/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'maya python 简易教程和B站maya TD',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 02:58:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">maya python 简易教程和B站maya TD</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-meta-icon" style="width:30px;height:30px;position:relative;top:10px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-gengxin1"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.892Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-biaoqian"></use></svg><a class="post-meta-categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:8px"><use xlink:href="#icon-charuword"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">9532</span><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:20px;height:20px;position:relative;top:5px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>41分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="maya python 简易教程和B站maya TD"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:5px"><use xlink:href="#icon-eye"></use></svg><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer">
+
+<p><a name="Cn3Wb"></a></p>
+<h1 id="开篇介绍"><a href="#开篇介绍" class="headerlink" title="开篇介绍"></a>开篇介绍</h1><p>真正复杂的东西“东西”很少，但是复杂的“组合”却是很多。复杂的“组合”往往需要自己创造，发挥自己的想象力吧。<br><a name="V9keO"></a></p>
+<h1 id="Unicode-字符串"><a href="#Unicode-字符串" class="headerlink" title="Unicode 字符串"></a>Unicode 字符串</h1><p>在Python2中，普通字符串是以8位ASCII码进行存储的，而Unicode字符串则存储为16位unicode字符串，这样能够表示更多的字符集。使用的语法是在字符串前面加上前缀 <strong>u</strong>。<br>在Python3中，所有的字符串都是Unicode字符串。<br><a name="fPmBt"></a></p>
+<h1 id="第一个简单代码"><a href="#第一个简单代码" class="headerlink" title="第一个简单代码"></a>第一个简单代码</h1><pre><code class="lang-python">import maya.cmds as mc
+def height(h):
+    sel=mc.ls(sl=1)
+    for i in range(0,len(sel)):
+        mc.setAttr(sel[i]+&#39;.ty&#39;,i*h)
+height(0.5)
+</code></pre>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648435412615-7d9cfcf0-5bc5-45a1-8bc0-aab7de506efc.png#averageHue=%235e5e5e&amp;clientId=u5321e486-8528-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=313&amp;id=ucd073b72&amp;originHeight=313&amp;originWidth=661&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=5658&amp;status=error&amp;style=none&amp;taskId=ucbd93dd6-cb00-4aa0-ac53-1a7a0bbd4d9&amp;title=&amp;width=661" alt="image.png"><br><a name="tmEhp"></a></p>
+<h1 id="吸附工具"><a href="#吸附工具" class="headerlink" title="吸附工具"></a>吸附工具</h1><pre><code class="lang-python">import maya.cmds as mc
+def snap():
+    sel=mc.ls(sl=1)
+    pos=mc.xform(sel[1],t=1,ws=1,q=1)
+    mc.xform(sel[0],t=pos)
+snap()
+</code></pre>
+<p><a name="UrJcC"></a></p>
+<h1 id="批量添加前缀后缀工具"><a href="#批量添加前缀后缀工具" class="headerlink" title="批量添加前缀后缀工具"></a>批量添加前缀后缀工具</h1><pre><code class="lang-python">import maya.cmds as mc
+def addpre(pre):
+    for name in  mc.ls(sl=1) :
+        mc.rename(name,pre+name)
+addpre(&#39;mesh_&#39;)        
+def adddis(dis):
+    for name in  mc.ls(sl=1) :
+        mc.rename(name,name+dis)
+adddis(&#39;_low&#39;)
+</code></pre>
+<p>看了另一个教程的修改版本：<br>介绍一下：这个工具修改了之前添加前缀名工具的一个bug，就是当出现<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648708809664-a9489ba4-68c1-4885-96f7-15ab4db4986f.png#averageHue=%233b3a39&amp;clientId=u4f45dca2-649f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=114&amp;id=uk7V9&amp;originHeight=114&amp;originWidth=134&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2692&amp;status=error&amp;style=none&amp;taskId=ub4fb5101-f214-4f2d-ae15-896b0ec5306&amp;title=&amp;width=134" alt="image.png">这种不同级别物体名字相同时依然可以正确的通过工具添加后缀。<br>思路就是通过长名判断oldName，然后通过shortname=name.split(“|”)[-1]命令得到短名，配合前后缀得到newName，<strong>这样就不会出现一个名称有多个匹配对象的bug了</strong></p>
+<pre><code class="lang-python">import maya.cmds as mc
+def addpre(pre):
+    for name in  mc.ls(sl=1,l=1) :
+        shortname=name.split(&quot;|&quot;)[-1]
+        mc.rename(name,pre+shortname)
+addpre(&#39;mesh_&#39;)        
+def adddis(dis):
+    for name in  mc.ls(sl=1,l=1) :
+        shortname=name.split(&quot;|&quot;)[-1]
+        mc.rename(name,shortname+dis)
+adddis(&#39;_low&#39;)
+</code></pre>
+<p><a name="dJIOd"></a></p>
+<h1 id="对文本进行操作"><a href="#对文本进行操作" class="headerlink" title="对文本进行操作"></a>对文本进行操作</h1><p>将当前所选择的物体的位置坐标导出成文本文件。</p>
+<pre><code class="lang-python">import maya.cmds as mc
+
+sel = mc.ls(sl=1)
+info = []
+info_str = &#39;&#39;
+for i in sel:
+    posx = mc.getAttr(i + &#39;.tx&#39;)
+    posy = mc.getAttr(i + &#39;.ty&#39;)
+    posz = mc.getAttr(i + &#39;.tz&#39;)
+    info.append([i, posx, posy, posz]) # 测试里面用元组也能正常使用，但教程是列表
+for i in info:
+    info_str = info_str + i[0] + &#39;\r\nposx:&#39; + str(i[1]) + &#39;\r\nposy:&#39; + str(i[2]) + &#39;\r\nposz:&#39; + str(
+        i[3]) + &#39;\r\n\r\n&#39;
+    f = open(&#39;D:\\posInfo.txt&#39;, &#39;w&#39;)  # w代表写入
+    f.write(info_str)
+    f.close()
+</code></pre>
+<p>最终结果是在d盘根目录生成一个posInfo文本文件，里面数值为选择的物体的参数属性<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648469718676-a9c60fd2-4a20-4db2-b33e-362b6e11a4b2.png#averageHue=%23fbfafa&amp;clientId=u45bfbeec-9c64-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=756&amp;id=u7577597b&amp;originHeight=756&amp;originWidth=718&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=21996&amp;status=error&amp;style=none&amp;taskId=ua3ee56ad-8e15-4229-88c5-67a8b6e1e89&amp;title=&amp;width=718" alt="image.png"><br><a name="le37I"></a></p>
+<h1 id="带窗口带输入框的加前缀名工具"><a href="#带窗口带输入框的加前缀名工具" class="headerlink" title="带窗口带输入框的加前缀名工具"></a>带窗口带输入框的加前缀名工具</h1><pre><code class="lang-python">import maya.cmds as mc
+def addpre(pre):
+    for i in mc.ls(sl=1):
+        mc.rename(i,pre+i)
+mc.window()
+mc.columnLayout()
+a=mc.textField(tx=&#39;defalt&#39;)
+mc.button(l=&#39;Press   Me&#39;,w=100,h=100,c=&quot;b=mc.textField(a,q=1,tx=1);addpre(b)&quot;) # c为command的缩写
+mc.showWindow()
+</code></pre>
+<p><a name="jCrpN"></a></p>
+<h1 id="自动根据物体类型添加后缀名"><a href="#自动根据物体类型添加后缀名" class="headerlink" title="自动根据物体类型添加后缀名"></a>自动根据物体类型添加后缀名</h1><p>思路是通过cmds.listRelatives(obj,children=1,fullPath=1) or []命令得到物体的子物体的名字（pCube1的子物体的名字为<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648712895301-90044fca-7014-49dc-b5db-aaae5963f07f.png#averageHue=%234b6a81&amp;clientId=u4f45dca2-649f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=46&amp;id=ua86708c6&amp;originHeight=46&amp;originWidth=188&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2426&amp;status=error&amp;style=none&amp;taskId=u509e639b-39d0-4dad-a71a-e763c398f53&amp;title=&amp;width=188" alt="image.png">，joint没有子物体返回空列表）。<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648713269802-8c2bcf97-d9d4-4f8c-90ed-d4dc75bcd239.png#averageHue=%23ffffff&amp;clientId=u4f45dca2-649f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=101&amp;id=uc8683ecb&amp;originHeight=101&amp;originWidth=296&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8181&amp;status=error&amp;style=none&amp;taskId=ua0afd779-e652-4f27-8718-b2f2abb607f&amp;title=&amp;width=296" alt="image.png">有子物体的就判断子物体的类型，没有子物体的就判断物体本身的类型。之所以这样得到不同物体的类型是因为例如pCube通过objectType得到的类型为transform，而通过得到它的子物体（pCubeShape）得到的类型为mesh，能更好的区分。<br>如果想再细分物体类型（曲线，灯光等）就在下面加判断语句。</p>
+<pre><code class="lang-python"># -*- coding:UTF-8 -*-
+
+import maya.cmds as mc
+
+SUFFIXES = &#123;
+    &quot;mesh&quot;: &quot;geo&quot;,
+    &quot;joint&quot;: &quot;jnt&quot;,
+    &quot;camera&quot;: None
+&#125;
+DEFAULT_SUFFIX = &quot;grp&quot;
+
+
+def addSuffix(selection=False):
+    sel = mc.ls(sl=selection, dag=1, l=1)
+    if selection and not sel:  # 如果指定selection为True但是却没有选择物体时抛出异常。
+        raise RuntimeError(&quot;You don&#39;t have anything selected! How dare you?!&quot;)
+
+    sel.sort(key=len, reverse=1)  # 将列表按照元素个数由高到底排序
+    for obj in sel:
+        shortName = obj.split(&#39;|&#39;)[-1]  # 因为是长名的列表，这里取长名中的短名
+        children = mc.listRelatives(obj, children=1,
+                                    fullPath=1) or []  # 如果物体没有子物体不会返回空列表而是返回None，因此加个or[]实现如果是None就返回空列表的功能
+        if len(children) == 1:
+            child = children[0]  # 将列表变成字符串
+            objType = mc.objectType(child)
+        else:
+            objType = mc.objectType(obj)
+        suffix = SUFFIXES.get(objType, DEFAULT_SUFFIX)  # 根据objType获取对应添加的后缀名，如果没有找到对应的key那么就使用DEFAULT_SUFFIX
+
+        if not suffix:  # 如果后缀名为None（类型为摄像机时）不添加后缀
+            continue
+
+        if obj.endswitch(&#39;_&#39;+suffix):
+            continue  # 如果已经添加了后缀，那么就不再进行添加后缀
+        newName = &quot;%s_%s&quot; % (shortName, suffix)
+        mc.rename(obj, newName)
+</code></pre>
+<p>改进版介绍： 将类型以及对应的后缀名通过字典存取，（通过字典存取的好处是，如果想要增加其他类型的后缀名可以直接针对字典进行操作而不需要再使用if语句判断了。）通过SUFFIXES.get(objType, DEFAULT_SUFFIX)获取对应的value，通过更改为函数形式，可以通过导入的方式，直接调用函数，并可以指定是否使用选择模式。</p>
+<pre><code class="lang-python">import maya.cmds as mc
+
+SUFFIXES = &#123;
+    &quot;mesh&quot;: &quot;geo&quot;,
+    &quot;joint&quot;: &quot;jnt&quot;,
+    &quot;camera&quot;: None
+&#125;
+DEFAULT_SUFFIX = &quot;grp&quot;
+
+
+def addSuffix(selection=False):
+    sel = mc.ls(sl=selection, dag=1, l=1)
+    if selection and not sel:  # 如果指定selection为True但是却没有选择物体时抛出异常。
+        raise RuntimeError(&quot;You don&#39;t have anything selected! How dare you?!&quot;)
+
+    sel.sort(key=len, reverse=1)  # 将列表按照元素个数由高到底排序
+    for obj in sel:
+        shortName = obj.split(&#39;|&#39;)[-1]  # 因为是长名的列表，这里取长名中的短名
+        children = mc.listRelatives(obj, children=1,
+                                    fullPath=1) or []  # 如果物体没有子物体不会返回空列表而是返回None，因此加个or[]实现如果是None就返回空列表的功能
+        if len(children) == 1:
+            child = children[0] # 将列表变成字符串
+            objType = mc.objectType(child)
+        else:
+            objType = mc.objectType(obj)
+        suffix = SUFFIXES.get(objType, DEFAULT_SUFFIX)  # 根据objType获取对应添加的后缀名，如果没有找到对应的key那么就使用DEFAULT_SUFFIX
+
+        if not suffix:  # 如果后缀名为None（类型为摄像机时）不添加后缀
+            continue
+
+        if obj.endswitch(&#39;_&#39;+suffix):
+            continue  # 如果已经添加了后缀，那么就不再进行添加后缀
+        newName = &quot;%s_%s&quot; % (shortName, suffix)
+        mc.rename(obj, newName)
+</code></pre>
+<p><a name="kzeDE"></a></p>
+<h1 id="齿轮工具"><a href="#齿轮工具" class="headerlink" title="齿轮工具"></a>齿轮工具</h1><p><a name="r1QzH"></a></p>
+<h2 id="创建齿轮工具gearCreator"><a href="#创建齿轮工具gearCreator" class="headerlink" title="创建齿轮工具gearCreator"></a>创建齿轮工具gearCreator</h2><pre><code class="lang-python">import maya.cmds as mc
+
+
+def createGear(teeth=10, length=0.3):
+    spans = teeth * 2  # 面的数量是齿轮数量的2倍
+    transform, constructor = mc.polyPipe(subdivisionsAxis=spans) 
+    # mc.polyPipe 返回的是一个列表
+    # transform是多边形的名字，constructor是构造器（调节多边形的属性）的名称
+    sideFaces = range(spans * 2, spans * 3, 2) # 面的数字ID是spans*2和spans*3。
+    mc.select(clear=True)
+    for face in sideFaces:
+        mc.select(&#39;%s.f[%s]&#39; % (transform, face),add=True) # add=True的意思是加选
+    extrude = mc.polyExtrudeFacet(localTranslateZ=length)[0] # 加一个[0]的作用就是将列表变成值
+    return transform, constructor, extrude
+
+
+createGear(teeth=20,length=1)
+</code></pre>
+<p>返回值：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648895714457-9f408014-8096-4e6d-8152-4fe3e9381160.png#averageHue=%232f302d&amp;clientId=ude30dde1-d57a-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=52&amp;id=u6b5b0f75&amp;originHeight=52&amp;originWidth=481&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=24509&amp;status=error&amp;style=none&amp;taskId=u60495b84-a4bf-42ff-8e9f-a91d073d998&amp;title=&amp;width=481" alt="image.png"></p>
+<p><a name="PRZTC"></a></p>
+<h2 id="创建齿轮并可以修改齿轮"><a href="#创建齿轮并可以修改齿轮" class="headerlink" title="创建齿轮并可以修改齿轮"></a>创建齿轮并可以修改齿轮</h2><p>前言：<br>创建好的齿轮如果只是单纯的更改它的细分会造成：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648904364686-2f1bd957-e6d3-484a-82ea-bd23ff46fc11.png#averageHue=%23444241&amp;clientId=ude30dde1-d57a-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=176&amp;id=ue74d5d1b&amp;originHeight=176&amp;originWidth=253&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=7643&amp;status=error&amp;style=none&amp;taskId=ub72f5b86-ce02-43de-ae4f-66c59c44c18&amp;title=&amp;width=253" alt="image.png">这种奇怪的效果<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648904385463-47ee46d2-239a-41a7-bea1-527fb335c0a1.png#averageHue=%23696969&amp;clientId=ude30dde1-d57a-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=349&amp;id=u229dd4ac&amp;originHeight=349&amp;originWidth=430&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13416&amp;status=error&amp;style=none&amp;taskId=u3a174a2a-9ff8-41e4-b528-699823a3d41&amp;title=&amp;width=430" alt="image.png">，原因是因为上面的polyExtrudeFace1，因为polyExtrudeFace1挤出命令是根据获得齿轮中的面id（inputComponents）来执行挤出操作的，但是如果更改了细分数挤出命令节点就不知道要编辑哪个面了。<br>因此修改齿轮的思路就是：<br>首先将<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1648904915251-25bcbf20-cc97-41f5-a236-911368dbf4aa.png#averageHue=%234b4645&amp;clientId=ude30dde1-d57a-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=88&amp;id=u6f8a71ac&amp;originHeight=88&amp;originWidth=189&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=3611&amp;status=error&amp;style=none&amp;taskId=u59e7231b-7005-49e2-9502-ae0251e144c&amp;title=&amp;width=189" alt="image.png">polyPipe1的细分以及长度根据数值更改<br>然后将polyExtrudeFace1的inputComponents属性进行更改使挤出命令节点能够正确识别细分后的面。<br>mc.setAttr(‘%s.inputComponents’ % extrude, len(faceNames), <em>faceNames, typ=”componentList”)这个命令是重新设置inputComponents属性，len（faceNames）代表要进行操作的面的数量，</em>faceNames意思是将存取面ID的列表解开，最后指定类型为组件列表。</p>
+<pre><code class="lang-python">import maya.cmds as mc
+
+
+def createGear(teeth=10, length=0.3):
+    spans = teeth * 2
+    transform, constructor = mc.polyPipe(subdivisionsAxis=spans)
+    sideFaces = range(spans * 2, spans * 3, 2)
+    mc.select(clear=True)
+    for face in sideFaces:
+        mc.select(&#39;%s.f[%s]&#39; % (transform, face), add=True)
+    extrude = mc.polyExtrudeFacet(localTranslateZ=length)[0]
+    mc.select(self.transform)
+    return transform, constructor, extrude
+
+
+def changeTeeth(constructor, extrude, teeth=10, length=0.3):
+    spans = teeth * 2
+    mc.polyPipe(constructor, edit=True, subdivisionsAxis=spans)
+    sideFaces = range(spans * 2, spans * 3, 2)
+    faceNames = []
+    for face in sideFaces:
+        faceName = &#39;f[%s]&#39; % face
+        faceNames.append(faceName)
+
+    mc.setAttr(&#39;%s.inputComponents&#39; % extrude, len(faceNames), *faceNames, typ=&quot;componentList&quot;)
+    mc.polyExtrudeFacet(extrude, edit=True, localTranslateZ=length)
+
+
+changeTeeth(&#39;polyPipe1&#39;, &#39;polyExtrudeFace1&#39;, teeth=20, length=0.1)
+</code></pre>
+<p><a name="Bx7wC"></a></p>
+<h2 id="使用类来实现齿轮工具"><a href="#使用类来实现齿轮工具" class="headerlink" title="使用类来实现齿轮工具"></a>使用类来实现齿轮工具</h2><p>通过类实现就可以通过实例变量将创建齿轮函数与改变齿轮数量函数之间创建联系。</p>
+<pre><code class="lang-python">import maya.cmds as mc
+
+
+class Gear(object):
+    def __init__(self):
+        self.constructor = None
+        self.transform = None
+        self.extrude = None
+
+    def createGear(self, teeth=10, length=0.3):
+        spans = teeth * 2
+        self.transform, self.constructor = mc.polyPipe(subdivisionsAxis=spans)
+        sideFaces = range(spans * 2, spans * 3, 2)
+        mc.select(clear=True)
+        for face in sideFaces:
+            mc.select(&#39;%s.f[%s]&#39; % (self.transform, face), add=True)
+        self.extrude = mc.polyExtrudeFacet(localTranslateZ=length)[0]
+        mc.select(self.transform)
+
+    def changeTeeth(self, teeth=10, length=0.3):
+        spans = teeth * 2
+        mc.polyPipe(self.constructor, edit=True, subdivisionsAxis=spans)
+        sideFaces = range(spans * 2, spans * 3, 2)
+        faceNames = []
+        for face in sideFaces:
+            faceName = &#39;f[%s]&#39; % face
+            faceNames.append(faceName)
+
+        mc.setAttr(&#39;%s.inputComponents&#39; % self.extrude, len(faceNames), *faceNames, typ=&quot;componentList&quot;)
+        mc.polyExtrudeFacet(self.extrude, edit=True, localTranslateZ=length)
+
+
+gear = Gear()
+gear.createGear()
+gear.changeTeeth(teeth=20, length=0.1)
+</code></pre>
+<p><a name="dDbGA"></a></p>
+<h2 id="带UI的创建齿轮工具"><a href="#带UI的创建齿轮工具" class="headerlink" title="带UI的创建齿轮工具"></a>带UI的创建齿轮工具</h2><pre><code class="lang-python">import maya.cmds as mc
+
+
+class Gear(object):
+    def __init__(self):
+        self.constructor = None
+        self.transform = None
+        self.extrude = None
+
+    def createGear(self, teeth=10, length=0.3):
+        spans = teeth * 2
+        self.transform, self.constructor = mc.polyPipe(subdivisionsAxis=spans)
+        sideFaces = range(spans * 2, spans * 3, 2)
+        mc.select(clear=True)
+        for face in sideFaces:
+            mc.select(&#39;%s.f[%s]&#39; % (self.transform, face), add=True)
+        self.extrude = mc.polyExtrudeFacet(localTranslateZ=length)[0]
+
+    def changeTeeth(self, teeth=10, length=0.3):
+        spans = teeth * 2
+        mc.polyPipe(self.constructor, edit=True, subdivisionsAxis=spans)
+        sideFaces = range(spans * 2, spans * 3, 2)
+        faceNames = []
+        for face in sideFaces:
+            faceName = &#39;f[%s]&#39; % face
+            faceNames.append(faceName)
+
+        mc.setAttr(&#39;%s.inputComponents&#39; % self.extrude, len(faceNames), *faceNames, typ=&quot;componentList&quot;)
+        mc.polyExtrudeFacet(self.extrude, edit=True, localTranslateZ=length)
+
+
+class GearWindow(object):
+    windowName = &quot;GearWindow&quot;
+
+    def __init__(self):
+        self.gear = None
+
+    def show(self):
+        if mc.window(self.windowName, q=True, exists=True):
+            mc.deleteUI(self.windowName)
+        mc.window(self.windowName)
+
+        self.buildUI()
+
+        mc.showWindow()
+
+    def buildUI(self):
+        column = mc.columnLayout()
+        mc.text(label=&quot;Use the slider to modify the gear&quot;)
+        row = mc.rowLayout(numberOfColumns=4)
+        self.label = mc.text(label=&quot;10&quot;)
+        self.slider = mc.intSlider(min=5, max=30, value=10, step=1, dragCommand=self.modifyGear)  # 创建滑动条，拖动滑动条时调用函数
+        mc.button(label=&quot;Make Gear&quot;, command=self.makeGear)
+        mc.button(label=&quot;Reset&quot;, command=self.reset)  # 命令中调用函数不加括号是因为如果加了括号就直接使用函数了，而不是与按钮绑定。
+        mc.setParent(column)
+        mc.button(label=&quot;Close&quot;, command=self.close)
+
+    def makeGear(self, *args):
+        teeth = mc.intSlider(self.slider, q=True, value=True)
+        self.gear = Gear()
+        self.gear.createGear(teeth=teeth)
+
+    def modifyGear(self, teeth):
+        if self.gear:
+            self.gear.changeTeeth(teeth=teeth)
+        mc.text(self.label, edit=True, label=teeth)
+
+    def reset(self, *args):
+        # 使用*args是因为command调用此函数的同时会传入参数，因此使用*args来接收，但没必要使用
+        self.gear = None
+        mc.intSlider(self.slider, edit=True, value=10)
+        mc.text(self.label, edit=True, label=&quot;10&quot;)
+
+    def close(self, *args):
+        mc.deleteUI(self.windowName)
+
+
+GearWindow().show()
+</code></pre>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649151264550-f79c09d4-09aa-4082-ad30-3cf17a9c7cd5.png#averageHue=%236f6e6e&amp;clientId=u9a09714e-8c52-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=129&amp;id=u44751cef&amp;originHeight=129&amp;originWidth=272&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=6329&amp;status=error&amp;style=none&amp;taskId=u94880517-8ed9-466e-9377-e569c31ad67&amp;title=&amp;width=272" alt="image.png"><br>可以通过滑动条更改齿轮的齿的数量。</p>
+<p><a name="R0IJo"></a></p>
+<h1 id="中间帧工具"><a href="#中间帧工具" class="headerlink" title="中间帧工具"></a>中间帧工具</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649070276826-af0007fa-352f-495e-b50b-4a3030e9b159.png#averageHue=%23484746&amp;clientId=uf3de0013-f84f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=162&amp;id=uf28e284b&amp;originHeight=162&amp;originWidth=431&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37943&amp;status=error&amp;style=none&amp;taskId=uee3130e3-f363-4829-af76-33a71ebf452&amp;title=&amp;width=431" alt="image.png"><br>介绍一下这个工具，这个工具会读取当前时间轴左右两边的关键帧，利用滑块控件设置最左边的数值为当前时间轴的左边的帧的大小，最右边的数值为当前时间轴的右边的帧的大小。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649070824178-d7f97c71-8d4e-4d80-a2dc-6a5c369c01a9.png#averageHue=%232c2c2b&amp;clientId=uf3de0013-f84f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=853&amp;id=u32afe44d&amp;originHeight=853&amp;originWidth=1157&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=201961&amp;status=error&amp;style=none&amp;taskId=ub6fd2b3f-16ae-4679-8ec2-f36c53eba6f&amp;title=&amp;width=1157" alt="image.png"><br><a name="lXIQT"></a></p>
+<h2 id="无UI版"><a href="#无UI版" class="headerlink" title="无UI版"></a>无UI版</h2><pre><code class="lang-python">import maya.cmds as mc
+
+
+def tween(percentage, obj=None, attr=None, selection=True):
+    if not obj and not selection:
+        raise ValueError(&quot;No object given to tween&quot;)
+    if not obj:
+        obj = mc.ls(sl=True)[0]
+    if not attr:
+        # attrs为选择的物体的所有可以k帧的属性。
+        attrs = mc.listAttr(obj, k=True)
+    currentTime = mc.currentTime(q=True)
+    for attr in attrs:
+        attrFull = &#39;%s.%s&#39; % (obj, attr)  # 构建所有可以k帧的属性的长名
+        keyframes = mc.keyframe(attrFull, q=True)  # 获得物体已经k帧的属性的帧数，没有k帧的属性为None
+        if not keyframes:
+            continue  # 对于没有k帧的属性跳过操作
+
+        previousKeyframes = []  # 存取当前帧前的所有已经k帧的帧数列表
+        for frame in keyframes:
+            if frame &lt; currentTime:
+                previousKeyframes.append(frame)
+        laterKeyframes = [frame for frame in keyframes if frame &gt; currentTime]  # 通过列表生成式操作得到当前帧后的所有已经k帧的帧数列表
+
+        if not previousKeyframes and not laterKeyframes:
+            continue  # 如果当前帧的前面或者后面没帧的话不执行后面的操作
+
+        if previousKeyframes:  # 得到离当前帧最近的左边帧数
+            previousFrame = max(previousKeyframes)
+        else:
+            previousFrame = None
+
+        nextFrame = min(laterKeyframes) if laterKeyframes else None  # 得到离当前帧最近的右边帧数
+
+        previousValue = mc.getAttr(attrFull, time=previousFrame)  # 通过三目运算符得到离当前帧最近的左边帧数对应的值
+        nextValue = mc.getAttr(attrFull, time=nextFrame)  # 得到离当前帧最近的右边帧数对应的值
+
+        # 根据百分比设置当前帧的大小
+        difference = nextValue - previousValue
+        weightedDifference = (difference * percentage) / 100
+        currentValue = previousValue + weightedDifference
+        # 设置当前帧的数值
+        mc.setKeyframe(attrFull, time=currentTime, value=currentValue)
+</code></pre>
+<p>调用时只需要使用tween(100) 其中100代表的是百分比。<br><a name="z0lJ9"></a></p>
+<h2 id="添加UI"><a href="#添加UI" class="headerlink" title="添加UI"></a>添加UI</h2><pre><code class="lang-python">class TweenWindow(object):
+    windowName = &quot;TweenerWindow&quot;
+
+    def show(self):
+        if mc.window(self.windowName, q=True, exists=True):
+            mc.deleteUI(self.windowName)
+        mc.window(self.windowName)
+
+        self.buildUI()
+
+        mc.showWindow()
+
+    def buildUI(self):
+        column = mc.columnLayout()
+        mc.text(label=&quot;Use this slider to set the tween amount&quot;)
+        row = mc.rowLayout(numberOfColumns=2)
+        self.slider = mc.floatSlider(min=0, max=100, value=50, step=1, changeCommand=tween)  # 创建滑动条
+        mc.button(label=&quot;Reset&quot;, command=self.reset)  # 命令中调用函数不加括号是因为如果加了括号就直接使用函数了，而不是与按钮绑定。
+        mc.setParent(column)
+        mc.button(label=&quot;Close&quot;, command=self.close)
+
+    def reset(self,*args):
+        # 使用*args是因为command调用此函数的同时会传入参数，因此使用*args来接收，但没必要使用
+        mc.floatSlider(self.slider, edit=True, value=50)
+
+    def close(self,*args):
+        mc.deleteUI(self.windowName)
+</code></pre>
+<p><a name="Ks6OD"></a></p>
+<h2 id="组合并使用"><a href="#组合并使用" class="headerlink" title="组合并使用"></a>组合并使用</h2><pre><code class="lang-python">import maya.cmds as mc
+
+
+def tween(percentage, obj=None, attr=None, selection=True):
+    if not obj and not selection:
+        raise ValueError(&quot;No object given to tween&quot;)
+    if not obj:
+        obj = mc.ls(sl=True)[0]
+    if not attr:
+        # attrs为选择的物体的所有可以k帧的属性。
+        attrs = mc.listAttr(obj, k=True)
+    currentTime = mc.currentTime(q=True)
+    for attr in attrs:
+        attrFull = &#39;%s.%s&#39; % (obj, attr)  # 构建所有可以k帧的属性的长名
+        keyframes = mc.keyframe(attrFull, q=True)  # 获得物体已经k帧的属性的帧数，没有k帧的属性为None
+        if not keyframes:
+            continue  # 对于没有k帧的属性跳过操作
+
+        previousKeyframes = []  # 存取当前帧前的所有已经k帧的帧数列表
+        for frame in keyframes:
+            if frame &lt; currentTime:
+                previousKeyframes.append(frame)
+        laterKeyframes = [frame for frame in keyframes if frame &gt; currentTime]  # 通过列表生成式操作得到当前帧后的所有已经k帧的帧数列表
+
+        if not previousKeyframes and not laterKeyframes:
+            continue  # 如果当前帧的前面或者后面没帧的话不执行后面的操作
+
+        if previousKeyframes:  # 得到离当前帧最近的左边帧数
+            previousFrame = max(previousKeyframes)
+        else:
+            previousFrame = None
+
+        nextFrame = min(laterKeyframes) if laterKeyframes else None  # 通过三目运算符得到离当前帧最近的右边帧数
+
+        previousValue = mc.getAttr(attrFull, time=previousFrame)  # 得到离当前帧最近的左边帧数对应的值
+        nextValue = mc.getAttr(attrFull, time=nextFrame)  # 得到离当前帧最近的右边帧数对应的值
+
+        # 根据百分比设置当前帧的大小
+        difference = nextValue - previousValue
+        weightedDifference = (difference * percentage) / 100
+        currentValue = previousValue + weightedDifference
+        # 设置当前帧的数值
+        mc.setKeyframe(attrFull, time=currentTime, value=currentValue)
+
+
+class TweenWindow(object):
+    windowName = &quot;TweenerWindow&quot;
+
+    def show(self):
+        if mc.window(self.windowName, q=True, exists=True):
+            mc.deleteUI(self.windowName)
+        mc.window(self.windowName)
+
+        self.buildUI()
+
+        mc.showWindow()
+
+    def buildUI(self):
+        column = mc.columnLayout()
+        mc.text(label=&quot;Use this slider to set the tween amount&quot;)
+        row = mc.rowLayout(numberOfColumns=2)
+        self.slider = mc.floatSlider(min=0, max=100, value=50, step=1, changeCommand=tween)  # 创建滑动条
+        mc.button(label=&quot;Reset&quot;, command=self.reset)  # 命令中调用函数不加括号是因为如果加了括号就直接使用函数了，而不是与按钮绑定。
+        mc.setParent(column)
+        mc.button(label=&quot;Close&quot;, command=self.close)
+
+    def reset(self, *args):
+        # 使用*args是因为command调用此函数的同时会传入参数，因此使用*args来接收，但没必要使用
+        mc.floatSlider(self.slider, edit=True, value=50)
+
+    def close(self, *args):
+        mc.deleteUI(self.windowName)
+
+
+TweenWindow().show()
+</code></pre>
+<p><a name="g313z"></a></p>
+<h1 id="contrary-library-UI（控制器库工具）"><a href="#contrary-library-UI（控制器库工具）" class="headerlink" title="contrary library UI（控制器库工具）"></a>contrary library UI（控制器库工具）</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649488838209-6de22298-0a1a-4947-9e7b-b59382093e87.png#averageHue=%234e4e4b&amp;clientId=u4fc22727-5a7f-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=356&amp;id=ud7f2af05&amp;originHeight=356&amp;originWidth=325&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=48533&amp;status=error&amp;style=none&amp;taskId=u8ff3f457-bf31-4385-a185-25f11393050&amp;title=&amp;width=325" alt="image.png">将学习对文件的操作以及通过播放预览（playblast）命令得到缩略图，以及通过PySide2来完成UI的制作<br><a name="D9DEb"></a></p>
+<h2 id="maya文件操作以及播放预览（playblast）"><a href="#maya文件操作以及播放预览（playblast）" class="headerlink" title="maya文件操作以及播放预览（playblast）"></a>maya文件操作以及播放预览（playblast）</h2><p>USERAPPDIR的路径是：C:\Users\Admin\Documents\maya<br>DIRECTORY的路径是：C:\Users\Admin\Documents\maya\controllerLibrary<br>**info的作用：调用方法时接收自定义的字典信息（不需要大括号）<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649394075265-3eea7f0d-8a00-4f58-b4c8-598fab080321.png#averageHue=%23557f9c&amp;clientId=ua5c7273c-270d-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=65&amp;id=u19d521e4&amp;originHeight=65&amp;originWidth=552&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=33417&amp;status=error&amp;style=none&amp;taskId=ua24a6fe0-f427-4e6d-a2a5-b93df0a0f1c&amp;title=&amp;width=552" alt="image.png">然后以字典格式存储信息。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1649394139186-a48c31a0-60cb-48ce-a814-8aa69b7007e0.png#averageHue=%23444440&amp;clientId=ua5c7273c-270d-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=36&amp;id=u68d73616&amp;originHeight=36&amp;originWidth=364&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=18574&amp;status=error&amp;style=none&amp;taskId=u518e121c-9fe6-41c9-96ec-e5671497e76&amp;title=&amp;width=364" alt="image.png"></p>
+<pre><code class="lang-python">from maya import cmds
+import os
+import json
+import pprint
+
+USERAPPDIR = cmds.internalVar(userAppDir=True)  # 此变量存的是maya的路径
+DIRECTORY = os.path.join(USERAPPDIR, &#39;controllerLibrary&#39;)  # 此操作是在maya的路径下新增加一个controllerLibrary路径
+
+
+# 使用os.path.join的好处是不需要担心不同操作系统的文件路径命名格式
+
+
+def createDirectory(directory=DIRECTORY):
+    if not os.path.exists(directory):
+        os.mkdir(directory)  # 如果路径下没有文件夹就新建一个
+
+
+class ControllerLibrary(dict):  # 将类继承自dict
+    def save(self, name, directory=DIRECTORY, screenshot=True, **info):
+        createDirectory(directory)
+        path = os.path.join(directory, &#39;%s.ma&#39; % name)  # path为ma文件路径
+        infoFile = os.path.join(directory, &#39;%s.json&#39; % name)  # infoFile为json文件路径
+        # 为信息字典除了自定义的信息外，增加name和path的信息。
+        info[&#39;name&#39;] = name
+        info[&#39;path&#39;] = path
+
+        cmds.file(rename=path)  # 选择保存ma文件路径以及规定名字
+        if cmds.ls(selection=True):
+            cmds.file(force=True, typ=&#39;mayaAscii&#39;, exportSelected=True)  # 为选择的物体创建文件
+        else:
+            cmds.file(save=True, typ=&#39;mayaAscii&#39;, force=True)  # 保存整个场景
+        if screenshot:
+            info[&#39;screenshot&#39;] = self.saveScreenshot(name, directory=directory)
+        with open(infoFile, &#39;w&#39;) as f:  # 安全地创建文件并执行写入操作
+            json.dump(info, f, indent=4)  # 将info的信息转存到json文件中，并增加缩进为4，info为调用函数时自定义的信息
+
+        self[name] = info  # 保存的同时更新对象字典，对象字典的格式：名字对应信息字典。
+
+    def find(self, directory=DIRECTORY):  # 返回所有的ma文件名以及对应的文件路径（字典）
+        if not os.path.exists(directory):
+            return
+        files = os.listdir(directory)  # 获取自定义库中的所有文件
+        mayaFiles = [f for f in files if f.endswith(&#39;.ma&#39;)]  # 只获取ma格式的文件
+
+        for ma in mayaFiles:
+            name, ext = os.path.splitext(ma)  # 将名字和格式名分割开
+            path = os.path.join(directory, ma)  # 得到ma格式文件路径
+            infoFile = &#39;%s.json&#39; % name  # 对于所有保存的ma文件得到对应的json文件名
+            if infoFile in files:  # 如果有对应json文件
+                infoFile = os.path.join(directory, infoFile)  # 得到json文件路径
+
+                with open(infoFile, &#39;r&#39;) as f:
+                    info = json.load(f)  # 读取json数据
+            else:
+                info = &#123;&#125;  # 没有对应json文件的也给一个信息字典
+            screenshot = &#39;%s.jpg&#39; % name
+            if screenshot in files:  # 根据保存的截图根据名字进行匹配。
+                info[&#39;screenshot&#39;] = os.path.join(directory, screenshot)
+
+            info[&#39;name&#39;] = name
+            info[&#39;path&#39;] = path
+
+            self[name] = info  # 将ma文件名字和路径一一对应（字典）
+
+        pprint.pprint(self)  # 输出字典（pprint使输出更美观）
+
+    def load(self, name):
+        path = self[name][&#39;path&#39;]  # 读取对象字典中的信息字典中的path
+        cmds.file(path, i=True, usingNamespaces=False)
+
+    def saveScreenshot(self, name, directory=DIRECTORY):
+        path = os.path.join(directory, &#39;%s.jpg&#39; % name)
+
+        cmds.viewFit()  # 相当于F快捷键
+        cmds.setAttr(&#39;defaultRenderGlobals.imageFormat&#39;, 8)  # 将渲染格式的图像格式设置为jpeg
+        # completeFilename参数控制保存路径名，forceOverwrite意思是如果重名的话就覆盖，format为格式，width和height控制大小（200宽高对应分辨率100*100因为默认拍屏百分比为50%）
+        # showOrnaments为False时设置渲染成片时不显示模型视图装饰物（例如网格,视图名字），startTime=1，endTime=1表示只获取第一帧，viewer为False表示渲染出来后不立刻浏览。
+        cmds.playblast(completeFilename=path, forceOverwrite=True, format=&#39;image&#39;, width=200, height=200,
+                       showOrnaments=False, startTime=1, endTime=1, viewer=False)
+        return path
+</code></pre>
+<p><a name="ZxYs5"></a></p>
+<h2 id="PySide2-for-maya"><a href="#PySide2-for-maya" class="headerlink" title="PySide2 for maya"></a>PySide2 for maya</h2><p>使用showUI方法时需要使用一个变量来接收showUI方法的值，不然会因为python的垃圾回收机制错误的将窗口删除而导致窗口一出现就消失。<br>get() 方法 Vs dict[key] 访问元素区别<br><strong>get(key) </strong>方法在 key（键）不在字典中时，可以返回默认值 <strong>None</strong> 或者设置的默认值。<br><strong>dict[key]</strong> 在 key（键）不在字典中时，会触发 <strong>KeyError</strong> 异常。<br> </p>
+<pre><code class="lang-python">import json
+import os
+import pprint
+
+from PySide2 import QtWidgets, QtCore, QtGui
+from maya import cmds
+
+USERAPPDIR = cmds.internalVar(userAppDir=True)  # 此变量存的是maya的路径
+DIRECTORY = os.path.join(USERAPPDIR, &#39;controllerLibrary&#39;)  # 此操作是在maya的路径下新增加一个controllerLibrary路径
+
+
+# 使用os.path.join的好处是不需要担心不同操作系统的文件路径命名格式
+
+
+def createDirectory(directory=DIRECTORY):
+    if not os.path.exists(directory):
+        os.mkdir(directory)  # 如果路径下没有文件夹就新建一个
+
+
+class ControllerLibrary(dict):  # 将类继承自dict
+    def save(self, name, directory=DIRECTORY, screenshot=True, **info):
+        createDirectory(directory)
+        path = os.path.join(directory, &#39;%s.ma&#39; % name)  # path为ma文件路径
+        infoFile = os.path.join(directory, &#39;%s.json&#39; % name)  # infoFile为json文件路径
+        # 为信息字典除了自定义的信息外，增加name和path的信息。
+        info[&#39;name&#39;] = name
+        info[&#39;path&#39;] = path
+
+        cmds.file(rename=path)  # 选择保存ma文件路径以及规定名字
+        if cmds.ls(selection=True):
+            cmds.file(force=True, typ=&#39;mayaAscii&#39;, exportSelected=True)  # 为选择的物体创建文件
+        else:
+            cmds.file(save=True, typ=&#39;mayaAscii&#39;, force=True)  # 保存整个场景
+        if screenshot:
+            info[&#39;screenshot&#39;] = self.saveScreenshot(name, directory=directory)
+        with open(infoFile, &#39;w&#39;) as f:  # 安全地创建文件并执行写入操作
+            json.dump(info, f, indent=4)  # 将info的信息转存到json文件中，并增加缩进为4，info为调用函数时自定义的信息
+
+        self[name] = info  # 保存的同时更新对象字典，对象字典的格式：名字对应信息字典。
+
+    def find(self, directory=DIRECTORY):  # 返回所有的ma文件名以及对应的文件路径（字典）
+        if not os.path.exists(directory):
+            return
+        files = os.listdir(directory)  # 获取自定义库中的所有文件
+        mayaFiles = [f for f in files if f.endswith(&#39;.ma&#39;)]  # 只获取ma格式的文件
+
+        for ma in mayaFiles:
+            name, ext = os.path.splitext(ma)  # 将名字和格式名分割开
+            path = os.path.join(directory, ma)  # 得到ma格式文件路径
+            infoFile = &#39;%s.json&#39; % name  # 对于所有保存的ma文件得到对应的json文件名
+            if infoFile in files:  # 如果有对应json文件
+                infoFile = os.path.join(directory, infoFile)  # 得到json文件路径
+
+                with open(infoFile, &#39;r&#39;) as f:
+                    info = json.load(f)  # 读取json数据
+            else:
+                info = &#123;&#125;  # 没有对应json文件的也给一个信息字典
+            screenshot = &#39;%s.jpg&#39; % name
+            if screenshot in files:  # 根据保存的截图根据名字进行匹配。
+                info[&#39;screenshot&#39;] = os.path.join(directory, name)
+
+            info[&#39;name&#39;] = name
+            info[&#39;path&#39;] = path
+
+            self[name] = info  # 将ma文件名字和路径一一对应（字典）
+
+        pprint.pprint(self)  # 输出字典（pprint使输出更美观）
+
+    def load(self, name):
+        path = self[name][&#39;path&#39;]  # 读取对象字典中的信息字典中的path
+        cmds.file(path, i=True, usingNamespaces=False)
+
+    def saveScreenshot(self, name, directory=DIRECTORY):
+        path = os.path.join(directory, &#39;%s.jpg&#39; % name)
+
+        cmds.viewFit()  # 相当于F快捷键
+        cmds.setAttr(&#39;defaultRenderGlobals.imageFormat&#39;, 8)  # 将渲染格式的图像格式设置为jpeg
+        # completeFilename参数控制保存路径名，forceOverwrite意思是如果重名的话就覆盖，format为格式，width和height控制大小（200宽高对应分辨率100*100因为默认拍屏百分比为50%）
+        # showOrnaments为False时设置渲染成片时不显示模型视图装饰物（例如网格,视图名字），startTime=1，endTime=1表示只获取第一帧，viewer为False表示渲染出来后不立刻浏览。
+        cmds.playblast(completeFilename=path, forceOverwrite=True, format=&#39;image&#39;, width=200, height=200,
+                       showOrnaments=False, startTime=1, endTime=1, viewer=False)
+        return path
+
+
+class ControllerLibraryUI(QtWidgets.QDialog):
+    def __init__(self):
+        super(ControllerLibraryUI, self).__init__()
+
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)  # 使窗口置顶
+
+        self.setWindowTitle(&#39;Controller Library UI&#39;)
+        # self.library 为ControllerLibrary类的实例
+        self.library = ControllerLibrary()
+        # 创建实例的同时会为实例增加UI并填充。
+        self.buildUI()
+        self.populate()
+
+    def buildUI(self):
+
+        layout = QtWidgets.QVBoxLayout(self) # layout为主布局（垂直）
+
+        # 水平的子控件
+        saveWidget = QtWidgets.QWidget()
+        saveLayout = QtWidgets.QHBoxLayout(saveWidget)
+        layout.addWidget(saveWidget)
+
+
+        self.saveNameField = QtWidgets.QLineEdit()
+        saveLayout.addWidget(self.saveNameField)
+
+        saveBtn = QtWidgets.QPushButton(&#39;Save&#39;)
+        saveBtn.clicked.connect(self.save)
+        saveLayout.addWidget(saveBtn)
+
+        size = 80
+        buffer = 12
+        self.listWidget = QtWidgets.QListWidget()
+        self.listWidget.setViewMode(QtWidgets.QListWidget.IconMode)
+        self.listWidget.setIconSize(QtCore.QSize(size, size))
+        self.listWidget.setResizeMode(QtWidgets.QListWidget.Adjust)  # 使列表项能跟随窗口大小而自适应调整大小
+        self.listWidget.setGridSize(QtCore.QSize(size + buffer, size + buffer))
+        layout.addWidget(self.listWidget)
+
+        btnWidget = QtWidgets.QWidget()
+        btnLayout = QtWidgets.QHBoxLayout(btnWidget)
+        layout.addWidget(btnWidget)
+
+        importBtn = QtWidgets.QPushButton(&#39;Import&#39;)
+        importBtn.clicked.connect(self.load)
+        btnLayout.addWidget(importBtn)
+
+        refreshBtn = QtWidgets.QPushButton(&#39;Refresh&#39;)
+        refreshBtn.clicked.connect(self.populate)
+        btnLayout.addWidget(refreshBtn)
+
+        closeBtn = QtWidgets.QPushButton(&#39;Close&#39;)
+        closeBtn.clicked.connect(self.close)
+        btnLayout.addWidget(closeBtn)
+
+    def populate(self):
+        self.listWidget.clear()
+        self.library.find()
+
+        for name, info in self.library.items():
+            item = QtWidgets.QListWidgetItem(name)
+            self.listWidget.addItem(item)
+
+            screenshot = info.get(&#39;screenshot&#39;)
+            if screenshot:
+                icon = QtGui.QIcon(screenshot)
+                item.setIcon(icon)
+            item.setToolTip(pprint.pformat(info))
+
+    def load(self):
+        currentItem = self.listWidget.currentItem()
+
+        if not currentItem:
+            return
+
+        name = currentItem.text()
+        self.library.load(name)
+
+    def save(self):
+        name = self.saveNameField.text()
+        if not name.strip():
+            cmds.warning(&quot;You must give a name!&quot;)
+            return
+
+        self.library.save(name)
+        self.populate()
+        self.saveNameField.setText(&#39;&#39;)
+
+
+def showUI():
+    ui = ControllerLibraryUI()
+    ui.show()
+    return ui
+</code></pre>
+<p><a name="sHbvd"></a></p>
+<h1 id="lightingManager"><a href="#lightingManager" class="headerlink" title="lightingManager"></a>lightingManager</h1><p>源码：<a href="https://github.com/dgovil/PythonForMayaSamples/blob/master/lightManager/lightManager.py">https://github.com/dgovil/PythonForMayaSamples/blob/master/lightManager/lightManager.py</a><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1665995561940-63e28faf-3177-44f9-9a0f-1f2b64cb1f86.png#averageHue=%23454545&amp;clientId=u62ebb92f-db9d-4&amp;from=paste&amp;height=1358&amp;id=uab4975ed&amp;originHeight=1358&amp;originWidth=546&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=20165&amp;status=done&amp;style=none&amp;taskId=u74b9d9d5-b697-40d5-9be5-c5cea3f80ca&amp;title=&amp;width=546" alt="image.png"><br><a name="tTW9c"></a></p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p><a name="Z6eUe"></a></p>
+<h3 id="partial函数"><a href="#partial函数" class="headerlink" title="partial函数"></a>partial函数</h3><p>from functools import partial<br>通过partial可以通过一个已有的函数，快速创建出一个根据这个已有的函数扩展的新函数。<br>通过partial可以只使用一行代码就可以实现调用函数并传递参数来创建对应类型灯光。<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1650422509623-4979120e-8985-4ed7-9b47-5dd3a9c6af69.png#averageHue=%23312e2c&amp;clientId=u6a4b9ddd-4b51-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;height=61&amp;id=u7016d0f9&amp;originHeight=61&amp;originWidth=566&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13681&amp;status=error&amp;style=none&amp;taskId=uf0a5bb89-a32e-40f3-985d-dcad6e73343&amp;title=&amp;width=566" alt="image.png"><br>partial函数的名字叫偏函数。<br>偏函数的使用是将一个旧函数，为其参数添加默认值然后得到一个默认使用刚才添加的默认值参数的新函数。<br><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145929440">偏函数</a><br><a name="jRb49"></a></p>
+<h3 id="lambda函数"><a href="#lambda函数" class="headerlink" title="lambda函数"></a>lambda函数</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1665994777469-d2a78757-d237-4699-a8df-a7145215fae8.png#averageHue=%23f6f4f2&amp;clientId=u62ebb92f-db9d-4&amp;from=paste&amp;height=77&amp;id=u2c795790&amp;originHeight=77&amp;originWidth=619&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=5845&amp;status=done&amp;style=none&amp;taskId=ubaeb00f4-6c1d-4b4d-82f4-9079f0785ce&amp;title=&amp;width=619" alt="image.png"><br>匿名函数的意思是他是一个函数，但是他没有名字，当然也可以把lambda的结果赋予一个变量，那么那个变量也就能变成一个函数了。<br>举例：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1665994912565-407b3933-446d-4e43-b2ae-d9fd1b674a9e.png#averageHue=%230f830d&amp;clientId=u62ebb92f-db9d-4&amp;from=paste&amp;height=64&amp;id=u9706c283&amp;originHeight=64&amp;originWidth=234&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2976&amp;status=done&amp;style=none&amp;taskId=u3126f118-9da5-4472-958f-88aea428656&amp;title=&amp;width=234" alt="image.png"><br>以这节课的代码举例：soloBtn.toggled.connect(lambda val: self.onSolo.emit(val))  当按钮被激活时就直接使用lambda函数，不需要再定义函数了，按钮被激活就传入True（也就是val，val是形参），然后方法是 self.onSolo.emit(val)  这里的onSolo是之前的自定义的信号，emit是发送的意思，意思是向槽发送的数值。当信号进行emit时，就会执行这个信号所连接的函数，并且发送emit的参数。<br><a name="gZtXw"></a></p>
+<h3 id="isinstance函数与basestring函数"><a href="#isinstance函数与basestring函数" class="headerlink" title="isinstance函数与basestring函数"></a>isinstance函数与basestring函数</h3><p>isinstance() 函数来判断一个对象是否是一个已知的类型，类似 type()。<br><em>如果要判断两个类型是否相同推荐使用 isinstance()。</em><br>isinstance(obj, basestring) 等价于 isinstance(obj, (str, unicode))。<br><a name="vyT3q"></a></p>
+<h3 id="pynode"><a href="#pynode" class="headerlink" title="pynode"></a>pynode</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1650423645383-fbd19826-10cf-48ca-ac9b-4e8c2cec5bb4.png#averageHue=%23292827&amp;clientId=u6a4b9ddd-4b51-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;id=u02dbae2d&amp;originHeight=387&amp;originWidth=807&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=207073&amp;status=error&amp;style=none&amp;taskId=ua570155c-ecc6-40a7-9208-2713f0319e4&amp;title=" alt="image.png"><br>因此如果是在maya中通过鼠标点击创建的灯光需要通过PyNode转化成PyNode类型<br>if isinstance(light, basestring):<br>    light = pm.PyNode(light)  # 将不是通过pymel创建的灯光也转化为PyNode类型<br><a name="VYqaK"></a></p>
+<h3 id="scrollWidget"><a href="#scrollWidget" class="headerlink" title="scrollWidget"></a>scrollWidget</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2022/png/2623605/1650428346436-8a8a67df-65b7-4aed-993d-e6fff634c949.png#averageHue=%23fefaf6&amp;clientId=u6a4b9ddd-4b51-4&amp;errorMessage=unknown%20error&amp;from=paste&amp;id=udad06788&amp;originHeight=540&amp;originWidth=960&amp;originalType=url&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=error&amp;style=none&amp;taskId=u06b5caad-c08c-49bd-a8d7-c4bfe7aedf4&amp;title=" alt><br><a name="a4wGT"></a></p>
+<h3 id="删除UI控件的方法"><a href="#删除UI控件的方法" class="headerlink" title="删除UI控件的方法"></a>删除UI控件的方法</h3><p>def deleteLight(self):<br>    # 当删除灯光的同时也需要删除控件<br>    self.setParent(None)<br>    self.setVisible(False)<br>    self.deleteLater()<br><a name="KWcBc"></a></p>
+<h3 id="获取控件中的所有子控件并操作"><a href="#获取控件中的所有子控件并操作" class="headerlink" title="获取控件中的所有子控件并操作"></a>获取控件中的所有子控件并操作</h3><p>阅读saveLights函数<br><a name="qOPno"></a></p>
+<h3 id="logging模块"><a href="#logging模块" class="headerlink" title="logging模块"></a>logging模块</h3><p><a href="https://blog.csdn.net/liuskyter/article/details/102657142?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-1.pc_relevant_default&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4">https://blog.csdn.net/liuskyter/article/details/102657142?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-1.pc_relevant_default&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=4</a><br><a name="Ufn9i"></a></p>
+<h3 id="将Qt的UI窗口和MAYA绑定到一起（窗口可以内嵌到maya中）并可以设置停靠地点"><a href="#将Qt的UI窗口和MAYA绑定到一起（窗口可以内嵌到maya中）并可以设置停靠地点" class="headerlink" title="将Qt的UI窗口和MAYA绑定到一起（窗口可以内嵌到maya中）并可以设置停靠地点"></a>将Qt的UI窗口和MAYA绑定到一起（窗口可以内嵌到maya中）并可以设置停靠地点</h3><p>详情看代码中的getMayaMainWindow()和getDock(name=’LightingManagerDock’)和deleteDock(name=’LightingManagerDock’)<br>其中LightingManagerDock代表为控件起的名字来代表控件。 name是一个变量，是为了方便查看以及方法内容的使用<br><a name="U6I6w"></a></p>
+<h3 id="shadingNode和pointLight与spotLight命令的区别："><a href="#shadingNode和pointLight与spotLight命令的区别：" class="headerlink" title="shadingNode和pointLight与spotLight命令的区别："></a>shadingNode和pointLight与spotLight命令的区别：</h3><p>maya自带的命令pointLight 和 spotLight命令都可以直接使用生成对应的灯光，并且生成的灯光结果是一个shape类型的<br>而使用shadingNode命令可以生成areaLight与volumeLight，生成的灯光的结果是transform类型的，这导致了以后的通过它来获取灯光类型形成了障碍。<br><a name="kQAxO"></a></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="lang-python">import os
+from PySide2 import QtWidgets, QtCore
+import pymel.core as pm
+from functools import partial
+from shiboken2 import wrapInstance
+from maya import OpenMayaUI as omui
+import logging  # 这是一种比使用print语句更好的记录输出的方式
+import json
+import time
+
+logging.basicConfig()  # 使用默认设置日志级别与输出格式
+logger = logging.getLogger(&#39;LightingManager&#39;)  # 创建一个日志器
+logger.setLevel(logging.DEBUG)  # 设置日志器的级别
+
+
+def getMayaMainWindow():  # 得到maya的主窗口
+    win = omui.MQtUtil_mainWindow()  # 得到maya主窗口的内存地址
+    # 使用wrapInstance方法将其转换为python可以理解的内容
+    # 将它转换成QMainWindow
+    ptr = wrapInstance(long(win), QtWidgets.QMainWindow)
+    return ptr  # 返回maya主窗口这个QMainWindow
+
+
+def getDock(name=&#39;LightingManagerDock&#39;):
+    deleteDock(name)  # 如果已经存在自定义的LightingManagerDock窗口就删除掉
+    ctrl = pm.workspaceControl(name, dockToMainWindow=(&#39;right&#39;, True),
+                               label=&#39;Lighting Manager&#39;)  # 在工作区的右区域生成一个窗口名字为变量name标题设置为label
+    qtCtrl = omui.MQtUtil_findControl(ctrl)  # 使用OpenMayaUI API来获得与名称相关联的实际Qt小部件
+    ptr = wrapInstance(long(qtCtrl), QtWidgets.QWidget)  # 使用wrapInstance将其转换为Python可以理解的内容，在本例中是一个QWidget
+    return ptr  # 返回LightingManagerDock这个QWidget
+
+
+def deleteDock(name=&#39;LightingManagerDock&#39;):
+    if pm.workspaceControl(name, q=True, exists=True):
+        pm.deleteUI(name)
+
+
+class LightManager(QtWidgets.QWidget):
+    lightTypes = &#123;
+        &quot;Point Light&quot;: pm.pointLight,
+        &quot;Spot Light&quot;: pm.spotLight,
+        &quot;Directional Light&quot;: pm.directionalLight,
+        &quot;Area Light&quot;: partial(pm.shadingNode, &#39;areaLight&#39;, asLight=True),
+        &quot;Volume Light&quot;: partial(pm.shadingNode, &#39;volumeLight&#39;, asLight=True)
+    &#125;
+
+    def __init__(self, dock=True):
+        if dock:
+            parent = getDock()  # 默认将灯光信息的父窗口设置为dock
+        else:
+            deleteDock()  # 删除dock窗口
+            # 尝试删除lightingManager窗口（父窗口为MayaMainWindow），如果不存在就记录日志。（不会中止程序）
+            # 好处是既可以实现多次运行程序只生成一个窗口，也不会因为没生成过窗口而报错。
+            try:
+                pm.deleteUI(&#39;lightingManager&#39;)
+            except:
+                logger.debug(&#39;No previous UI exists&#39;)
+            # 如果设置dock为False，那么就使用默认的将父窗口设置为maya主窗口，并将灯光信息存入到父窗口上面
+            parent = QtWidgets.QDialog(parent=getMayaMainWindow())
+            # 我们设置了它的名称，以便以后可以找到并删除它
+            parent.setObjectName(&#39;lightingManager&#39;)
+            parent.setWindowTitle(&#39;Lighting Manager&#39;)
+            # 生成布局来存放灯光信息
+            layout = QtWidgets.QVBoxLayout(parent)
+        super(LightManager, self).__init__(parent=parent)
+        self.buildUI()
+        self.populate()
+
+        self.parent().layout().addWidget(self)  # 将灯光信息存放到主窗口的布局中
+        if not dock:
+            parent.show()
+
+    def populate(self):
+        # 点击refresh按钮时调用，首先将滑动条控件中的内容清空，然后再根据场景灯光类型将场景灯光通过addLight方法向滑动条控件中添加灯光控件
+        # 可以通过for循环配合self.findChildren(LightWidget)来删除控件，这里介绍了如何通过while循环删除控件
+
+        while self.scrollLayout.count():
+            widget = self.scrollLayout.takeAt(0).widget()
+            if widget:
+                # 之所以没有widget.setParent(None)这个操作是因为takeAt（0）已经执行了这个操作
+                widget.setVisible(False)
+                widget.deleteLater()
+        for light in pm.ls(type=(&#39;areaLight&#39;, &#39;spotLight&#39;, &#39;pointLight&#39;, &#39;directionalLight&#39;, &#39;volumeLight&#39;)):
+            self.addLight(light)
+
+    def buildUI(self):
+        layout = QtWidgets.QGridLayout(self)  # 为主窗口创建一个表格布局
+
+        # 创建下拉列表框控件存放灯光种类，控件设置在主窗口的表格布局中
+        self.lightTypeCB = QtWidgets.QComboBox()
+        for lightType in sorted(self.lightTypes):
+            self.lightTypeCB.addItem(lightType)
+        layout.addWidget(self.lightTypeCB, 0, 0, 1, 2)
+
+        # 按钮控件在主窗口的表格布局中
+        createBtn = QtWidgets.QPushButton(&#39;Create&#39;)
+        createBtn.clicked.connect(self.createLight)
+        layout.addWidget(createBtn, 0, 2)
+
+        # 创建一个QWidget对象scrollWidget用来存放滑动条
+        scrollWidget = QtWidgets.QWidget()
+        scrollWidget.setSizePolicy(QtWidgets.QSizePolicy.Maximum,
+                                   QtWidgets.QSizePolicy.Maximum)  # 设置滑动条控件中的内容的水平与垂直方向大小策略
+        self.scrollLayout = QtWidgets.QVBoxLayout(scrollWidget)  # 滑动条控件中有一个垂直布局用来存放灯光控件
+
+        scrollArea = QtWidgets.QScrollArea()
+        scrollArea.setWidgetResizable(True)
+        scrollArea.setWidget(scrollWidget)
+        layout.addWidget(scrollArea, 1, 0, 1, 3)
+
+        saveBtn = QtWidgets.QPushButton(&#39;Save&#39;)
+        saveBtn.clicked.connect(self.saveLights)
+        layout.addWidget(saveBtn, 2, 0)
+
+        importBtn = QtWidgets.QPushButton(&#39;Import&#39;)
+        importBtn.clicked.connect(self.importLights)
+        layout.addWidget(importBtn, 2, 1)
+
+        refreshBtn = QtWidgets.QPushButton(&#39;Refresh&#39;)
+        refreshBtn.clicked.connect(self.populate)
+        layout.addWidget(refreshBtn, 2, 2)
+
+    def saveLights(self):
+        properties = &#123;&#125;  # 定义一个字典来存取灯光信息
+
+        for lightWidget in self.findChildren(LightWidget):  # 遍历所有的灯光信息控件
+            light = lightWidget.light
+            transform = light.getTransform()
+
+            properties[str(transform)] = &#123;
+                &#39;translate&#39;: list(transform.translate.get()),  # 需要使用list格式json才能进行编码
+                &#39;rotation&#39;: list(transform.rotate.get()),  # # 需要使用list格式json才能进行编码
+                &#39;lightType&#39;: pm.objectType(light),  # 这里必须要使用shape类型的灯光节点才能够得到正确的lightType
+                &#39;intensity&#39;: light.intensity.get(),
+                &#39;color&#39;: light.color.get()
+            &#125;
+            # 获取maya文档路径并向后添加一个lightManager路径赋予director
+        director = self.getDirectory()
+        # 创建json文件路径以及名字根据当前时间的格式（月日）来命名
+        lightFile = os.path.join(director, &#39;lightFile_%s.json&#39; % time.strftime(&#39;%m%d&#39;))
+        with open(lightFile, &#39;w&#39;) as f:
+            json.dump(properties, f, indent=4)  # 将info的信息转存到json文件中，f为别名并增加缩进为4，info为调用函数时自定义的信息
+        logger.info(&#39;Saving file to %s&#39; % lightFile)  # 日志器输出保存的json文件的路径
+
+    def getDirectory(self):
+        director = os.path.join(pm.internalVar(userAppDir=True), &#39;lightManager&#39;)
+        if not os.path.exists(director):  # 如果director路径中没有存在文件夹那么就生成对应的文件夹
+            os.mkdir(director)
+        return director
+
+    def importLights(self):
+        directory = self.getDirectory()
+        # 打开一个文件浏览器，并定义文件浏览器的标题和目录
+        # filename为一个元组 第一个元素为选中的文件的路径，第二个元素是空。（不包含文件夹中所有元素，也不是单独一个字符串）
+        fileName = QtWidgets.QFileDialog.getOpenFileName(self, &quot;Light Browser&quot;, directory)
+        with open(fileName[0], &#39;r&#39;) as f:
+            properties = json.load(f)
+
+        for light, info in properties.items():  # light为灯光节点名字，info为信息字典
+            lightType = info.get(&#39;lightType&#39;)  # 先找到json文件中的灯光类型
+            for lt in self.lightTypes:  # 对于我们支持的每个light类型，我们检查它们是否与light类型匹配
+                if (&#39;%sLight&#39; % lt.split()[0].lower()) == lightType:  # 如果找到对应的灯光类型就跳出循环后根据信息灯光
+                    break
+            else:
+                # 如果没有找到对应的灯光类型就结束这一次循环进入下一个循环
+                # logger是用来调试生成日志使用的，使用logger生成light和lightType来观察哪里出现了问题
+                logger.info(&#39;Cannot find a corresponding light type for %s(%s)&#39; % (light, lightType))
+                continue
+            # 调用方法得到光的shape节点
+            light = self.createLight(lightType=lt)
+            # 设置光的shape参数
+            light.intensity.set(info.get(&#39;intensity&#39;))
+            light.color.set(info.get(&#39;color&#39;))
+
+            # 得到光的变换来设置它的参数
+            transform = light.getTransform()
+            transform.translate.set(info.get(&#39;translate&#39;))
+            transform.rotate.set(info.get(&#39;rotation&#39;))  # 执行完之后进入下一个循环再次根据灯光类型生成灯光
+
+        self.populate()  # 灯光生成完成之后，调用populate方法来刷新得到UI
+
+    def createLight(self, lightType=None, add=True):  # 每使用一次create就调用LightWidget类创建灯光控件放置在滑动条控件中
+
+        if not lightType:  # 如果没有指定lightType就根据列表框中的文字生成
+            lightType = self.lightTypeCB.currentText()
+        # 得到创建对应灯光类型的函数
+        func = self.lightTypes[lightType]
+        # 调用函数来创建灯光
+        light = func()
+        if add:
+            self.addLight(light)
+        return light
+
+    def addLight(self, light):
+        # 这将为给定的光源创建一个LightWidget，并将其添加到UI中
+        # 首先我们创建LightWidget
+        widget = LightWidget(light)
+        # 然后，我们将小部件的onSolo信号连接到我们的方法中
+        widget.onSolo.connect(self.onSolo)  # onSolo是信号，self.onSolo是槽
+        # 最后，我们将其添加到scrollLayout
+        self.scrollLayout.addWidget(widget)
+
+    def onSolo(self, value):
+        lightWidgets = self.findChildren(LightWidget)  # 得到所有LightWidget控件的列表
+        for widget in lightWidgets:
+            # 每个信号都让我们知道是谁发送的，我们可以通过sender()查询
+            # 对于每个小部件，我们检查它是否是发送者
+            if widget != self.sender():
+                # 如果不是小部件，我们将禁用它
+                widget.disableLight(value)
+
+
+class LightWidget(QtWidgets.QWidget):
+    onSolo = QtCore.Signal(bool)  # 自定义信号，接收bool类型的
+
+    def __init__(self, light):
+        super(LightWidget, self).__init__()
+        if isinstance(light, basestring):
+            light = pm.PyNode(light)  # 这里接收的light参数是通过create创建的灯光，因为创建灯光的方式不完全相同，因此都转换成pyNode的类型方便操作
+
+        # 因为通过shadingNode命令生成的灯光返回是transform类型的
+        # 如果要通过objectType命令反推灯光类型的名字需要通过shape类型的节点
+        # 因此加一个判断，如果灯光的节点类型是transform类型就更改为shape类型
+        if isinstance(light, pm.nodetypes.Transform):
+            light = light.getShape()
+        self.light = light
+        self.buildUI()
+
+    def buildUI(self):
+        layout = QtWidgets.QGridLayout(self)
+
+        self.name = QtWidgets.QCheckBox(str(self.light.getTransform()))  # 灯光的名字
+        self.name.setChecked(self.light.getTransform().visibility.get())  # 根据灯光的可视性自动设置复选框的状态
+        self.name.toggled.connect(
+            lambda val: self.light.getTransform().visibility.set(val))  # 当复选框改变时调用lambda函数，传入val（0，1，2）然后返回冒号后面的内容
+        layout.addWidget(self.name, 0, 0)
+
+        soloBtn = QtWidgets.QPushButton(&#39;solo&#39;)
+        soloBtn.setCheckable(True)
+        soloBtn.toggled.connect(lambda val: self.onSolo.emit(val))  # 当solo按钮被按下时向onSolo信号发送val值（按下时为True，反之False）
+        layout.addWidget(soloBtn, 0, 1)
+
+        deleteBtn = QtWidgets.QPushButton(&#39;X&#39;)
+        deleteBtn.clicked.connect(self.deleteLight)
+        deleteBtn.setMaximumWidth(20)
+        layout.addWidget(deleteBtn, 0, 2)
+
+        intensity = QtWidgets.QSlider(QtCore.Qt.Horizontal)  # 创建水平滑块控件
+        intensity.setMinimum(1)
+        intensity.setMaximum(1000)
+        intensity.setValue(self.light.intensity.get())
+        intensity.valueChanged.connect(lambda val: self.light.intensity.set(val))
+        layout.addWidget(intensity, 1, 0, 1, 2)
+
+        self.colorBtn = QtWidgets.QPushButton()
+        self.colorBtn.setMaximumWidth(20)
+        self.colorBtn.setMinimumHeight(20)
+        self.setButtonColor()
+        self.colorBtn.clicked.connect(self.setColor)
+        layout.addWidget(self.colorBtn, 1, 2)
+
+    def setColor(self):
+        lightColor = self.light.color.get()  # 得到灯光的颜色
+        color = pm.colorEditor(rgbValue=lightColor)  # 调用maya的颜色编辑器，默认颜色为灯光颜色，color为我们期望的颜色
+        # 通过pm.colorEditor颜色编辑器得到的颜色为字符串类型的，且字之间有空格，因此通过列表生成式以及split将rgba数值分别传递给rgba变量
+        r, g, b, a = [float(c) for c in color.split()]
+        color = (r, g, b)
+
+        self.light.color.set(color)
+        self.setButtonColor(color)
+
+    def setButtonColor(self, color=None):
+        if not color:
+            # 如果没有设置按钮颜色，那么就自动获取对应灯光的颜色
+            color = self.light.color.get()
+        # 确保提供的颜色为3个项目的列表
+        assert len(color) == 3, &quot;You must provide a list of 3 colors&quot;  # 通过assert 判断 len（color） 如果为False则报错为True则正常进行
+        # maya里的数值为0~1，而我们需要0~255的数值来设置UI的颜色
+        r, g, b = [c * 255 for c in color]
+        # 通过类CSS的方法设置按钮的颜色
+        self.colorBtn.setStyleSheet(&#39;background-color: rgba(%s, %s, %s, 1.0)&#39; % (r, g, b))
+
+    def disableLight(self, value):
+        self.name.setChecked(not value)
+
+    def deleteLight(self):
+        # 当删除灯光的同时也需要删除控件
+        # 前两行是防止python和Qt发生冲突而使用的
+        # 理论上只需要第三行就可以了，第三行会自动执行前两行
+        self.setParent(None)
+        self.setVisible(False)
+        self.deleteLater()
+        pm.delete(self.light.getTransform())  # 需要删除变换层而不仅仅是形状层
+
+
+LightManager()
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>maya python 简易教程和B站maya TD</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-maya-python-%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B%E5%92%8CB%E7%AB%99maya-TD/">http://example.com/2023/08/29/DCC工具开发-MayaPy-maya-python-简易教程和B站maya-TD/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>RuiChen</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-08-29</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-07-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MayaPy/"><div class="tags-punctuation"><svg class="faa-tada icon" style="height:1.1em;width:1.1em;fill:currentColor;position:relative;top:2px;margin-right:3px" aria-hidden="true"><use xlink:href="#icon-sekuaibiaoqian"></use></svg></div>MayaPy</a></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-NukePy-Python-for-nuke-101/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(55).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python_for_nuke_101</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-Maya%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(85).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Maya开发实践</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MAYA-PYTHON-API/" title="MAYA PYTHON API"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(5).png?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">MAYA PYTHON API</div></div></a></div><div><a href="/2023/09/26/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MayaPy%E7%9A%84%E4%B8%80%E4%BA%9B%E8%A1%A5%E5%85%85-%E7%A7%AF%E7%B4%AF/" title="MayaPy的一些补充(积累)"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(12).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">MayaPy的一些补充(积累)</div></div></a></div><div><a href="/2023/10/09/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-Maya%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" title="Maya后台执行脚本"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(45).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">Maya后台执行脚本</div></div></a></div><div><a href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-MayaPythonAPI-Zurbrigg/" title="MayaPythonAPI_Zurbrigg"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(61).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">MayaPythonAPI_Zurbrigg</div></div></a></div><div><a href="/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-Maya%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" title="Maya开发实践"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(85).jpg?raw=true" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2024-07-28</div><div class="title">Maya开发实践</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg class="meta_icon" style="width:22px;height:22px;position:relative;top:5px"><use xlink:href="#icon-mulu1"></use></svg><span style="font-weight:bold">目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E7%AF%87%E4%BB%8B%E7%BB%8D"><span class="toc-text">开篇介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Unicode-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">Unicode 字符串</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E4%BB%A3%E7%A0%81"><span class="toc-text">第一个简单代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%B8%E9%99%84%E5%B7%A5%E5%85%B7"><span class="toc-text">吸附工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E5%89%8D%E7%BC%80%E5%90%8E%E7%BC%80%E5%B7%A5%E5%85%B7"><span class="toc-text">批量添加前缀后缀工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E6%96%87%E6%9C%AC%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">对文本进行操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%A6%E7%AA%97%E5%8F%A3%E5%B8%A6%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E5%8A%A0%E5%89%8D%E7%BC%80%E5%90%8D%E5%B7%A5%E5%85%B7"><span class="toc-text">带窗口带输入框的加前缀名工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%A0%B9%E6%8D%AE%E7%89%A9%E4%BD%93%E7%B1%BB%E5%9E%8B%E6%B7%BB%E5%8A%A0%E5%90%8E%E7%BC%80%E5%90%8D"><span class="toc-text">自动根据物体类型添加后缀名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BD%BF%E8%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-text">齿轮工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%BD%BF%E8%BD%AE%E5%B7%A5%E5%85%B7gearCreator"><span class="toc-text">创建齿轮工具gearCreator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%BD%BF%E8%BD%AE%E5%B9%B6%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E9%BD%BF%E8%BD%AE"><span class="toc-text">创建齿轮并可以修改齿轮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%B1%BB%E6%9D%A5%E5%AE%9E%E7%8E%B0%E9%BD%BF%E8%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-text">使用类来实现齿轮工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6UI%E7%9A%84%E5%88%9B%E5%BB%BA%E9%BD%BF%E8%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-text">带UI的创建齿轮工具</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E5%B8%A7%E5%B7%A5%E5%85%B7"><span class="toc-text">中间帧工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0UI%E7%89%88"><span class="toc-text">无UI版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0UI"><span class="toc-text">添加UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E5%B9%B6%E4%BD%BF%E7%94%A8"><span class="toc-text">组合并使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#contrary-library-UI%EF%BC%88%E6%8E%A7%E5%88%B6%E5%99%A8%E5%BA%93%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="toc-text">contrary library UI（控制器库工具）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#maya%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E4%BB%A5%E5%8F%8A%E6%92%AD%E6%94%BE%E9%A2%84%E8%A7%88%EF%BC%88playblast%EF%BC%89"><span class="toc-text">maya文件操作以及播放预览（playblast）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PySide2-for-maya"><span class="toc-text">PySide2 for maya</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lightingManager"><span class="toc-text">lightingManager</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A"><span class="toc-text">知识点：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#partial%E5%87%BD%E6%95%B0"><span class="toc-text">partial函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda%E5%87%BD%E6%95%B0"><span class="toc-text">lambda函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isinstance%E5%87%BD%E6%95%B0%E4%B8%8Ebasestring%E5%87%BD%E6%95%B0"><span class="toc-text">isinstance函数与basestring函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pynode"><span class="toc-text">pynode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrollWidget"><span class="toc-text">scrollWidget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4UI%E6%8E%A7%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">删除UI控件的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8E%A7%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%90%E6%8E%A7%E4%BB%B6%E5%B9%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">获取控件中的所有子控件并操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logging%E6%A8%A1%E5%9D%97"><span class="toc-text">logging模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86Qt%E7%9A%84UI%E7%AA%97%E5%8F%A3%E5%92%8CMAYA%E7%BB%91%E5%AE%9A%E5%88%B0%E4%B8%80%E8%B5%B7%EF%BC%88%E7%AA%97%E5%8F%A3%E5%8F%AF%E4%BB%A5%E5%86%85%E5%B5%8C%E5%88%B0maya%E4%B8%AD%EF%BC%89%E5%B9%B6%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%81%9C%E9%9D%A0%E5%9C%B0%E7%82%B9"><span class="toc-text">将Qt的UI窗口和MAYA绑定到一起（窗口可以内嵌到maya中）并可以设置停靠地点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shadingNode%E5%92%8CpointLight%E4%B8%8EspotLight%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">shadingNode和pointLight与spotLight命令的区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>

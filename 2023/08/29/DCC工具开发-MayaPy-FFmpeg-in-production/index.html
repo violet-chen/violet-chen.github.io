@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><div id="myscoll"></div><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>FFmpeg in production | RuiChen</title><meta name="keywords" content="FFmpeg"><meta name="author" content="RuiChen"><meta name="copyright" content="RuiChen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="FFmpeg与ffmpeg的介绍 FFmpeg or ffmpeg FFmpeg toolsFFmpeg提供的所有工具：  FFmpeg libraries ffmpeg 安装ffmpeghttps:&#x2F;&#x2F;github.com&#x2F;BtbN&#x2F;FFmpeg-Builds&#x2F;releases可以去这个github网站里下载构建版本 ffmpeg基础语法在powershell中使用在构建好的ffmpeg目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg in production">
+<meta property="og:url" content="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-FFmpeg-in-production/index.html">
+<meta property="og:site_name" content="RuiChen">
+<meta property="og:description" content="FFmpeg与ffmpeg的介绍 FFmpeg or ffmpeg FFmpeg toolsFFmpeg提供的所有工具：  FFmpeg libraries ffmpeg 安装ffmpeghttps:&#x2F;&#x2F;github.com&#x2F;BtbN&#x2F;FFmpeg-Builds&#x2F;releases可以去这个github网站里下载构建版本 ffmpeg基础语法在powershell中使用在构建好的ffmpeg目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(69).jpg?raw=true">
+<meta property="article:published_time" content="2023-08-28T19:57:00.000Z">
+<meta property="article:modified_time" content="2024-07-27T18:58:06.888Z">
+<meta property="article:author" content="RuiChen">
+<meta property="article:tag" content="FFmpeg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/violet-chen/image_lib/blob/main/img%20(69).jpg?raw=true"><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-FFmpeg-in-production/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FFmpeg in production',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-28 02:58:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><style id="themeColor"></style><style id="rightSide"></style><style id="transPercent"></style><style id="blurNum"></style><style id="settingStyle"></style><style id="defineBg"></style><style id="menu_shadow"></style><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="RuiChen" type="application/atom+xml">
+</head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/assets/TouXiang.jpg" onerror="onerror=null;src='/assets/r1.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">RuiChen</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-home"></use></svg><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-guidang1"></use></svg><span class="menu_word" style="font-size:17px"> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-sekuaibiaoqian"></use></svg><span class="menu_word" style="font-size:17px"> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><svg class="menu_icon faa-tada" aria-hidden="true" style="width:1.30em;height:1.30em;vertical-align:-0.15em;fill:currentColor;overflow:hidden;"><use xlink:href="#icon-fenlei"></use></svg><span class="menu_word" style="font-size:17px"> 分类</span></a></div></div><div id="nav-right"><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:24px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-valentine_-search-love-find-heart"></use></svg><span> 搜索</span></a></div><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1"></use></svg></a><a class="sun_moon faa-parent animated-hover" onclick="switchNightMode()" title="浅色和深色模式转换" id="nightmode-button"><svg class="faa-tada" style="height:25px;width:25px;fill:currentColor;position:relative;top:7px" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon">       </use></svg></a><div id="toggle-menu"><a><i class="fas fa-bars fa-fw"></i></a></div></div></div></nav><div id="post-info"><h1 class="post-title">FFmpeg in production</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-meta-icon" style="width:30px;height:30px;position:relative;top:10px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于 </span><time class="post-meta-date-created" datetime="2023-08-28T19:57:00.000Z" title="发表于 2023-08-29 03:57:00">2023-08-29</time><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-gengxin1"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-27T18:58:06.888Z" title="更新于 2024-07-28 02:58:06">2024-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:18px;height:18px;position:relative;top:5px"><use xlink:href="#icon-biaoqian"></use></svg><a class="post-meta-categories" href="/categories/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/">DCC工具开发</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:8px"><use xlink:href="#icon-charuword"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">1951</span><span class="post-meta-separator">|</span><svg class="meta_icon post-meta-icon" style="width:20px;height:20px;position:relative;top:5px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="FFmpeg in production"><svg class="meta_icon post-meta-icon" style="width:25px;height:25px;position:relative;top:5px"><use xlink:href="#icon-eye"></use></svg><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer">
+
+<p><a name="k62qS"></a></p>
+<h1 id="FFmpeg与ffmpeg的介绍"><a href="#FFmpeg与ffmpeg的介绍" class="headerlink" title="FFmpeg与ffmpeg的介绍"></a>FFmpeg与ffmpeg的介绍</h1><p><a name="BR4Wx"></a></p>
+<h2 id="FFmpeg-or-ffmpeg"><a href="#FFmpeg-or-ffmpeg" class="headerlink" title="FFmpeg or ffmpeg"></a>FFmpeg or ffmpeg</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673936833672-f709f7e7-0067-41dd-b0f5-9b2e2094084b.png#averageHue=%23111111&amp;clientId=u2f19a3ad-c148-4&amp;from=paste&amp;height=229&amp;id=u41085d30&amp;originHeight=229&amp;originWidth=2140&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172285&amp;status=done&amp;style=none&amp;taskId=u4a2bade5-fc04-429c-9ec8-233e211251c&amp;title=&amp;width=2140" alt="image.png"><br><a name="lF4l3"></a></p>
+<h2 id="FFmpeg-tools"><a href="#FFmpeg-tools" class="headerlink" title="FFmpeg tools"></a>FFmpeg tools</h2><p>FFmpeg提供的所有工具： <br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673936885926-0187a839-8e1a-490f-b0a2-94d29a805769.png#averageHue=%23080808&amp;clientId=u2f19a3ad-c148-4&amp;from=paste&amp;height=734&amp;id=u1aa47442&amp;originHeight=734&amp;originWidth=2158&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=290899&amp;status=done&amp;style=none&amp;taskId=u3722c923-c8e1-426a-8842-5c938f2ec7e&amp;title=&amp;width=2158" alt="image.png"><br><a name="eKf78"></a></p>
+<h2 id="FFmpeg-libraries"><a href="#FFmpeg-libraries" class="headerlink" title="FFmpeg libraries"></a>FFmpeg libraries</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673937020238-2f9dd90e-64de-427b-8025-9728ee4aea55.png#averageHue=%23060606&amp;clientId=u2f19a3ad-c148-4&amp;from=paste&amp;height=663&amp;id=u7181e3f9&amp;originHeight=663&amp;originWidth=2165&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=215397&amp;status=done&amp;style=none&amp;taskId=u095783ac-8635-4529-98cd-d5c7d8c1980&amp;title=&amp;width=2165" alt="image.png"><br><a name="x3R6c"></a></p>
+<h2 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1673937128075-057b74f7-09f0-4c5f-bb6e-dd403aedd0d9.png#averageHue=%23060606&amp;clientId=u2f19a3ad-c148-4&amp;from=paste&amp;height=534&amp;id=u8f02f286&amp;originHeight=534&amp;originWidth=2209&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=231125&amp;status=done&amp;style=none&amp;taskId=u5fa73875-6ec5-454e-89bb-c3b68590965&amp;title=&amp;width=2209" alt="image.png"><br><a name="pPYhz"></a></p>
+<h1 id="安装ffmpeg"><a href="#安装ffmpeg" class="headerlink" title="安装ffmpeg"></a>安装ffmpeg</h1><p><a href="https://github.com/BtbN/FFmpeg-Builds/releases">https://github.com/BtbN/FFmpeg-Builds/releases</a><br>可以去这个github网站里下载构建版本<br><a name="gSfxC"></a></p>
+<h1 id="ffmpeg基础语法"><a href="#ffmpeg基础语法" class="headerlink" title="ffmpeg基础语法"></a>ffmpeg基础语法</h1><p>在powershell中使用<br>在<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686124834256-4b7dbe37-eeb5-4ba5-abf2-709f5cee50a5.png#averageHue=%23faf9f7&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=374&amp;id=u5b17cf2d&amp;originHeight=374&amp;originWidth=707&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=45262&amp;status=done&amp;style=none&amp;taskId=ua8de8cbd-3ca2-44a7-a7ef-24fe9834daf&amp;title=&amp;width=707" alt="image.png">构建好的ffmpeg目录下的bin目录下按shift加鼠标右键然后按s快捷键即可在目录下打开powershell<br>前面是输入选项和路径，后面是输出选项和路径。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686130668081-50866e46-3ec5-460b-a5fc-e1886492c111.png#averageHue=%230c0c0c&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=108&amp;id=u959cf2bb&amp;originHeight=108&amp;originWidth=1699&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=56375&amp;status=done&amp;style=none&amp;taskId=u719581c8-fed6-4f10-bc3f-6137f8542c2&amp;title=&amp;width=1699" alt="image.png"><br><a name="X8L2Y"></a></p>
+<h1 id="将图片序列转成视频"><a href="#将图片序列转成视频" class="headerlink" title="将图片序列转成视频"></a>将图片序列转成视频</h1><p>将 文件夹中符合img_seq.%04d的图片整合成24帧的视频序列，用h264编码：.\ffmpeg.exe -framerate 24 -i ._image_sequences\img_seq\img_seq.%04d.png -c:v h264 output.mp4  <br>-c:v: h264 意思是使用h264编码视频流<br><a name="ngldj"></a></p>
+<h1 id="ffmpeg与输出以及h264相关的option介绍"><a href="#ffmpeg与输出以及h264相关的option介绍" class="headerlink" title="ffmpeg与输出以及h264相关的option介绍"></a>ffmpeg与输出以及h264相关的option介绍</h1><p><a name="btBYo"></a></p>
+<h2 id="Constant-Rate-Factor-（crf）输出质量"><a href="#Constant-Rate-Factor-（crf）输出质量" class="headerlink" title="Constant Rate Factor （crf）输出质量"></a>Constant Rate Factor （crf）输出质量</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686127869111-004de1e0-3998-4bce-8b84-695aa5590c60.png#averageHue=%230a0a0a&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=784&amp;id=ua6c98757&amp;originHeight=784&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=298300&amp;status=done&amp;style=none&amp;taskId=ue1e4471e-ca2e-4359-ad3e-9c1f5615e0e&amp;title=&amp;width=1714" alt="image.png"><br><a name="FThoC"></a></p>
+<h2 id="Preset-编码速度预设"><a href="#Preset-编码速度预设" class="headerlink" title="Preset 编码速度预设"></a>Preset 编码速度预设</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686127978943-e0d1bed6-d116-43dd-8f5f-7351363cab76.png#averageHue=%23060606&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=896&amp;id=uea4b45e7&amp;originHeight=896&amp;originWidth=1742&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=245348&amp;status=done&amp;style=none&amp;taskId=ube678619-e57d-4e15-a3bd-72e07e482fa&amp;title=&amp;width=1742" alt="image.png"><br><a name="icEGW"></a></p>
+<h2 id="Tune（不经常使用）"><a href="#Tune（不经常使用）" class="headerlink" title="Tune（不经常使用）"></a>Tune（不经常使用）</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686128368452-e0e78d2f-a4ff-417a-8303-b2be9484579f.png#averageHue=%230c0c0c&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=1019&amp;id=uccaf701b&amp;originHeight=1019&amp;originWidth=1973&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=502036&amp;status=done&amp;style=none&amp;taskId=udc054b92-eea8-488b-8174-6fa9665c1eb&amp;title=&amp;width=1973" alt="image.png"><br><a name="aI8qr"></a></p>
+<h2 id="Profile-profile-v-and-Level-level-为了兼容旧设备才需要看这个"><a href="#Profile-profile-v-and-Level-level-为了兼容旧设备才需要看这个" class="headerlink" title="Profile(-profile:v) and Level(-level)  (为了兼容旧设备才需要看这个)"></a>Profile(-profile:v) and Level(-level)  (为了兼容旧设备才需要看这个)</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686128887023-6b184a06-2784-47ae-bfb2-1a76cd304fc5.png#averageHue=%230a0a0a&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=938&amp;id=ub5ef7475&amp;originHeight=938&amp;originWidth=1770&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=374321&amp;status=done&amp;style=none&amp;taskId=u6789f85f-e2b7-414a-8e7b-c02f32a058a&amp;title=&amp;width=1770" alt="image.png"><br><a name="NKjmJ"></a></p>
+<h2 id="更改输出的缩放比"><a href="#更改输出的缩放比" class="headerlink" title="更改输出的缩放比"></a>更改输出的缩放比</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686129672761-7d028a0d-36f5-4129-9f22-8d18fe8b24ed.png#averageHue=%230a0a0a&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=864&amp;id=u9ac301f7&amp;originHeight=864&amp;originWidth=1705&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=369264&amp;status=done&amp;style=none&amp;taskId=u4375f99b-1cc7-47b0-aaee-c1b5d0b0cee&amp;title=&amp;width=1705" alt="image.png"><br><a name="w37pj"></a></p>
+<h2 id="更改像素格式"><a href="#更改像素格式" class="headerlink" title="更改像素格式"></a>更改像素格式</h2><p>可以通过ffmpeg -pix_fmts查看所有可用像素格式的列表<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686129977233-50ff5dc0-ff6f-4e2d-a91f-aa370a0fc671.png#averageHue=%23080808&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=1153&amp;id=u7865d07c&amp;originHeight=1153&amp;originWidth=2477&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=532685&amp;status=done&amp;style=none&amp;taskId=ubc7caf4c-0371-4669-a489-e88b78d0290&amp;title=&amp;width=2477" alt="image.png"><br><a name="j5wui"></a></p>
+<h1 id="添加音频"><a href="#添加音频" class="headerlink" title="添加音频"></a>添加音频</h1><p><a name="uTuKy"></a></p>
+<h2 id="图片序列转化成视频的同时添加音频文件到视频文件中"><a href="#图片序列转化成视频的同时添加音频文件到视频文件中" class="headerlink" title="图片序列转化成视频的同时添加音频文件到视频文件中"></a>图片序列转化成视频的同时添加音频文件到视频文件中</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686130405876-af47416a-f6fb-40b2-b5db-e34f738af46a.png#averageHue=%230f0f0f&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=852&amp;id=u1410c803&amp;originHeight=852&amp;originWidth=2364&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=533660&amp;status=done&amp;style=none&amp;taskId=u4d1db221-1f51-4f12-8a3c-d7c387dac4a&amp;title=&amp;width=2364" alt="image.png"><br><a name="ATFEi"></a></p>
+<h2 id="设置输出的音频的选项"><a href="#设置输出的音频的选项" class="headerlink" title="设置输出的音频的选项"></a>设置输出的音频的选项</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686130874110-84c2e473-ad7c-4b05-9c9c-1acb50e1830f.png#averageHue=%230b0b0b&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=992&amp;id=oNVIM&amp;originHeight=992&amp;originWidth=2369&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=516865&amp;status=done&amp;style=none&amp;taskId=u48322327-df09-4cc1-b951-ddbaec0a5a5&amp;title=&amp;width=2369" alt="image.png"><br><a name="vzbSp"></a></p>
+<h2 id="当音频长度比视频长度要长时，如何舍弃掉多余的视频"><a href="#当音频长度比视频长度要长时，如何舍弃掉多余的视频" class="headerlink" title="当音频长度比视频长度要长时，如何舍弃掉多余的视频"></a>当音频长度比视频长度要长时，如何舍弃掉多余的视频</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686132160801-b3febdd4-1f01-40e5-8ccb-f4679871af4d.png#averageHue=%230a0a0a&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=901&amp;id=u6594224c&amp;originHeight=901&amp;originWidth=2365&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=392659&amp;status=done&amp;style=none&amp;taskId=u73a43970-1547-47ba-a471-35734b06daa&amp;title=&amp;width=2365" alt="image.png"><br><a name="yZrJq"></a></p>
+<h2 id="当音频长度比视频长度短时"><a href="#当音频长度比视频长度短时" class="headerlink" title="当音频长度比视频长度短时"></a>当音频长度比视频长度短时</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686132288036-bf8fb09d-93f9-4713-b7c8-c8ee95926413.png#averageHue=%23080808&amp;clientId=u6c33c667-b75d-4&amp;from=paste&amp;height=1037&amp;id=u0ecf5fcc&amp;originHeight=1037&amp;originWidth=2433&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=446558&amp;status=done&amp;style=none&amp;taskId=u2d13a6dc-4b3f-4740-bdfe-770199092a8&amp;title=&amp;width=2433" alt="image.png"><br><a name="dj98o"></a></p>
+<h1 id="Codecs-and-Containers-编码解码器与容器"><a href="#Codecs-and-Containers-编码解码器与容器" class="headerlink" title="Codecs and Containers 编码解码器与容器"></a>Codecs and Containers 编码解码器与容器</h1><p><a name="kv4cp"></a></p>
+<h2 id="codec-编码解码器"><a href="#codec-编码解码器" class="headerlink" title="codec(编码解码器)"></a>codec(编码解码器)</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686190062804-425ffdb1-4c3c-4659-adbd-0d83c7ca4530.png#averageHue=%230c0c0c&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=776&amp;id=ucc93652e&amp;originHeight=776&amp;originWidth=2250&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=422925&amp;status=done&amp;style=none&amp;taskId=u50a6ad35-7470-414c-a503-daabf0aac43&amp;title=&amp;width=2250" alt="image.png"><br><a name="oHy6l"></a></p>
+<h2 id="Container（容器，指文件格式）"><a href="#Container（容器，指文件格式）" class="headerlink" title="Container（容器，指文件格式）"></a>Container（容器，指文件格式）</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686190174798-0fd4fa3d-0650-4c8a-8abe-53aa1cd3a247.png#averageHue=%23080808&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=1067&amp;id=uc8b50c2c&amp;originHeight=1067&amp;originWidth=1974&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=315549&amp;status=done&amp;style=none&amp;taskId=u48544d8c-1c81-49c0-b0cb-62d7a2ffeff&amp;title=&amp;width=1974" alt="image.png"><br><a name="gd6ma"></a></p>
+<h2 id="file-encoding（文件编码）"><a href="#file-encoding（文件编码）" class="headerlink" title="file encoding（文件编码）"></a>file encoding（文件编码）</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686190317542-311861f5-5390-41d8-ada3-cfdd2061eeb5.png#averageHue=%23090909&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=694&amp;id=ua45cb5fa&amp;originHeight=694&amp;originWidth=1754&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=234212&amp;status=done&amp;style=none&amp;taskId=u0222d8b4-8476-433e-b545-1eff4edf0a5&amp;title=&amp;width=1754" alt="image.png"><br><a name="bvkkE"></a></p>
+<h2 id="Converting-Containers-转换文件格式"><a href="#Converting-Containers-转换文件格式" class="headerlink" title="Converting Containers 转换文件格式"></a>Converting Containers 转换文件格式</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686190621098-bb317d51-0319-47e4-ac07-3657edaf30a1.png#averageHue=%230e0e0e&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=481&amp;id=u1e8581a9&amp;originHeight=481&amp;originWidth=1541&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=206584&amp;status=done&amp;style=none&amp;taskId=ue6256960-625a-4fd4-96b8-d465f2c949c&amp;title=&amp;width=1541" alt="image.png"><br><a name="Jo1VZ"></a></p>
+<h2 id="Transcoding转码"><a href="#Transcoding转码" class="headerlink" title="Transcoding转码"></a>Transcoding转码</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686190600115-0c09d4d5-06b6-484e-8398-d839ccc02664.png#averageHue=%230c0c0c&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=788&amp;id=u231eea2b&amp;originHeight=788&amp;originWidth=2420&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=427805&amp;status=done&amp;style=none&amp;taskId=u86262856-2ed1-4152-a3a5-092b0b9d9da&amp;title=&amp;width=2420" alt="image.png"><br><a name="PTy14"></a></p>
+<h1 id="Converting-and-transcoding-转码"><a href="#Converting-and-transcoding-转码" class="headerlink" title="Converting and transcoding 转码"></a>Converting and transcoding 转码</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686191116971-5d909224-2fca-4f71-a0b0-34e45a1156ab.png#averageHue=%230a0a0a&amp;clientId=uf7add6b9-7201-4&amp;from=paste&amp;height=1087&amp;id=u48eecded&amp;originHeight=1087&amp;originWidth=2119&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=494248&amp;status=done&amp;style=none&amp;taskId=u29ffa33b-745a-42a2-8b9d-80122b2f02a&amp;title=&amp;width=2119" alt="image.png"><br><a name="xuN0e"></a></p>
+<h1 id="Generating-an-Image-Sequence生成图像序列"><a href="#Generating-an-Image-Sequence生成图像序列" class="headerlink" title="Generating an Image Sequence生成图像序列"></a>Generating an Image Sequence生成图像序列</h1><p>图像序列转成视频：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686194214627-7968db08-35de-4e93-ae01-140887c3cbe7.png#averageHue=%230e2d5c&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=58&amp;id=u429bbf67&amp;originHeight=58&amp;originWidth=770&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37111&amp;status=done&amp;style=none&amp;taskId=u667f26b6-369d-41dc-b5aa-ee825dd3dca&amp;title=&amp;width=770" alt="image.png"><br>视频转成图像序列（PNG）：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686194433526-204c6bce-0b27-4c2f-a119-fb65fc8d592b.png#averageHue=%23102e5d&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=49&amp;id=u3fbf9dc8&amp;originHeight=49&amp;originWidth=684&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=32421&amp;status=done&amp;style=none&amp;taskId=ubaf72023-63af-4794-8034-efbe6d68366&amp;title=&amp;width=684" alt="image.png">  png格式文件大小更大，生成质量更高<br>视频转成图像序列（JPG）：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686194832660-8cdb14c5-6c12-487b-87d8-1284a35d7d01.png#averageHue=%2312305e&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=39&amp;id=u39b57b48&amp;originHeight=39&amp;originWidth=821&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=36686&amp;status=done&amp;style=none&amp;taskId=uba9284bc-6da1-4485-a605-b81e40e3793&amp;title=&amp;width=821" alt="image.png"> jpg格式文件大小很小，默认生成质量低，但是可以通过 -qscale:v 4  来提高质量， 数值为（1-31）数值越小质量越高。<br><a name="Gp8kS"></a></p>
+<h1 id="控制是否覆盖"><a href="#控制是否覆盖" class="headerlink" title="控制是否覆盖"></a>控制是否覆盖</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686206387464-34aab456-d2c6-42eb-b0ec-054e3c10f61d.png#averageHue=%23c2c7cc&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=96&amp;id=u1e3663bb&amp;originHeight=96&amp;originWidth=482&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=47058&amp;status=done&amp;style=none&amp;taskId=u71aace21-91de-497f-991d-32ca517ce2d&amp;title=&amp;width=482" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686206317187-2d0b3598-3a77-4f3f-83a5-7906aa9eda7a.png#averageHue=%2314305c&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=34&amp;id=ub34239bf&amp;originHeight=34&amp;originWidth=697&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=26946&amp;status=done&amp;style=none&amp;taskId=u2c59d3a2-6931-4f20-af8a-0e1eea36da3&amp;title=&amp;width=697" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686206376676-d456302e-ad81-404f-9788-5d55e48f2d99.png#averageHue=%23183562&amp;clientId=uff736556-ac5a-4&amp;from=paste&amp;height=23&amp;id=u8fd13bb1&amp;originHeight=23&amp;originWidth=668&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=25471&amp;status=done&amp;style=none&amp;taskId=ud3831a4a-f21b-4fa5-8452-5877189da09&amp;title=&amp;width=668" alt="image.png"><br><a name="AWNE1"></a></p>
+<h1 id="通过python调用ffmpeg"><a href="#通过python调用ffmpeg" class="headerlink" title="通过python调用ffmpeg"></a>通过python调用ffmpeg</h1><pre><code class="lang-python">import subprocess
+
+
+FFMPEG_PATH = &quot;D:/ffmpeg-master-latest-win64-gpl-shared/bin/ffmpeg.exe&quot;
+
+
+def encode_image_sequence(image_seq_path, output_path, framerate=24, crf=21, preset=&quot;ultrafast&quot;, audio_path=None):
+
+
+    ffmpeg_cmd = FFMPEG_PATH
+    ffmpeg_cmd += &#39; -y&#39;
+    ffmpeg_cmd += &#39; -framerate &#123;0&#125;&#39;.format(framerate)
+    ffmpeg_cmd += &#39; -i &#123;0&#125;&#39;.format(image_seq_path)
+    if audio_path:
+        ffmpeg_cmd += &#39; -i &#123;0&#125;&#39;.format(audio_path)
+
+    ffmpeg_cmd += &#39; -c:v libx264 -crf &#123;0&#125; -preset &#123;1&#125;&#39;.format(crf,preset)
+    if audio_path:
+        ffmpeg_cmd += &#39; -c:a aac -filter_complex &quot;[1:0] apad&quot; -shortest&#39;
+
+    ffmpeg_cmd += &#39; &#123;0&#125;&#39;.format(output_path)
+
+    print(ffmpeg_cmd)
+    subprocess.call(ffmpeg_cmd)
+
+
+
+if __name__ == &quot;__main__&quot;:
+
+
+    img_seq_path = &quot;D:/ffmpeg-master-latest-win64-gpl-shared/bin/_image_sequences/tears_of_steel_100_frames/overrun.%04d.png&quot;    
+    audio_path = &quot;D:/ffmpeg-master-latest-win64-gpl-shared/bin/_audio/overrun.wav&quot;
+    output_path = &quot;D:/ffmpeg-master-latest-win64-gpl-shared/bin/overrun.mp4&quot;
+
+
+    encode_image_sequence(img_seq_path,output_path,audio_path=audio_path)
+</code></pre>
+<p><a name="h02ZQ"></a></p>
+<h1 id="使用Pyside2制作带界面的视频转换工具"><a href="#使用Pyside2制作带界面的视频转换工具" class="headerlink" title="使用Pyside2制作带界面的视频转换工具"></a>使用Pyside2制作带界面的视频转换工具</h1><pre><code class="lang-python">import os
+import subprocess
+import sys
+from PySide2 import QtGui
+from PySide2 import QtWidgets
+
+
+class TranscodeWindow(QtWidgets.QWidget):
+
+
+    FFMPEG_PATH = &quot;D:/ffmpeg-master-latest-win64-gpl-shared/bin/ffmpeg.exe&quot;
+
+
+    QUALITY_OPTIONS = [
+        [&quot;very high&quot;, &quot;18&quot;], # combobox item label, crf value
+        [&quot;high&quot;, &quot;20&quot;],
+        [&quot;medium&quot;, &quot;23&quot;],
+        [&quot;low&quot;, &quot;26&quot;]
+    ]
+    QUALITY_DEFAULT = &quot;medium&quot;
+
+
+    PRESETS = [
+        [&quot;very slow&quot;, &quot;veryslow&quot;], # combobox item label, preset value
+        [&quot;slower&quot;, &quot;slower&quot;],
+        [&quot;slow&quot;, &quot;slow&quot;],
+        [&quot;medium&quot;, &quot;medium&quot;],
+        [&quot;fast&quot;, &quot;fast&quot;],
+        [&quot;faster&quot;, &quot;faster&quot;],
+        [&quot;very fast&quot;, &quot;veryfast&quot;],
+        [&quot;ultra fast&quot;, &quot;ultrafast&quot;]
+    ]
+    PRESET_DEFAULT = &quot;medium&quot;
+
+
+
+    def __init__(self):
+        super(TranscodeWindow, self).__init__(parent=None)
+
+
+        self.setWindowTitle(&quot;FFmpeg Transcoder&quot;)
+        self.setMinimumSize(400, 300)
+
+
+        self.create_widgets()
+        self.create_layout()
+        self.create_connections()
+
+
+    def create_widgets(self):
+        self.input_path_le = QtWidgets.QLineEdit()
+        self.input_path_btn = QtWidgets.QPushButton(&quot;...&quot;)
+        self.input_path_btn.setFixedWidth(30)
+
+
+        self.output_path_le = QtWidgets.QLineEdit()
+        self.output_path_btn = QtWidgets.QPushButton(&quot;...&quot;)
+        self.output_path_btn.setFixedWidth(30)
+
+
+        self.video_codec_combo = QtWidgets.QComboBox()
+        self.video_codec_combo.addItem(&quot;h264&quot;, &quot;libx264&quot;)
+
+
+        self.quality_combo = QtWidgets.QComboBox()
+        for quality_option in self.QUALITY_OPTIONS:
+            self.quality_combo.addItem(quality_option[0], quality_option[1])
+        self.quality_combo.setCurrentText(self.QUALITY_DEFAULT)
+
+
+        self.preset_combo = QtWidgets.QComboBox()
+        for preset in self.PRESETS:
+            self.preset_combo.addItem(preset[0], preset[1])
+        self.preset_combo.setCurrentText(self.PRESET_DEFAULT)
+
+
+        self.audio_codec_combo = QtWidgets.QComboBox()
+        self.audio_codec_combo.addItem(&quot;aac&quot;, &quot;aac&quot;)
+
+
+        self.transcode_btn = QtWidgets.QPushButton(&quot;Transcode&quot;)
+        self.cancel_btn = QtWidgets.QPushButton(&quot;Cancel&quot;)
+
+
+    def create_layout(self):
+
+
+        input_grp = QtWidgets.QGroupBox(&quot;Input Path&quot;)
+        input_grp_layout = QtWidgets.QHBoxLayout()
+        input_grp_layout.addWidget(self.input_path_le)
+        input_grp_layout.addWidget(self.input_path_btn)
+        input_grp.setLayout(input_grp_layout)
+
+
+        output_grp = QtWidgets.QGroupBox(&quot;Output Path&quot;)
+        output_grp_layout = QtWidgets.QHBoxLayout()
+        output_grp_layout.addWidget(self.output_path_le)
+        output_grp_layout.addWidget(self.output_path_btn)
+        output_grp.setLayout(output_grp_layout)
+
+
+        video_options_grp = QtWidgets.QGroupBox(&quot;Video Options&quot;)
+        video_options_grp_layout = QtWidgets.QFormLayout()
+        video_options_grp.setLayout(video_options_grp_layout)
+
+
+        video_codec_layout = QtWidgets.QHBoxLayout()
+        video_codec_layout.addWidget(self.video_codec_combo)
+        video_codec_layout.addStretch()
+        video_options_grp_layout.addRow(&quot;Video Codec:&quot;, video_codec_layout)
+
+
+        quality_layout = QtWidgets.QHBoxLayout()
+        quality_layout.addWidget(self.quality_combo)
+        quality_layout.ad
+        quality_layout.addStretch()
+        video_options_grp_layout.addRow(&quot;Quality:&quot;, quality_layout)
+
+
+        preset_layout = QtWidgets.QHBoxLayout()
+        preset_layout.addWidget(self.preset_combo)
+        preset_layout.addStretch()
+        video_options_grp_layout.addRow(&quot;Preset:&quot;, preset_layout)
+
+
+        audio_options_grp = QtWidgets.QGroupBox(&quot;Audio Options&quot;)
+        audio_options_grp_layout = QtWidgets.QFormLayout()
+        audio_options_grp.setLayout(audio_options_grp_layout)
+
+
+        audio_codec_layout = QtWidgets.QHBoxLayout()
+        audio_codec_layout.addWidget(self.audio_codec_combo)
+        audio_codec_layout.addStretch()
+        audio_options_grp_layout.addRow(&quot;Audio Codec:&quot;, audio_codec_layout)
+
+        options_layout = QtWidgets.QHBoxLayout()
+        options_layout.addWidget(video_options_grp)
+        options_layout.addWidget(audio_options_grp)
+
+
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(self.transcode_btn)
+        button_layout.addWidget(self.cancel_btn)
+
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        main_layout.addWidget(input_grp)
+        main_layout.addWidget(output_grp)
+        main_layout.addLayout(options_layout)
+        main_layout.addStretch()
+        main_layout.addLayout(button_layout)
+
+
+    def create_connections(self):
+        self.input_path_btn.clicked.connect(self.set_input_path)
+        self.output_path_btn.clicked.connect(self.set_output_path)
+
+
+        self.transcode_btn.clicked.connect(self.transcode)
+        self.cancel_btn.clicked.connect(self.close)
+
+
+    def set_input_path(self):
+        filters = &quot;&quot;
+        selected_filter = &quot;&quot;
+
+
+        input_path, selected_filter = QtWidgets.QFileDialog.getOpenFileName(self, &quot;Select an Input File&quot;, &quot;&quot;, filters, selected_filter)
+        if input_path:
+            self.input_path_le.setText(input_path)
+
+
+    def set_output_path(self):
+        filters = &quot;*.mp4&quot;
+        selected_filter = &quot;*.mp4&quot;
+
+
+        output_path, selected_filter = QtWidgets.QFileDialog.getSaveFileName(self, &quot;Save File As&quot;, &quot;&quot;, filters, selected_filter)
+        if output_path:
+            self.output_path_le.setText(output_path)
+
+
+    def transcode(self):
+
+        input_path = self.input_path_le.text()
+        if not input_path:
+            QtWidgets.QMessageBox.critical(self, &quot;Transcode Error&quot;, &quot;Input path not set&quot;)
+            return
+        if not os.path.exists(input_path):
+            QtWidgets.QMessageBox.critical(self, &quot;Transcode Error&quot;, &quot;Input path does not exist&quot;)
+            return
+
+
+        output_path = self.output_path_le.text()
+        if not output_path:
+            QtWidgets.QMessageBox.critical(self, &quot;Transcode Error&quot;, &quot;Output path not set&quot;)
+            return
+
+
+        video_codec = self.video_codec_combo.currentData()
+        crf = self.quality_combo.currentData()
+        preset = self.preset_combo.currentData()
+
+
+        audio_codec = self.audio_codec_combo.currentData()
+
+
+        args = [self.FFMPEG_PATH]                                             # executable path
+        args.extend([&quot;-hide_banner&quot;, &quot;-y&quot;])                                   # global options
+        args.extend([&quot;-i&quot;, input_path])                                       # input path
+        args.extend([&quot;-c:v&quot;, video_codec, &quot;-crf&quot;, crf, &quot;-preset&quot;, preset])    # video output options
+        args.extend([&quot;-c:a&quot;, audio_codec])                                    # audio output options
+        args.append(output_path)                                              # output path
+
+
+        subprocess.call(args)
+
+
+        QtWidgets.QMessageBox.information(self, &quot;Transcode Complete&quot;, &quot;File transcode operation complete.&quot;)
+
+
+
+if __name__ == &quot;__main__&quot;:
+    app = QtWidgets.QApplication(sys.argv)
+
+
+    window = TranscodeWindow()
+    window.show()
+
+
+    app.exec_()
+</code></pre>
+<p><a name="wxhmb"></a></p>
+<h1 id="修剪视频"><a href="#修剪视频" class="headerlink" title="修剪视频"></a>修剪视频</h1><p><a name="n6eyl"></a></p>
+<h2 id="舍弃前面的视频内容"><a href="#舍弃前面的视频内容" class="headerlink" title="舍弃前面的视频内容"></a>舍弃前面的视频内容</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686300194202-542b1d59-9fe0-4a2e-9f41-46fdd21e46a5.png#averageHue=%23090909&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=896&amp;id=u9d04f701&amp;originHeight=896&amp;originWidth=2383&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=396214&amp;status=done&amp;style=none&amp;taskId=ue363f098-0bf3-4660-b6fb-c1a2ebdcfb6&amp;title=&amp;width=2383" alt="image.png"><br><a name="rpVUA"></a></p>
+<h2 id="舍弃最后或中间的视频内容"><a href="#舍弃最后或中间的视频内容" class="headerlink" title="舍弃最后或中间的视频内容"></a>舍弃最后或中间的视频内容</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686300292895-ab2f1585-7da6-4d84-a29c-cb5183d9ca08.png#averageHue=%23080808&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=1086&amp;id=u1e938456&amp;originHeight=1086&amp;originWidth=2122&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=380639&amp;status=done&amp;style=none&amp;taskId=ue9b618ec-c23c-460e-8cbe-6e54ea8f712&amp;title=&amp;width=2122" alt="image.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686301468647-c81def59-c870-4984-9281-4cbeae89f43d.png#averageHue=%23173159&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=38&amp;id=u7d8e8d6e&amp;originHeight=38&amp;originWidth=1179&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=54594&amp;status=done&amp;style=none&amp;taskId=u0851f117-2246-4b95-9a00-ed5c94fdfd8&amp;title=&amp;width=1179" alt="image.png"><br><a name="FyRSV"></a></p>
+<h2 id="输出指定时间的视频"><a href="#输出指定时间的视频" class="headerlink" title="输出指定时间的视频"></a>输出指定时间的视频</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686300686892-f137b300-3d65-4dc2-af60-e7c56175fd02.png#averageHue=%23070707&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=729&amp;id=u64b10927&amp;originHeight=729&amp;originWidth=2366&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=228416&amp;status=done&amp;style=none&amp;taskId=uf643b9b5-4e3a-4ab5-a5cf-2f6bd6ca01c&amp;title=&amp;width=2366" alt="image.png"><br><a name="VBigi"></a></p>
+<h2 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686300777026-a3422b34-c23a-4155-bbd0-60065c2237a9.png#averageHue=%23090909&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=909&amp;id=u5f2e2afa&amp;originHeight=909&amp;originWidth=1900&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=334576&amp;status=done&amp;style=none&amp;taskId=u1b88ae88-1ca2-421f-bf9d-fc0cf6c2a40&amp;title=&amp;width=1900" alt="image.png"><br><a name="qa6ga"></a></p>
+<h1 id="提取视频的第一帧的图片"><a href="#提取视频的第一帧的图片" class="headerlink" title="提取视频的第一帧的图片"></a>提取视频的第一帧的图片</h1><p>获得视频的第一帧的图片：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686302638281-804ddb84-1921-4383-a272-8ccec992fa64.png#averageHue=%23102c57&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=53&amp;id=ue9d0966c&amp;originHeight=53&amp;originWidth=924&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37484&amp;status=done&amp;style=none&amp;taskId=u22801a7e-ea0a-47ec-9339-37e4618236f&amp;title=&amp;width=924" alt="image.png"><br><a name="Obkj2"></a></p>
+<h1 id="提取视频的中间处的一帧图片"><a href="#提取视频的中间处的一帧图片" class="headerlink" title="提取视频的中间处的一帧图片"></a>提取视频的中间处的一帧图片</h1><p>其中ffprobe.exe是FFmpeg提供的用来查看视频信息的exe文件</p>
+<pre><code class="lang-python">import subprocess
+
+
+FFMPEG_PATH = &quot;D:/ffmpeg/ffmpeg-4.2.1/bin/ffmpeg.exe&quot;
+FFPROBE_PATH = &quot;D:/ffmpeg/ffmpeg-4.2.1/bin/ffprobe.exe&quot;
+
+
+
+def extract_middle_image(source_path, output_path):
+
+
+    ffprobe_cmd = FFPROBE_PATH
+    ffprobe_cmd += &#39; -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 &#39;
+    ffprobe_cmd += source_path
+
+
+    duration = float(subprocess.check_output(ffprobe_cmd))
+
+
+    ffmpeg_cmd = FFMPEG_PATH
+    ffmpeg_cmd += &#39; -y -i &#123;0&#125; -ss &#123;1&#125; -frames:v 1 &#123;2&#125;&#39;.format(source_path, duration/2.0, output_path)
+
+
+    print(ffmpeg_cmd)
+    subprocess.call(ffmpeg_cmd)
+
+
+
+def encode_image_sequence(image_seq_path, output_path, framerate=24, crf=21, preset=&quot;ultrafast&quot;, audio_path=None):
+
+
+    ffmpeg_cmd = FFMPEG_PATH
+    ffmpeg_cmd += &#39; -y &#39;
+    ffmpeg_cmd += &#39; -framerate &#123;0&#125;&#39;.format(framerate)
+    ffmpeg_cmd += &#39; -i &#123;0&#125;&#39;.format(image_seq_path)
+    if audio_path:
+        ffmpeg_cmd += &#39; -i &#123;0&#125;&#39;.format(audio_path)
+
+
+    ffmpeg_cmd += &#39; -c:v libx264 -crf &#123;0&#125; -preset &#123;1&#125;&#39;.format(crf, preset)
+    if audio_path:
+        ffmpeg_cmd += &#39; -c:a aac -filter_complex &quot;[1:0] apad&quot; -shortest&#39;
+
+
+    ffmpeg_cmd += &#39; &#123;0&#125;&#39;.format(output_path)
+
+
+    print(ffmpeg_cmd)
+    subprocess.call(ffmpeg_cmd)
+
+
+
+if __name__ == &quot;__main__&quot;:
+
+
+    source_path = &quot;D:/ffmpeg/ffmpeg-4.2.1/bin/bbb_shot_060.mp4&quot;
+    output_path = &quot;D:/ffmpeg/ffmpeg-4.2.1/bin/middle_frame.png&quot;
+
+
+    extract_middle_image(source_path, output_path)
+</code></pre>
+<p><a name="MWVt3"></a></p>
+<h1 id="通过过滤器添加水印"><a href="#通过过滤器添加水印" class="headerlink" title="通过过滤器添加水印"></a>通过过滤器添加水印</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686304228275-5e64f1b7-abdd-417d-af1d-ea5fe7c97b85.png#averageHue=%23080808&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=992&amp;id=ua5f5a6a7&amp;originHeight=992&amp;originWidth=2417&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=350093&amp;status=done&amp;style=none&amp;taskId=u848aa727-8b57-486f-934b-f1f4e7b6b4f&amp;title=&amp;width=2417" alt="image.png"><br>举例：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686304577780-2882741d-e0d7-4853-ade7-d17a496a50d6.png#averageHue=%23213d67&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=32&amp;id=uc62a5349&amp;originHeight=32&amp;originWidth=1120&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=44893&amp;status=done&amp;style=none&amp;taskId=u5ad1e4b0-c799-4958-adab-0c8e8681621&amp;title=&amp;width=1120" alt="image.png"><br>将图片放到视频的右下角<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686304584475-f26b6af6-78e9-4a13-a504-31e1a2c5b011.png#averageHue=%23244471&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=38&amp;id=uae6f2beb&amp;originHeight=38&amp;originWidth=185&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8030&amp;status=done&amp;style=none&amp;taskId=u636266ba-2555-4cd5-9365-fe2769603c1&amp;title=&amp;width=185" alt="image.png">这里的[0][1]可以不要，然后(W-w-20):(H-h-20)的意思是水印的位置，水印的位置左边如图所示：W为视频的宽度，w为图片的宽度<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686304684459-6ec4506d-337a-43d2-ab30-b8a3234f5dd6.png#averageHue=%238da355&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=756&amp;id=u499b5bd7&amp;originHeight=756&amp;originWidth=1140&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=853210&amp;status=done&amp;style=none&amp;taskId=u8459d329-1180-4f83-a877-a3680fff499&amp;title=&amp;width=1140" alt="image.png"><br><a name="HIx7i"></a></p>
+<h1 id="通过过滤器调整添加的水印的大小的透明度"><a href="#通过过滤器调整添加的水印的大小的透明度" class="headerlink" title="通过过滤器调整添加的水印的大小的透明度"></a>通过过滤器调整添加的水印的大小的透明度</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686536873938-20b89753-bac8-4824-9507-fceecc57a21b.png#averageHue=%23163562&amp;clientId=u3813901e-6645-4&amp;from=paste&amp;height=46&amp;id=ud34da61d&amp;originHeight=46&amp;originWidth=1964&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84264&amp;status=done&amp;style=none&amp;taskId=u0c432a9c-76ae-4e91-a53d-910228f8d05&amp;title=&amp;width=1964" alt="image.png"><br>过滤器为蓝色的字体， [1]scale 是指将前面的输入中的第二个进行缩放。  iw为原图片的像素大小。 iw也可以换成数字代指像素，h=-1的意思是让ffmpeg根据前面的宽度w的大小自动调整高度h的大小。然后后面的[image_scaled]的意思是通过过滤器修改后的图片的名字（因为后面要用到这个更改过缩放的图片，因此先定义一个暂时的名字），[image_scaled]lut=a=val*0.4[image_final];的意思是在原来的基础上将alpha通道的大小调整为原来的0.4倍，然后再给个修改后的名字[image_final]，这个名字是自定义的。然后[0][image_final]overlay=(W-w-20):(H-h-20)为添加水印。<br><a name="s4cNX"></a></p>
+<h1 id="刻录时间码"><a href="#刻录时间码" class="headerlink" title="刻录时间码"></a>刻录时间码</h1><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.nlark.com/yuque/0/2023/png/2623605/1686633394546-2439f3e8-dcf0-457c-bf4e-6ab6ee27e461.png#averageHue=%23244470&amp;clientId=u2a7e5a9c-aa6d-4&amp;from=paste&amp;height=44&amp;id=uebf751ac&amp;originHeight=44&amp;originWidth=2087&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=91397&amp;status=done&amp;style=none&amp;taskId=ua56ab983-5706-4f7c-b436-06f70a2a668&amp;title=&amp;width=2087" alt="image.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>FFmpeg in production</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://example.com/2023/08/29/DCC%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91-MayaPy-FFmpeg-in-production/">http://example.com/2023/08/29/DCC工具开发-MayaPy-FFmpeg-in-production/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>RuiChen</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2023-08-29</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2024-07-28</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/FFmpeg/"><div class="tags-punctuation"><svg class="faa-tada icon" style="height:1.1em;width:1.1em;fill:currentColor;position:relative;top:2px;margin-right:3px" aria-hidden="true"><use xlink:href="#icon-sekuaibiaoqian"></use></svg></div>FFmpeg</a></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/29/UnrealEngine-UE-%E5%8A%A8%E7%94%BB/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(43).jpg?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UE 动画</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/29/UnrealEngine-UE4-BenCloward%E6%95%99%E7%A8%8B/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.com/violet-chen/image_lib/blob/main/img%20(4).png?raw=true" onerror="onerror=null;src='/assets/r2.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UE4 BenCloward教程</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><svg class="meta_icon" style="width:22px;height:22px;position:relative;top:5px"><use xlink:href="#icon-mulu1"></use></svg><span style="font-weight:bold">目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#FFmpeg%E4%B8%8Effmpeg%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">FFmpeg与ffmpeg的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg-or-ffmpeg"><span class="toc-text">FFmpeg or ffmpeg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg-tools"><span class="toc-text">FFmpeg tools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg-libraries"><span class="toc-text">FFmpeg libraries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ffmpeg"><span class="toc-text">ffmpeg</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ffmpeg"><span class="toc-text">安装ffmpeg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ffmpeg%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-text">ffmpeg基础语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E5%9B%BE%E7%89%87%E5%BA%8F%E5%88%97%E8%BD%AC%E6%88%90%E8%A7%86%E9%A2%91"><span class="toc-text">将图片序列转成视频</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ffmpeg%E4%B8%8E%E8%BE%93%E5%87%BA%E4%BB%A5%E5%8F%8Ah264%E7%9B%B8%E5%85%B3%E7%9A%84option%E4%BB%8B%E7%BB%8D"><span class="toc-text">ffmpeg与输出以及h264相关的option介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Constant-Rate-Factor-%EF%BC%88crf%EF%BC%89%E8%BE%93%E5%87%BA%E8%B4%A8%E9%87%8F"><span class="toc-text">Constant Rate Factor （crf）输出质量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preset-%E7%BC%96%E7%A0%81%E9%80%9F%E5%BA%A6%E9%A2%84%E8%AE%BE"><span class="toc-text">Preset 编码速度预设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tune%EF%BC%88%E4%B8%8D%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">Tune（不经常使用）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Profile-profile-v-and-Level-level-%E4%B8%BA%E4%BA%86%E5%85%BC%E5%AE%B9%E6%97%A7%E8%AE%BE%E5%A4%87%E6%89%8D%E9%9C%80%E8%A6%81%E7%9C%8B%E8%BF%99%E4%B8%AA"><span class="toc-text">Profile(-profile:v) and Level(-level)  (为了兼容旧设备才需要看这个)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E8%BE%93%E5%87%BA%E7%9A%84%E7%BC%A9%E6%94%BE%E6%AF%94"><span class="toc-text">更改输出的缩放比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E5%83%8F%E7%B4%A0%E6%A0%BC%E5%BC%8F"><span class="toc-text">更改像素格式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%9F%B3%E9%A2%91"><span class="toc-text">添加音频</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%BA%8F%E5%88%97%E8%BD%AC%E5%8C%96%E6%88%90%E8%A7%86%E9%A2%91%E7%9A%84%E5%90%8C%E6%97%B6%E6%B7%BB%E5%8A%A0%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E5%88%B0%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-text">图片序列转化成视频的同时添加音频文件到视频文件中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%BE%93%E5%87%BA%E7%9A%84%E9%9F%B3%E9%A2%91%E7%9A%84%E9%80%89%E9%A1%B9"><span class="toc-text">设置输出的音频的选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E9%9F%B3%E9%A2%91%E9%95%BF%E5%BA%A6%E6%AF%94%E8%A7%86%E9%A2%91%E9%95%BF%E5%BA%A6%E8%A6%81%E9%95%BF%E6%97%B6%EF%BC%8C%E5%A6%82%E4%BD%95%E8%88%8D%E5%BC%83%E6%8E%89%E5%A4%9A%E4%BD%99%E7%9A%84%E8%A7%86%E9%A2%91"><span class="toc-text">当音频长度比视频长度要长时，如何舍弃掉多余的视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E9%9F%B3%E9%A2%91%E9%95%BF%E5%BA%A6%E6%AF%94%E8%A7%86%E9%A2%91%E9%95%BF%E5%BA%A6%E7%9F%AD%E6%97%B6"><span class="toc-text">当音频长度比视频长度短时</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Codecs-and-Containers-%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8"><span class="toc-text">Codecs and Containers 编码解码器与容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#codec-%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text">codec(编码解码器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Container%EF%BC%88%E5%AE%B9%E5%99%A8%EF%BC%8C%E6%8C%87%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%EF%BC%89"><span class="toc-text">Container（容器，指文件格式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-encoding%EF%BC%88%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-text">file encoding（文件编码）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Converting-Containers-%E8%BD%AC%E6%8D%A2%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-text">Converting Containers 转换文件格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transcoding%E8%BD%AC%E7%A0%81"><span class="toc-text">Transcoding转码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Converting-and-transcoding-%E8%BD%AC%E7%A0%81"><span class="toc-text">Converting and transcoding 转码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generating-an-Image-Sequence%E7%94%9F%E6%88%90%E5%9B%BE%E5%83%8F%E5%BA%8F%E5%88%97"><span class="toc-text">Generating an Image Sequence生成图像序列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%98%AF%E5%90%A6%E8%A6%86%E7%9B%96"><span class="toc-text">控制是否覆盖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87python%E8%B0%83%E7%94%A8ffmpeg"><span class="toc-text">通过python调用ffmpeg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Pyside2%E5%88%B6%E4%BD%9C%E5%B8%A6%E7%95%8C%E9%9D%A2%E7%9A%84%E8%A7%86%E9%A2%91%E8%BD%AC%E6%8D%A2%E5%B7%A5%E5%85%B7"><span class="toc-text">使用Pyside2制作带界面的视频转换工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E5%89%AA%E8%A7%86%E9%A2%91"><span class="toc-text">修剪视频</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%88%8D%E5%BC%83%E5%89%8D%E9%9D%A2%E7%9A%84%E8%A7%86%E9%A2%91%E5%86%85%E5%AE%B9"><span class="toc-text">舍弃前面的视频内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%88%8D%E5%BC%83%E6%9C%80%E5%90%8E%E6%88%96%E4%B8%AD%E9%97%B4%E7%9A%84%E8%A7%86%E9%A2%91%E5%86%85%E5%AE%B9"><span class="toc-text">舍弃最后或中间的视频内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E7%9A%84%E8%A7%86%E9%A2%91"><span class="toc-text">输出指定时间的视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AD%A6%E5%91%8A"><span class="toc-text">警告</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B8%A7%E7%9A%84%E5%9B%BE%E7%89%87"><span class="toc-text">提取视频的第一帧的图片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E8%A7%86%E9%A2%91%E7%9A%84%E4%B8%AD%E9%97%B4%E5%A4%84%E7%9A%84%E4%B8%80%E5%B8%A7%E5%9B%BE%E7%89%87"><span class="toc-text">提取视频的中间处的一帧图片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%BF%87%E6%BB%A4%E5%99%A8%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0"><span class="toc-text">通过过滤器添加水印</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E8%BF%87%E6%BB%A4%E5%99%A8%E8%B0%83%E6%95%B4%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%B0%B4%E5%8D%B0%E7%9A%84%E5%A4%A7%E5%B0%8F%E7%9A%84%E9%80%8F%E6%98%8E%E5%BA%A6"><span class="toc-text">通过过滤器调整添加的水印的大小的透明度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%BB%E5%BD%95%E6%97%B6%E9%97%B4%E7%A0%81"><span class="toc-text">刻录时间码</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-color: transparent;"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="share" type="button" title="右键模式" onclick="changeMouseMode()"><i class="fas fa-mouse"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog right_side"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button class="share" type="button" title="分享链接" onclick="share()"><i class="fas fa-share-nodes"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button><button id="go-down" type="button" title="直达底部" onclick="btf.scrollToDest(document.body.scrollHeight, 500)"><i class="fas fa-arrow-down"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div class="js-pjax" id="rightMenu"><div class="rightMenu-group rightMenu-small"><a class="rightMenu-item" href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a><a class="rightMenu-item" href="javascript:window.history.forward();"><i class="fa fa-arrow-right"></i></a><a class="rightMenu-item" href="javascript:window.location.reload();"><i class="fa fa-refresh"></i></a><a class="rightMenu-item" href="javascript:rmf.scrollToTop();"><i class="fa fa-arrow-up"></i></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-text"><a class="rightMenu-item" href="javascript:rmf.copySelect();"><i class="fa fa-copy"></i><span>复制</span></a><a class="rightMenu-item" href="javascript:window.open(&quot;https://www.baidu.com/s?wd=&quot;+window.getSelection().toString());window.location.reload();"><i class="fa fa-search"></i><span>百度搜索</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-too"><a class="rightMenu-item" href="javascript:window.open(window.getSelection().toString());window.location.reload();"><i class="fa fa-link"></i><span>转到链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-paste"><a class="rightMenu-item" href="javascript:rmf.paste()"><i class="fa fa-copy"></i><span>粘贴</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-post"><a class="rightMenu-item" href="#post-comment"><i class="fas fa-comment"></i><span>空降评论</span></a><a class="rightMenu-item" href="javascript:rmf.copyWordsLink()"><i class="fa fa-link"></i><span>复制本文地址</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-to"><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>新窗口打开</span></a><a class="rightMenu-item" id="menu-too" href="javascript:rmf.open()"><i class="fa fa-link"></i><span>转到链接</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制链接</span></a></div><div class="rightMenu-group rightMenu-line hide" id="menu-img"><a class="rightMenu-item" href="javascript:rmf.saveAs()"><i class="fa fa-download"></i><span>保存图片</span></a><a class="rightMenu-item" href="javascript:rmf.openWithNewTab()"><i class="fa fa-window-restore"></i><span>在新窗口打开</span></a><a class="rightMenu-item" href="javascript:rmf.copyLink()"><i class="fa fa-copy"></i><span>复制图片链接</span></a></div><div class="rightMenu-group rightMenu-line"><a class="rightMenu-item" href="javascript:randomPost()"><i class="fa fa-paper-plane"></i><span>随便逛逛</span></a><a class="rightMenu-item" href="javascript:switchNightMode();"><i class="fa fa-moon"></i><span>昼夜切换</span></a><a class="rightMenu-item" href="/personal/about/"><i class="fa fa-info-circle"></i><span>关于博客</span></a><a class="rightMenu-item" href="javascript:toggleWinbox();"><i class="fas fa-cog"></i><span>美化设置</span></a><a class="rightMenu-item" href="javascript:rmf.fullScreen();"><i class="fas fa-expand"></i><span>切换全屏</span></a><a class="rightMenu-item" href="javascript:window.print();"><i class="fa-solid fa-print"></i><span>打印页面</span></a></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.staticfile.org/fancyapps-ui/4.0.31/fancybox.umd.min.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/instant.page/5.1.0/instantpage.min.js" type="module"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);
+document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script><script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script><script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script><script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script><script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script><script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script><script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script><script async src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><canvas id="universe"></canvas><canvas id="snow"></canvas><script defer src="/js/fomal.js"></script><link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn1.tianli0.top/npm/js-heo@1.0.12/metingjs/Meting.min.js"></script><script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax","#bibi","body > title","#app","#tag-echarts","#posts-echart","#categories-echarts"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+    function butterfly_categories_card_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 760px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 640px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(/assets/1.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/AI/&quot;);" href="javascript:void(0);">AI</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">AI</span></li><li class="categoryBar-list-item" style="background:url(/assets/8.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC软件/&quot;);" href="javascript:void(0);">DCC软件</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">DCC工具开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/3.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/DCC工具开发/&quot;);" href="javascript:void(0);">DCC工具开发</a><span class="categoryBar-list-count">10</span><span class="categoryBar-list-descr">DCC软件</span></li><li class="categoryBar-list-item" style="background:url(/assets/4.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/Geek/&quot;);" href="javascript:void(0);">Geek</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">Geek</span></li><li class="categoryBar-list-item" style="background:url(/assets/5.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/PySide2/&quot;);" href="javascript:void(0);">PySide2</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">PySide2</span></li><li class="categoryBar-list-item" style="background:url(/assets/6.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UE开发/&quot;);" href="javascript:void(0);">UE开发</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr">UE开发</span></li><li class="categoryBar-list-item" style="background:url(/assets/7.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;categories/UnrealEngine/&quot;);" href="javascript:void(0);">UnrealEngine</a><span class="categoryBar-list-count">8</span><span class="categoryBar-list-descr">UnrealEngine</span></li></ul></div></div>';
+      console.log('已挂载butterfly_categories_card')
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      }
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    butterfly_categories_card_injector_config()
+    }
+  </script><!-- hexo injector body_end end --></body></html>
