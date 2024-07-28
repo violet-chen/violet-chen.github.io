@@ -7820,10 +7820,10 @@ button#go-up:hover #percent {
 }
 /* 头像呼吸灯 */
 [data-theme="light"] .avatar-img {
-  animation: huxi_light 0s ease-in-out infinite;
+  animation: huxi_light 4s ease-in-out infinite;
 }
 [data-theme="dark"] .avatar-img {
-  animation: huxi_dark 0s ease-in-out infinite;
+  animation: huxi_dark 4s ease-in-out infinite;
 }
 @keyframes huxi_light {
   0% {

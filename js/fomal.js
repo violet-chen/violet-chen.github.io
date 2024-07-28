@@ -54,7 +54,7 @@ function tonav() {
     position = scroll;
   });
   //修复没有弄右键菜单的童鞋无法回顶部的问题
-  document.getElementById("page-name").innerText = document.title.split(" |RuiChen")[0];
+  document.getElementById("page-name").innerText = document.title.split(" | Fomalhaut🥝")[0];
 }
 
 function scrollToTop() {
@@ -2747,7 +2747,7 @@ function changeBgColor() {
 }
 
 // 必应每日壁纸API
-let bingDayBg = screen.width <= 768 ? "url(https: bing.img.run m.php)" : 1920x1080.php)"; 必应历史壁纸api let binghistorybg="screen.width" <="768" rand_m.php)" rand.php)"; eee.dog eeedog="url(https://api.yimian.xyz/img?type=moe&size=1920x1080)" ; 随机美图cdn.seovx.com seovx="url(https://cdn.seovx.com/?mom=302)" picsum随机 picsum="url(https://picsum.photos/1920/1080.webp)" 小歪二次元 waidongman="url(https://api.ixiaowai.cn/api/api.php)" 小歪高清壁纸 waibizhi="url(https://api.ixiaowai.cn/gqapi/gqapi.php)" 博天随机 btstu="url(http://api.btstu.cn/sjbz/?lx=suiji)" tuapi 动漫 unsplash随机 https: source.unsplash.com random 1920x1080 daily (weekly) unsplash="url(https://source.unsplash.com/random/1920x1080/)" 更换背景(自己的代码) if (localstorage.getitem("blogbg") !="undefined)" { setbg(localstorage.getitem("blogbg")); } else document.getelementbyid("definebg").innertext="`:root{" --default-bg: url(https: github.com violet-chen image_lib blob main img%20(62).jpg?raw="true);" --darkmode-bg: --mobileday-bg: --mobilenight-bg: }`; 切换背景主函数 function changebg(s) 自定义颜色框 definecolor="s.charAt(0)" =="#" s '#f4d88a'; setbg(s); localstorage.setitem("blogbg", s); 设置背景属性 setbg(s) ${s}; 切换链接对应的背景(加入了链接检验与防抖) getpicture() debounce(getpicture_, 300); getpicture_() checkimgexists(document.getelementbyid("pic-link").value).then(()> {
+let bingDayBg = screen.width <= 768 ? "url(https: bing.img.run m.php)" : 1920x1080.php)"; 必应历史壁纸api let binghistorybg="screen.width" <="768" rand_m.php)" rand.php)"; eee.dog eeedog="url(https://api.yimian.xyz/img?type=moe&size=1920x1080)" ; 随机美图cdn.seovx.com seovx="url(https://cdn.seovx.com/?mom=302)" picsum随机 picsum="url(https://picsum.photos/1920/1080.webp)" 小歪二次元 waidongman="url(https://api.ixiaowai.cn/api/api.php)" 小歪高清壁纸 waibizhi="url(https://api.ixiaowai.cn/gqapi/gqapi.php)" 博天随机 btstu="url(http://api.btstu.cn/sjbz/?lx=suiji)" tuapi 动漫 unsplash随机 https: source.unsplash.com random 1920x1080 daily (weekly) unsplash="url(https://source.unsplash.com/random/1920x1080/)" 更换背景(自己的代码) if (localstorage.getitem("blogbg") !="undefined)" { setbg(localstorage.getitem("blogbg")); } else document.getelementbyid("definebg").innertext="`:root{" --default-bg: url(https: lskypro.acozycotage.net fomalhaut img dm14.webp); --darkmode-bg:url(https: yuanshen1.webp); --mobileday-bg: snow.webp); --mobilenight-bg: mb8.webp); }`; 切换背景主函数 function changebg(s) 自定义颜色框 definecolor="s.charAt(0)" =="#" s '#f4d88a'; setbg(s); localstorage.setitem("blogbg", s); 设置背景属性 setbg(s) ${s}; --darkmode-bg: 切换链接对应的背景(加入了链接检验与防抖) getpicture() debounce(getpicture_, 300); getpicture_() checkimgexists(document.getelementbyid("pic-link").value).then(()> {
     // 有效的图片链接
     var link = "url(" + document.getElementById("pic-link").value + ")";
     changeBg(link);
