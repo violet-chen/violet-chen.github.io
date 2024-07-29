@@ -1,0 +1,1328 @@
+---
+abbrlink: '0'
+---
+{
+  "last_node_id": 190,
+  "last_link_id": 178,
+  "nodes": [
+    {
+      "id": 180,
+      "type": "ConditioningSetArea",
+      "pos": [
+        956,
+        3076
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 153,
+          "label": "conditioning",
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            162
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "二张视图的整体区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        2048,
+        1536,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 124,
+      "type": "ConditioningSetArea",
+      "pos": [
+        955,
+        3285
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 36,
+          "label": "conditioning"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            165
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "三张视图的整体区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        3072,
+        1536,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 118,
+      "type": "ConditioningSetArea",
+      "pos": [
+        943,
+        2383
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 30,
+          "label": "conditioning"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            29
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "控制第二张视图的区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        1024,
+        0,
+        0.8
+      ]
+    },
+    {
+      "id": 116,
+      "type": "ConditioningSetArea",
+      "pos": [
+        943,
+        2091
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 27,
+          "label": "conditioning"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            28,
+            171
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "控制第一张视图的区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        0,
+        0,
+        0.8
+      ]
+    },
+    {
+      "id": 173,
+      "type": "Logic Boolean",
+      "pos": [
+        -142,
+        2673
+      ],
+      "size": {
+        "0": 315,
+        "1": 78
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "NUMBER",
+          "type": "NUMBER",
+          "links": [
+            174,
+            176
+          ],
+          "shape": 3,
+          "label": "NUMBER",
+          "slot_index": 0
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "INT"
+        }
+      ],
+      "title": "是否是三张视图",
+      "properties": {
+        "Node name for S&R": "Logic Boolean"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 120,
+      "type": "ConditioningSetArea",
+      "pos": [
+        953,
+        2605
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 33,
+          "label": "conditioning"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            32
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "控制第三张视图的区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        2048,
+        0,
+        0.8
+      ]
+    },
+    {
+      "id": 183,
+      "type": "ConditioningSetArea",
+      "pos": [
+        960,
+        2873
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 154
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 160,
+          "label": "conditioning",
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            161
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "一张视图的整体区域",
+      "properties": {
+        "Node name for S&R": "ConditioningSetArea"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 117,
+      "type": "ConditioningCombine",
+      "pos": [
+        1358,
+        2096
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 46
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_1",
+          "type": "CONDITIONING",
+          "link": 28,
+          "label": "conditioning_1"
+        },
+        {
+          "name": "conditioning_2",
+          "type": "CONDITIONING",
+          "link": 29,
+          "label": "conditioning_2"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            172
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "结合第一张视图与第二张视图",
+      "properties": {
+        "Node name for S&R": "ConditioningCombine"
+      }
+    },
+    {
+      "id": 187,
+      "type": "Conditioning Input Switch",
+      "pos": [
+        1409,
+        2207
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 66
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_a",
+          "type": "CONDITIONING",
+          "link": 172,
+          "label": "conditioning_a",
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning_b",
+          "type": "CONDITIONING",
+          "link": 171,
+          "label": "conditioning_b",
+          "slot_index": 1
+        },
+        {
+          "name": "boolean_number",
+          "type": "NUMBER",
+          "link": 173,
+          "label": "boolean_number",
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            170,
+            175
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Conditioning Input Switch"
+      }
+    },
+    {
+      "id": 119,
+      "type": "ConditioningCombine",
+      "pos": [
+        1788,
+        2221
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 46
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_1",
+          "type": "CONDITIONING",
+          "link": 170,
+          "label": "conditioning_1"
+        },
+        {
+          "name": "conditioning_2",
+          "type": "CONDITIONING",
+          "link": 32,
+          "label": "conditioning_2"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            168
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "结合第二张视图与第三张视图",
+      "properties": {
+        "Node name for S&R": "ConditioningCombine"
+      }
+    },
+    {
+      "id": 186,
+      "type": "Conditioning Input Switch",
+      "pos": [
+        1988,
+        2316
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 66
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_a",
+          "type": "CONDITIONING",
+          "link": 168,
+          "label": "conditioning_a",
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning_b",
+          "type": "CONDITIONING",
+          "link": 175,
+          "label": "conditioning_b",
+          "slot_index": 1
+        },
+        {
+          "name": "boolean_number",
+          "type": "NUMBER",
+          "link": 174,
+          "label": "boolean_number",
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            169
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Conditioning Input Switch"
+      }
+    },
+    {
+      "id": 122,
+      "type": "ConditioningCombine",
+      "pos": [
+        2367,
+        2318
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 46
+      },
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_1",
+          "type": "CONDITIONING",
+          "link": 169,
+          "label": "conditioning_1"
+        },
+        {
+          "name": "conditioning_2",
+          "type": "CONDITIONING",
+          "link": 166,
+          "label": "conditioning_2"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            156
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "结合控制整体区域",
+      "properties": {
+        "Node name for S&R": "ConditioningCombine"
+      }
+    },
+    {
+      "id": 125,
+      "type": "ConditioningCombine",
+      "pos": [
+        2734,
+        2402
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 46
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_1",
+          "type": "CONDITIONING",
+          "link": 156,
+          "label": "conditioning_1"
+        },
+        {
+          "name": "conditioning_2",
+          "type": "CONDITIONING",
+          "link": 38,
+          "label": "conditioning_2"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "结合控制整体",
+      "properties": {
+        "Node name for S&R": "ConditioningCombine"
+      }
+    },
+    {
+      "id": 142,
+      "type": "CLIPSetLastLayer",
+      "pos": [
+        9,
+        2275
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "clip",
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            66,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          "shape": 3,
+          "label": "CLIP",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPSetLastLayer"
+      },
+      "widgets_values": [
+        -2
+      ]
+    },
+    {
+      "id": 133,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        488,
+        2093
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 67,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            27
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "第一张视图的提示词",
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "none",
+        "A1111"
+      ]
+    },
+    {
+      "id": 134,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        488,
+        2383
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 68,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            30
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "第二张视图的提示词",
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "none",
+        "A1111"
+      ]
+    },
+    {
+      "id": 135,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        479,
+        2640
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 69,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            33
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "第三张视图的提示词",
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "none",
+        "A1111"
+      ]
+    },
+    {
+      "id": 136,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        474,
+        2916
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 70,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            36,
+            153,
+            160
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "控制整体区域的提示词",
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "none",
+        "A1111"
+      ]
+    },
+    {
+      "id": 137,
+      "type": "CLIPTextEncode",
+      "pos": [
+        471,
+        3233
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 71,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            38
+          ],
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "title": "使整张图统一,可以不填提示词",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 184,
+      "type": "Conditioning Input Switch",
+      "pos": [
+        1337,
+        2941
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 66
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_a",
+          "type": "CONDITIONING",
+          "link": 162,
+          "label": "conditioning_a",
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning_b",
+          "type": "CONDITIONING",
+          "link": 161,
+          "label": "conditioning_b"
+        },
+        {
+          "name": "boolean_number",
+          "type": "NUMBER",
+          "link": 163,
+          "label": "boolean_number",
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            164
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Conditioning Input Switch"
+      }
+    },
+    {
+      "id": 185,
+      "type": "Conditioning Input Switch",
+      "pos": [
+        1756,
+        2957
+      ],
+      "size": {
+        "0": 342.5999755859375,
+        "1": 66
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_a",
+          "type": "CONDITIONING",
+          "link": 165,
+          "label": "conditioning_a",
+          "slot_index": 0
+        },
+        {
+          "name": "conditioning_b",
+          "type": "CONDITIONING",
+          "link": 164,
+          "label": "conditioning_b"
+        },
+        {
+          "name": "boolean_number",
+          "type": "NUMBER",
+          "link": 176,
+          "label": "boolean_number",
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            166
+          ],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Conditioning Input Switch"
+      }
+    },
+    {
+      "id": 176,
+      "type": "Logic Boolean",
+      "pos": [
+        -148,
+        2509
+      ],
+      "size": {
+        "0": 315,
+        "1": 78
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "NUMBER",
+          "type": "NUMBER",
+          "links": [
+            163,
+            173
+          ],
+          "shape": 3,
+          "label": "NUMBER",
+          "slot_index": 0
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "INT"
+        }
+      ],
+      "title": "是否是两张视图",
+      "properties": {
+        "Node name for S&R": "Logic Boolean"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 140,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        487,
+        1832
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 66,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [],
+          "shape": 3,
+          "label": "CONDITIONING",
+          "slot_index": 0
+        }
+      ],
+      "title": "反向提示词",
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "none",
+        "comfy"
+      ]
+    }
+  ],
+  "links": [
+    [
+      27,
+      133,
+      0,
+      116,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      28,
+      116,
+      0,
+      117,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      29,
+      118,
+      0,
+      117,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      30,
+      134,
+      0,
+      118,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      32,
+      120,
+      0,
+      119,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      33,
+      135,
+      0,
+      120,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      36,
+      136,
+      0,
+      124,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      38,
+      137,
+      0,
+      125,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      66,
+      142,
+      0,
+      140,
+      0,
+      "CLIP"
+    ],
+    [
+      67,
+      142,
+      0,
+      133,
+      0,
+      "CLIP"
+    ],
+    [
+      68,
+      142,
+      0,
+      134,
+      0,
+      "CLIP"
+    ],
+    [
+      69,
+      142,
+      0,
+      135,
+      0,
+      "CLIP"
+    ],
+    [
+      70,
+      142,
+      0,
+      136,
+      0,
+      "CLIP"
+    ],
+    [
+      71,
+      142,
+      0,
+      137,
+      0,
+      "CLIP"
+    ],
+    [
+      153,
+      136,
+      0,
+      180,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      156,
+      122,
+      0,
+      125,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      160,
+      136,
+      0,
+      183,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      161,
+      183,
+      0,
+      184,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      162,
+      180,
+      0,
+      184,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      163,
+      176,
+      0,
+      184,
+      2,
+      "NUMBER"
+    ],
+    [
+      164,
+      184,
+      0,
+      185,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      165,
+      124,
+      0,
+      185,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      166,
+      185,
+      0,
+      122,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      168,
+      119,
+      0,
+      186,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      169,
+      186,
+      0,
+      122,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      170,
+      187,
+      0,
+      119,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      171,
+      116,
+      0,
+      187,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      172,
+      117,
+      0,
+      187,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      173,
+      176,
+      0,
+      187,
+      2,
+      "NUMBER"
+    ],
+    [
+      174,
+      173,
+      0,
+      186,
+      2,
+      "NUMBER"
+    ],
+    [
+      175,
+      187,
+      0,
+      186,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      176,
+      173,
+      0,
+      185,
+      2,
+      "NUMBER"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
