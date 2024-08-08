@@ -156,9 +156,9 @@ categoryBar:
   column: odd # odd：3列 | even：4列
   row: 4 #显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - descr: AI
-      cover: /assets/1.jpg
     - descr: DCC工具开发
+      cover: /assets/1.jpg
+    - descr: AI
       cover: /assets/8.jpg
     - descr: DCC软件
       cover: /assets/3.jpg

@@ -470,7 +470,7 @@ int main()
 用下图来表示, Base这个类是父类,Derived这个类是子类.
 ![Alt text](image-5.png)
 
-## 多态与虚函数表
+## 多态与虚函数表与虚析构函数
 > 多态是面向对象编程中的一种特性，它允许同一个接口调用的不同实现。这种特性使得一个基类指针或引用可以指向派生类的对象，并且可以调用派生类的重载方法，而不需要知道具体的派生类。这种机制主要有两种类型：
 1.编译时多态（静态多态性）：通过函数重载和模板实现。
 2.运行时多态（动态多态性）：通过虚函数（virtual functions）和继承实现。
@@ -600,52 +600,6 @@ delete[] arrayPtr
 堆分配的内存地址不是连续的.
 在堆上分配的内存需要手动释放,否则会导致内存泄漏.
 
-
----
-# 隐式转换和explicit
-隐式转换是在没有显式指示的情况下，由编译器自动进行的类型转换。
-explicit关键字用于防止构造函数或转换运算符进行隐式转换，仅允许显式转换。这在防止意外的类型转换错误方面非常有用。
-```cpp
-#include <iostream>
-using namespace std;
-class Entity
-{
-private:
-	string m_name;
-	int m_age;
-public:
-	explicit Entity(const string& name)
-		: m_name(name), m_age(-1) {};
-	explicit Entity(int age)
-		: m_name("Unknown"), m_age(age) {};
-	const void PrintEntity() const
-	{
-		cout << m_name << endl;
-		cout << m_age << endl;
-	}
-};
-
-void printEntity(const Entity& e)
-{
-	e.PrintEntity();
-}
-
-int main()
-{
-	Entity e1 = Entity("TestName");
-	Entity e2 = Entity(23);
-	printEntity(e1);
-	printEntity(e2);
-
-	/*如果构造函数没有explicit的话这些是可以执行的,因为允许隐式转换
-	Entity e3 = "TestName2";
-	Entity e4 = 23;
-	printEntity(22);
-	printEntity(string("Name"));
-	*/
-	cin.get();
-}
-```
 ---
 # 智能指针
 ## 智能指针的概念
@@ -1103,6 +1057,52 @@ int main()
 ```
 
 ---
+# 隐式转换和explicit
+隐式转换是在没有显式指示的情况下，由编译器自动进行的类型转换。
+explicit关键字用于防止构造函数或转换运算符进行隐式转换，仅允许显式转换。这在防止意外的类型转换错误方面非常有用。
+```cpp
+#include <iostream>
+using namespace std;
+class Entity
+{
+private:
+	string m_name;
+	int m_age;
+public:
+	explicit Entity(const string& name)
+		: m_name(name), m_age(-1) {};
+	explicit Entity(int age)
+		: m_name("Unknown"), m_age(age) {};
+	const void PrintEntity() const
+	{
+		cout << m_name << endl;
+		cout << m_age << endl;
+	}
+};
+
+void printEntity(const Entity& e)
+{
+	e.PrintEntity();
+}
+
+int main()
+{
+	Entity e1 = Entity("TestName");
+	Entity e2 = Entity(23);
+	printEntity(e1);
+	printEntity(e2);
+
+	/*如果构造函数没有explicit的话这些是可以执行的,因为允许隐式转换
+	Entity e3 = "TestName2";
+	Entity e4 = 23;
+	printEntity(22);
+	printEntity(string("Name"));
+	*/
+	cin.get();
+}
+```
+
+---
 # 类型双关
 > 类型双关（type punning）是指在编程中通过不同的类型来访问同一块内存。换句话说，就是使用一种类型的变量或指针来访问另一种类型的数据。这通常通过类型转换和指针运算来实现。
 
@@ -1120,6 +1120,22 @@ int main() {
     return 0;
 }
 ```
+
+---
+# 类型转换
+> C++的转换操作符有四种，分别是static_cast,reinterpret_cast,dynamic_cast,const_cast
+> C语言风格的类型转换: float a = 3.5f; int b = (int)a;
+> 使用C++的转换操作符相比使用C语言风格的类型转换的好处是：通过转换操作符可以使用搜索功能快速定位到进行了类型转换的代码区域，同时它也帮助减少了强制转换时发生的意外错误。
+
+
+1. static_cast: 常用的转换操作符，它会做一些其他的编译时检查来确定转换是否真的可能。
+2. reinterpret_cast: 把内存重新解释成别的东西，类似于类型双关。
+3. const_cast: 用于移除或添加变量的const
+4. dynamic_cast: 用于基类和派生类之间的转换，转换失败时返回nullptr
+
+使用方法：
+float f = 3.14;int i = static_cast<int>(f); 
+其他类型转换同static_cast.
 
 ---
 # union(联合体)
@@ -1166,6 +1182,106 @@ int main()
 	PrintVector2(vector.a); // 输出1,2
 	PrintVector2(vector.b); // 输出500,4
 	std::cin.get();
+}
+```
+
+
+# 预编译头文件
+> C++ 的预编译头文件（Precompiled Headers，简称 PCH）是一种优化编译过程的技术。通过将项目中常用且不经常变动的头文件预先编译成一个二进制文件，下次编译时可以直接使用这个二进制文件，而不需要重新编译这些头文件，从而显著减少编译时间。
+
+如何使用预编译头文件：
+应用到整个项目文件中：
+![alt text](image-22.png)
+应用到cpp文件中：
+在要使用预编译头文件的cpp文件的属性设置中设置使用预编译头，并且将要预编译的头文件填上去
+![alt text](image-21.png)
+
+# 基准测试
+> 在C++中，基准测试（benchmarking）是指评估和比较不同实现方式或算法性能的过程。基准测试通常用于衡量代码片段或整个程序在特定条件下的性能表现，如执行时间、内存使用等。其主要目的是找出代码中可能存在的性能瓶颈或改进空间。
+
+举例：
+通过定义计时器timer来计算代码运行消耗时间，测试make shared和new shared和make unique谁更快。
+最终测试结果是make unique最快。
+需要注意的是：
+在测试中VisualStudio的设置中release和debug的编译方式是不一样的。
+![alt text](image-23.png)
+> Debug 配置适合于开发和调试阶段，因为它提供了详细的调试信息，并且程序行为更接近于源码，便于发现和修复问题。
+Release 配置适合于程序发布阶段，因为它生成的代码经过优化，执行效率更高，适合最终用户使用。
+
+```cpp
+#include <iostream>
+#include <memory>
+
+#include <chrono>
+#include <array>
+
+class Timer
+{
+public:
+	Timer()
+	{
+		m_StartTimepoint = std::chrono::high_resolution_clock::now();
+	}
+
+	~Timer()
+	{
+		Stop();
+
+	}
+
+	void Stop()
+	{
+		auto endTimepoint = std::chrono::high_resolution_clock::now();
+
+		// 将时间转换为微秒
+
+		auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimepoint).time_since_epoch().count(); 
+		auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
+
+		auto duration = end - start;
+		double ms = duration * 0.001;
+
+		std::cout << duration << "us(" << ms << "ms)\n";
+
+	}
+
+private:
+	std::chrono::time_point<std::chrono::high_resolution_clock> m_StartTimepoint;
+};
+
+
+int main() {
+	struct Vector2
+	{
+		float x, y;
+	};
+
+	{
+		std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
+		std::cout << "Make Shared" << std::endl;
+		Timer timer;
+		for (int i = 0; i < sharedPtrs.size(); i++)
+			sharedPtrs[i] = std::make_shared<Vector2>();
+	}
+
+	{
+		std::array<std::shared_ptr<Vector2>, 1000> sharedPtrs;
+		std::cout << "New Shared" << std::endl;
+		Timer timer;
+		for (int i = 0; i < sharedPtrs.size(); i++)
+			sharedPtrs[i] = std::shared_ptr<Vector2>(new Vector2());
+	}
+
+	{
+		std::array<std::unique_ptr<Vector2>, 1000> uniquePtrs;
+		std::cout << "Make Unique" << std::endl;
+		Timer timer;
+		for (int i = 0; i < uniquePtrs.size(); i++)
+			uniquePtrs[i] = std::make_unique<Vector2>();
+	}
+
+	__debugbreak();
+
 }
 ```
 
