@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://example.com/2024/10/16/AI-ComfyUI%E4%B8%AD%E6%8F%90%E9%AB%98%E5%87%BA%E5%9B%BE%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2024-11-07</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2024/10/16/AI-lora%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</loc>
+    <lastmod>2024-11-07</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2023/08/29/Geek-VisualStudio%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2024-10-28</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2023/08/31/Geek-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
+    <lastmod>2024-08-17</lastmod>
+  </url>
+  <url>
     <loc>http://example.com/2023/08/29/UnrealEngine-UE%E8%B5%84%E4%BA%A7%E4%BB%A5%E5%8F%8A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2024-08-08</lastmod>
   </url>
@@ -73,10 +89,6 @@
     <lastmod>2024-08-08</lastmod>
   </url>
   <url>
-    <loc>http://example.com/2023/08/29/Geek-VisualStudio%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2024-08-08</lastmod>
-  </url>
-  <url>
     <loc>http://example.com/2024/03/03/Geek-python/</loc>
     <lastmod>2024-08-08</lastmod>
   </url>
@@ -106,10 +118,6 @@
   </url>
   <url>
     <loc>http://example.com/2024/07/21/DCC%E8%BD%AF%E4%BB%B6-houdini/</loc>
-    <lastmod>2024-08-08</lastmod>
-  </url>
-  <url>
-    <loc>http://example.com/2023/08/31/Geek-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
     <lastmod>2024-08-08</lastmod>
   </url>
   <url>
@@ -166,10 +174,6 @@
   </url>
   <url>
     <loc>http://example.com/2023/11/28/AI-ComfyUI%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2024-08-08</lastmod>
-  </url>
-  <url>
-    <loc>http://example.com/2024/01/08/AI-ComfyUI%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
     <lastmod>2024-08-08</lastmod>
   </url>
 </urlset> 
