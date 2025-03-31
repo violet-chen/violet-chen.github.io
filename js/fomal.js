@@ -434,7 +434,7 @@ if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobi
         } else
           o.velX *= .98,
             o.velY < o.speed && o.speed - o.velY > .01 && (o.velY += .01 * (o.speed - o.velY)),
-            o.velX += Math.cos(o.step += .05) * o.stepSize;
+            o.velX += Math.cos(o.step += .05) * o.stepsize;
         n.fillStyle = "rgba(" + e.color + ", " + o.opacity + ")",
           o.y += o.velY,
           o.x += o.velX,
